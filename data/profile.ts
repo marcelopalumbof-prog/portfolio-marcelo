@@ -2,7 +2,7 @@ export const profile = {
   name: "Marcelo",
   role: "Criação de Sites e Tráfego Pago",
   tagline: "Transformo cliques em clientes. Sites rápidos, bonitos e otimizados que vendem 24 horas por dia.",
-  photo: "/images/profile.jpg",
+  photo: "/images/profile.svg",
   summary:
     "Sou desenvolvedor e designer freelancer especializado em criação de sites de alta conversão e gestão de tráfego pago. Há mais de 5 anos ajudo empresas a ganharem visibilidade no digital com estratégias focadas em resultado — não apenas em estética, mas em performance, SEO e conversão.",
   stats: [
