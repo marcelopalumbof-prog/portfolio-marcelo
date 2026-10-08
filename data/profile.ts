@@ -33,21 +33,21 @@ export const profile = {
     "Google Ads",
     "Google Analytics",
     "Figma",
-    "Hotjar",
+    "Cloudflare",
   ],
   social: {
-    whatsapp: "5511999999999",
+    whatsapp: "5571981061578",
     whatsappMessage:
       "Olá, Marcelo! Vim pelo seu portfólio e gostaria de solicitar um orçamento.",
-    instagram: "https://instagram.com/seuusuario",
-    linkedin: "https://linkedin.com/in/seuusuario",
-    github: "https://github.com/seuusuario",
-    email: "contato@seuportfolio.com.br",
+    instagram: "https://www.instagram.com/marcelopalumbo_/",
+    linkedin: "https://linkedin.com/in/marcelopalumbo",
+    github: "https://github.com/marcelopalumbof-prog",
+    email: "marcelo.palumbof@gmail.com",
   },
   company: {
     name: "Marcelo Desenvolvimento Web",
     cnpj: "00.000.000/0001-00",
-    city: "São Paulo, SP",
+    city: "Salvador, BA",
   },
 };
 
