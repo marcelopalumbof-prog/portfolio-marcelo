@@ -1,0 +1,2932 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#0A0B0A" />
+<!-- Marca o documento como "com JS". Usado para as animações de entrada.
+     Se o JavaScript estiver desligado, o conteúdo aparece normalmente. -->
+<script>document.documentElement.classList.add("js");</script>
+
+<!-- ============================================================================
+     SEO BÁSICO: EDITE TITLE E DESCRIPTION COM SUAS PALAVRAS-CHAVE
+     ============================================================================ -->
+<title>Marcelo Palumbo | Criação de Sites, Sistemas Web e Tráfego Pago</title>
+<meta name="description" content="Criação de sites, landing pages, sistemas web sob medida e gestão de tráfego pago (Meta Ads e Google Ads). Transformo cliques em clientes. Orçamento no WhatsApp." />
+<meta name="author" content="Marcelo Palumbo" />
+<link rel="canonical" href="https://seudominio.com.br/" /><!-- TROQUE pelo seu domínio -->
+
+<!-- ============================================================================
+     OPEN GRAPH / REDES SOCIAIS: TROQUE A URL E A IMAGEM DE CAPA (1200x630)
+     ============================================================================ -->
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="pt_BR" />
+<meta property="og:site_name" content="Marcelo Palumbo" />
+<meta property="og:title" content="Sites que vendem, sistemas que organizam e anúncios que trazem clientes" />
+<meta property="og:description" content="Sites, landing pages e sistemas web sob medida + gestão de tráfego pago no Meta Ads e Google Ads." />
+<meta property="og:url" content="https://seudominio.com.br/" />
+<meta property="og:image" content="https://seudominio.com.br/og-cover.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Marcelo Palumbo | Sites, Sistemas e Tráfego Pago" />
+<meta name="twitter:description" content="Sites que vendem, sistemas que organizam e anúncios que trazem clientes." />
+<meta name="twitter:image" content="https://seudominio.com.br/og-cover.jpg" />
+
+<!-- ============================================================================
+     FAVICON: círculo laranja (SVG embutido, sem arquivo externo)
+     ============================================================================ -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23E85D04'/%3E%3C/svg%3E" />
+
+<!-- ============================================================================
+     FONTES (Syne = títulos / Inter = corpo). font-display: swap via URL.
+     ============================================================================ -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+<!-- ============================================================================
+     ██  RASTREAMENTO  ██
+     Cole aqui o PIXEL DA META (Facebook/Instagram Ads).
+     Descomente e troque SEU_PIXEL_ID.
+
+     <script>
+       !function(f,b,e,v,n,t,s){...}(window,document,'script',
+       'https://connect.facebook.net/en_US/fbevents.js');
+       fbq('init', 'SEU_PIXEL_ID');
+       fbq('track', 'PageView');
+     <\/script>
+     <noscript><img height="1" width="1" style="display:none"
+       src="https://www.facebook.com/tr?id=SEU_PIXEL_ID&ev=PageView&noscript=1"/></noscript>
+     ============================================================================ -->
+
+<!-- ============================================================================
+     ██  RASTREAMENTO  ██
+     Cole aqui o GOOGLE TAG (gtag.js) e troque G-XXXXXXX.
+
+     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"><\/script>
+     <script>
+       window.dataLayer = window.dataLayer || [];
+       function gtag(){dataLayer.push(arguments);}
+       gtag('js', new Date());
+       gtag('config', 'G-XXXXXXX');
+     <\/script>
+     ============================================================================ -->
+
+<style>
+/* ============================================================================
+   01. DESIGN TOKENS: altere as cores do site inteiro por aqui
+   ============================================================================ */
+:root{
+  --bg:#0A0B0A;
+  --surface-1:#151615;
+  --surface-2:#0E0F0E;
+  --accent:#E85D04;                          /* laranja principal */
+  --accent-hover:#FF7A1F;
+  --accent-glow:rgba(232,93,4,.35);
+  --on-accent:#0A0B0A;                       /* texto sobre laranja */
+  --text:#FFFFFF;
+  --text-muted:#8A8C8A;
+  --border:rgba(255,255,255,.14);
+  --grid:rgba(255,255,255,.04);
+  --font-display:"Syne","Unbounded",sans-serif;
+  --font-body:"Inter","Open Sans",sans-serif;
+  --radius-sm:8px; --radius-md:12px; --radius-lg:20px; --radius-full:999px;
+  --gradient-title:linear-gradient(90deg,#fff 0%,#777 100%);
+  --gradient-card:linear-gradient(180deg,var(--surface-1),var(--surface-2));
+  --nav-h:76px;
+  --s4:4px; --s8:8px; --s16:16px; --s24:24px; --s32:32px; --s48:48px; --s80:80px; --s120:120px;
+
+  /* ------------------------------------------------------------------------
+     MOVIMENTO: personalidade PREMIUM
+     Elegante, controlado, sem exagero (combina com fintech/tech, alto contraste).
+     Identidade: 1 easing de assinatura + 4 durações + 1 padrão de entrada.
+     Regra direcional: entrada desacelera (--ease-out), saída acelera (--ease-in).
+     ------------------------------------------------------------------------ */
+  --ease-out:cubic-bezier(.05,.7,.1,1);   /* assinatura: quase tudo entra assim */
+  --ease-standard:cubic-bezier(.4,0,.2,1);/* movimento já em tela (hover, cor)   */
+  --ease-in:cubic-bezier(.3,0,1,1);       /* saídas (fechar menu, recolher FAQ)  */
+  --dur-quick:120ms;  /* hover e press: precisa parecer instantâneo */
+  --dur-base:260ms;   /* cards, abas, estados                        */
+  --dur-slow:420ms;   /* blocos grandes, accordion abrindo           */
+  --dur-reveal:600ms; /* entrada de seção (definido no briefing)     */
+  --stagger:60ms;     /* escalonamento entre itens irmãos            */
+}
+
+/* ============================================================================
+   02. RESET ENXUTO
+   ============================================================================ */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;overflow-x:hidden;scroll-behavior:smooth}
+/* A navbar é fixa: sem isso, o topo da seção fica escondido atrás dela */
+section[id],main[id]{scroll-margin-top:calc(var(--nav-h) + 12px)}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:var(--font-body);font-weight:300;font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+ul{margin:0;padding:0;list-style:none}
+h1,h2,h3,h4{margin:0;font-family:var(--font-display);font-weight:700;line-height:1.15;letter-spacing:-.01em}
+p{margin:0}
+::selection{background:var(--accent);color:var(--on-accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+/* ============================================================================
+   03. FUNDO: grade de 100px + vinheta radial escura nas bordas
+   ============================================================================ */
+.bg-layer{
+  position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:100px 100px;
+}
+.bg-layer::after{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(120% 90% at 50% 0%,transparent 30%,rgba(10,11,10,.85) 100%),
+             radial-gradient(100% 70% at 50% 100%,transparent 20%,rgba(10,11,10,.9) 100%);
+}
+
+/* ============================================================================
+   04. LAYOUT / UTILITÁRIOS
+   ============================================================================ */
+.container{width:100%;max-width:1200px;margin-inline:auto;padding-inline:24px}
+.section{padding-block:80px}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:var(--s8);
+  font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--text-muted);
+}
+.eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent-glow);flex:none}
+.grad{background:var(--gradient-title);-webkit-background-clip:text;background-clip:text;color:transparent}
+.accent{color:var(--accent)}
+.lead{color:var(--text-muted);font-size:16px;max-width:56ch}
+h1{font-size:clamp(34px,7vw,58px);line-height:1.12}
+h2{font-size:clamp(28px,5vw,44px)}
+.h2-wrap{max-width:20ch}
+.section-head{display:flex;flex-direction:column;gap:var(--s16);margin-bottom:var(--s48)}
+
+/* ============================================================================
+   04.1 ANIMAÇÕES DE ENTRADA: fade + translateY(24px), 600ms desacelerando
+   Feito com @keyframes (e não com transition) por dois motivos práticos:
+   · o estado final não fica "preso": depois de entrar, o card ativo da proposta
+     ainda pode subir no hover, e os cards ainda podem reagir ao mouse;
+   · animation-delay não interfere nos hovers (transition-delay interferiria).
+   O estado escondido só existe com a classe .js no <html>: sem JavaScript, ou se
+   ele falhar, o conteúdo continua visível.
+   ============================================================================ */
+.js [data-reveal]{opacity:0}
+.js [data-reveal].is-in{
+  opacity:1;
+  animation:reveal var(--dur-reveal) var(--ease-out) var(--reveal-delay,0ms) backwards;
+}
+@keyframes reveal{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+/* Impressão e contextos sem pintura (pré-visualização, bot de captura) não
+   entregam frames, e sem frame o IntersectionObserver não avisa.
+   Aqui o conteúdo aparece sempre. */
+@media print{.js [data-reveal]{opacity:1;animation:none}}
+
+/* ============================================================================
+   05. BOTÕES / LINKS / PILLS
+   ============================================================================ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:var(--s8);
+  padding:12px 24px;border-radius:var(--radius-sm);
+  background:var(--accent);color:var(--on-accent);font-weight:600;font-size:15px;
+  transition:background var(--dur-quick) var(--ease-standard),
+             box-shadow var(--dur-base) var(--ease-out),
+             transform var(--dur-quick) var(--ease-out);
+  white-space:nowrap;
+}
+.btn:hover{background:var(--accent-hover);box-shadow:0 0 0 1px var(--accent),0 10px 30px -8px var(--accent-glow)}
+.btn:active{transform:translateY(1px) scale(.985)}
+/* A seta é a camada secundária: sai junto, mas assenta um pouco depois */
+.btn .arw{transition:transform var(--dur-base) var(--ease-out)}
+.btn:hover .arw{transform:translateX(3px)}
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:var(--s8);padding:12px 20px;
+  border:1px solid var(--border);border-radius:var(--radius-sm);font-size:15px;font-weight:500;
+  background:rgba(255,255,255,.02);
+  transition:border-color var(--dur-quick) var(--ease-standard),background var(--dur-base) var(--ease-standard);
+}
+.btn-ghost:hover{border-color:var(--accent);background:rgba(232,93,4,.08)}
+.link-muted{font-size:14px;color:var(--text-muted);text-decoration:underline;text-decoration-color:transparent;transition:color var(--dur-quick) var(--ease-standard),text-decoration-color var(--dur-quick) var(--ease-standard)}
+.link-muted:hover{color:var(--text);text-decoration-color:var(--accent)}
+.pill{
+  display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:var(--radius-full);
+  background:var(--accent);color:var(--on-accent);font-size:11px;font-weight:600;
+  letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;
+}
+.pill-soft{background:rgba(232,93,4,.12);color:var(--accent);border:1px solid rgba(232,93,4,.35)}
+.rating{display:inline-flex;gap:3px;color:var(--accent);font-size:13px;letter-spacing:1px}
+
+/* Botão circular com anel laranja deslocado (usado no hero e nos cards de serviço) */
+.btn-circle{position:relative;width:54px;height:54px;flex:none;display:grid;place-items:center}
+.btn-circle .ring{
+  position:absolute;inset:5px -5px -5px 5px;border-radius:50%;
+  border:1.5px solid var(--accent);opacity:.55;
+  transition:inset var(--dur-base) var(--ease-out),opacity var(--dur-base) var(--ease-out);
+}
+.btn-circle .core{
+  position:relative;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;
+  background:var(--accent);color:var(--on-accent);font-size:18px;line-height:1;
+  transition:background var(--dur-quick) var(--ease-standard),
+             box-shadow var(--dur-base) var(--ease-out),
+             transform var(--dur-base) var(--ease-out);
+}
+.btn-circle:hover .core{background:var(--accent-hover);box-shadow:0 0 24px var(--accent-glow);transform:scale(1.05)}
+.btn-circle:hover .ring{inset:0;opacity:1}
+
+/* Ícone circular: círculo escuro com contorno laranja */
+.ico{
+  width:44px;height:44px;flex:none;border-radius:50%;display:grid;place-items:center;
+  border:1px solid rgba(232,93,4,.5);background:radial-gradient(120% 120% at 30% 20%,rgba(232,93,4,.16),var(--surface-2));
+  color:var(--accent);
+  transition:transform var(--dur-base) var(--ease-out),
+             box-shadow var(--dur-base) var(--ease-out),
+             border-color var(--dur-quick) var(--ease-standard);
+}
+.ico svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+
+/* ============================================================================
+   06. CARDS DE VIDRO (glassmorphism sutil)
+   ============================================================================ */
+.card{
+  position:relative;background:var(--gradient-card);
+  border:1px solid var(--border);border-radius:var(--radius-lg);
+  padding:var(--s24);backdrop-filter:blur(6px);
+  /* a borda responde rápido e a sombra chega depois (follow-through) */
+  transition:border-color var(--dur-quick) var(--ease-standard),
+             background var(--dur-base) var(--ease-standard),
+             transform var(--dur-base) var(--ease-out),
+             box-shadow var(--dur-base) var(--ease-out);
+}
+.card:hover{border-color:rgba(232,93,4,.45);box-shadow:0 22px 44px -30px rgba(232,93,4,.5)}
+.card-flat{border-radius:var(--radius-md)}
+/* O ícone sobe um pouco depois do card (camada secundária) */
+.svc:hover .ico,.offer:hover .ico{transform:translateY(-2px);border-color:rgba(232,93,4,.85);box-shadow:0 0 0 4px rgba(232,93,4,.09)}
+
+/* ============================================================================
+   07. NAVBAR FIXA
+   ============================================================================ */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:60;height:var(--nav-h);
+  display:flex;align-items:center;
+  border-bottom:1px solid transparent;
+  transition:background var(--dur-base) var(--ease-standard),
+             border-color var(--dur-base) var(--ease-standard),
+             backdrop-filter var(--dur-base) var(--ease-standard);
+}
+.nav.is-scrolled{background:rgba(10,11,10,.72);backdrop-filter:blur(14px);border-bottom-color:var(--border)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:var(--s24);width:100%}
+.logo{font-family:var(--font-display);font-weight:700;font-size:19px;color:var(--accent);letter-spacing:-.02em}
+.nav-links{display:none;gap:var(--s32);align-items:center}
+.nav-links a{font-size:14px;font-weight:400;color:var(--text-muted);transition:color var(--dur-quick) var(--ease-standard)}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{display:none}
+.burger{width:44px;height:44px;display:grid;place-items:center;border:1px solid var(--border);border-radius:var(--radius-sm)}
+.burger span{display:block;width:18px;height:1.5px;background:var(--text);margin:2.5px 0;transition:transform var(--dur-base) var(--ease-out),opacity var(--dur-quick) var(--ease-standard)}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(4px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-4px) rotate(-45deg)}
+.mobile-menu{
+  position:fixed;top:var(--nav-h);left:0;right:0;z-index:59;
+  background:rgba(10,11,10,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);
+  padding:var(--s24);display:grid;gap:var(--s16);
+  transform:translateY(-12px);opacity:0;visibility:hidden;
+  /* fecha rápido e acelerando (saída); abre mais devagar e desacelerando */
+  transition:transform var(--dur-quick) var(--ease-in),opacity var(--dur-quick) var(--ease-in),visibility 0s linear var(--dur-quick);
+}
+.mobile-menu.is-open{
+  transform:none;opacity:1;visibility:visible;
+  transition:transform var(--dur-base) var(--ease-out),opacity var(--dur-base) var(--ease-out),visibility 0s;
+}
+.mobile-menu a{font-size:17px;color:var(--text-muted);padding:6px 0;border-bottom:1px solid var(--grid)}
+.mobile-menu a:hover{color:var(--accent)}
+
+/* ============================================================================
+   08. HERO
+   ============================================================================ */
+.hero{padding-top:calc(var(--nav-h) + 56px);padding-bottom:80px;position:relative}
+.hero-grid{display:grid;gap:var(--s48);align-items:center}
+.hero-copy{display:flex;flex-direction:column;gap:var(--s24);position:relative;z-index:2}
+.social-proof{display:flex;align-items:center;gap:var(--s16)}
+.avatars{display:flex;align-items:center}
+.avatars .av{
+  width:38px;height:38px;border-radius:50%;margin-left:-10px;flex:none;
+  display:grid;place-items:center;font-size:12px;font-weight:600;color:var(--text);
+  background:linear-gradient(160deg,#232422,#101110);border:1.5px solid rgba(255,255,255,.22);
+}
+.avatars .av:first-child{margin-left:0}
+.avatars .av.more{background:var(--accent);color:var(--on-accent);border-color:var(--accent);font-size:11px}
+.proof-text{font-size:13px;color:var(--text-muted);line-height:1.4}
+.proof-text strong{color:var(--text);font-weight:600;display:block;font-size:14px}
+.hero-actions{display:flex;align-items:center;gap:var(--s24);flex-wrap:wrap}
+
+/* --- Mockup 3D (navegador + celular) feito 100% em HTML/CSS --- */
+.stage{position:relative;perspective:1400px;min-height:380px;display:grid;place-items:center;z-index:1;container-type:inline-size}
+.ghost{
+  position:absolute;top:46%;left:50%;transform:translate(-50%,-50%);
+  font-family:var(--font-display);font-weight:800;font-size:clamp(58px,15vw,180px);
+  letter-spacing:.02em;color:#fff;opacity:.05;white-space:nowrap;pointer-events:none;user-select:none;
+}
+.glow-under{
+  position:absolute;left:50%;top:58%;width:min(560px,92%);height:300px;transform:translate(-50%,-50%);
+  background:radial-gradient(50% 50% at 50% 50%,var(--accent-glow),transparent 72%);
+  filter:blur(24px);pointer-events:none;
+  /* camada ambiente: o brilho "respira" devagar (7s), quase imperceptível */
+  animation:breathe 7s var(--ease-standard) infinite;
+}
+@keyframes breathe{
+  0%,100%{opacity:.78;transform:translate(-50%,-50%) scale(.96)}
+  50%    {opacity:1;  transform:translate(-50%,-50%) scale(1.05)}
+}
+.floor-shadow{
+  position:absolute;left:50%;bottom:6%;width:min(440px,80%);height:46px;transform:translateX(-50%);
+  background:radial-gradient(50% 50% at 50% 50%,rgba(232,93,4,.35),transparent 70%);
+  filter:blur(18px);pointer-events:none;
+}
+.orbits{position:absolute;left:50%;top:50%;width:min(760px,124%);transform:translate(-50%,-50%);overflow:visible;pointer-events:none}
+.orbits ellipse{fill:none;stroke:var(--accent);stroke-width:1.5;opacity:.32}
+.orbits .node{fill:var(--accent)}
+/* Os pontos das órbitas giram com SMIL (animateTransform) dentro de um grupo
+   achatado por scale(): assim eles percorrem exatamente a elipse, sem depender
+   de transform-origin no SVG.
+   Nota sobre easing: aqui linear é intencional. Numa volta completa (loop
+   fechado), qualquer curva com aceleração criaria um "tranco" no ponto de
+   emenda. Linear só é aceitável em movimento rotativo contínuo como este. */
+@keyframes orbit{to{transform:rotate(360deg)}}
+
+/* ============================================================================
+   08.1 MOCKUP REALISTA (navegador + celular) em HTML/CSS puro
+   Toda medida interna usa cqw (container query): o mockup escala como uma
+   captura de tela vetorial, mantendo a proporção real em qualquer largura.
+   As fontes seguem a proporção de um site de verdade reduzido (~40%):
+   um título de 44px vira ~17px dentro da janela, exatamente como num print.
+   ============================================================================ */
+.mock-3d{
+  position:relative;width:100%;line-height:1.2;
+  /* --ry/--rx/--mx/--my vêm do parallax de mouse (script 13); 0deg é o repouso */
+  transform:rotateY(calc(-15deg + var(--ry,0deg))) rotateX(calc(7deg + var(--rx,0deg)))
+            rotateZ(1.5deg) translate3d(var(--mx,0px),var(--my,0px),0);
+  transform-style:preserve-3d;
+  transition:transform 220ms var(--ease-out);
+}
+/* Sombras separadas por elemento: devolvem o 3D de verdade (filter
+   "achataria" o translateZ do celular) */
+.window{
+  border-radius:1.7cqw;overflow:hidden;background:#0F100F;
+  box-shadow:0 55px 90px -32px rgba(0,0,0,.85),0 0 0 1px rgba(255,255,255,.07);
+}
+
+/* Barra do navegador: setas, cadeado, URL, favorito e menu */
+.win-bar{
+  display:flex;align-items:center;gap:1.4cqw;
+  padding:1.15cqw 1.5cqw;background:#1B1C1B;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
+}
+.win-lights{display:flex;gap:.65cqw;flex:none}
+.win-lights i{width:1cqw;height:1cqw;border-radius:50%;background:#3E3F3D}
+.win-lights i:first-child{background:#57585A}
+.win-lights i:nth-child(2){background:#4A4A40}
+.win-nav{display:flex;gap:1.1cqw;flex:none;color:#8F918F}
+.win-right{display:flex;gap:1.2cqw;flex:none;color:#8F918F}
+.wico{width:1.6cqw;height:1.6cqw;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;opacity:.9}
+.win-url{
+  flex:1;display:flex;align-items:center;gap:.8cqw;min-width:0;
+  height:2.7cqw;padding:0 1.3cqw;border-radius:99px;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.06);
+  color:#C4C6C4;font-size:1.35cqw;font-weight:400;letter-spacing:.01em;
+  white-space:nowrap;overflow:hidden;
+}
+.win-url .wico{width:1.35cqw;height:1.35cqw;color:var(--accent);opacity:1;flex:none}
+
+/* Página clara dentro da janela (a landing em si) */
+.lp{background:#FCFCFB;color:#14161A;padding:1.7cqw 2cqw 2cqw}
+.lp-nav{display:flex;align-items:center;gap:1.6cqw;padding-bottom:1.4cqw;border-bottom:1px solid rgba(20,22,26,.09)}
+.lp-logo{display:flex;align-items:center;gap:.75cqw;font-family:var(--font-display);font-weight:700;font-size:1.65cqw;letter-spacing:-.01em}
+.lp-logo i{width:1.25cqw;height:1.25cqw;border-radius:50%;background:var(--accent)}
+.lp-menu{display:flex;gap:1.7cqw;font-size:1.2cqw;color:#6B7280;margin-left:auto}
+.lp-navbtn{
+  padding:.6cqw 1.3cqw;border-radius:99px;background:var(--accent);color:var(--on-accent);
+  font-size:1.15cqw;font-weight:600;flex:none;
+}
+.lp-hero{padding-top:1.9cqw;display:flex;flex-direction:column;gap:1cqw}
+.lp-chip{
+  display:inline-flex;align-items:center;gap:.65cqw;width:max-content;
+  padding:.5cqw 1.1cqw;border-radius:99px;background:rgba(232,93,4,.1);color:#A64100;
+  font-size:1cqw;font-weight:500;letter-spacing:.07em;text-transform:uppercase;
+}
+.lp-chip i{width:.7cqw;height:.7cqw;border-radius:50%;background:var(--accent)}
+.lp-h{margin:0;font-family:var(--font-display);font-weight:700;font-size:3.05cqw;line-height:1.14;letter-spacing:-.01em}
+.lp-h b{color:var(--accent);font-weight:700}
+.lp-sub{margin:0;font-size:1.35cqw;line-height:1.5;color:#6B7280;max-width:46cqw}
+.lp-actions{display:flex;align-items:center;gap:1cqw}
+.lp-btn{
+  display:inline-flex;align-items:center;gap:.7cqw;padding:.8cqw 1.5cqw;
+  border-radius:.9cqw;background:var(--accent);color:var(--on-accent);
+  font-size:1.25cqw;font-weight:600;
+}
+.lp-btn2{
+  display:inline-flex;align-items:center;gap:.7cqw;padding:.8cqw 1.4cqw;
+  border-radius:.9cqw;border:1px solid rgba(20,22,26,.18);color:#14161A;
+  font-size:1.25cqw;font-weight:500;background:#fff;
+}
+.lp-btn2 svg{width:1.5cqw;height:1.5cqw;fill:var(--accent)}
+.lp-proof{display:flex;align-items:center;gap:1.1cqw}
+.lp-avs{display:flex}
+.lp-avs i{
+  width:2.1cqw;height:2.1cqw;border-radius:50%;margin-left:-.65cqw;
+  border:.2cqw solid #FCFCFB;background:linear-gradient(160deg,#E9EAE8,#C7C9C6);
+  color:#3D4046;display:grid;place-items:center;font-size:.85cqw;font-weight:600;font-style:normal;
+}
+.lp-avs i:first-child{margin-left:0}
+.lp-avs i.hot{background:var(--accent);color:var(--on-accent)}
+.lp-stars{font-size:1.1cqw;color:#14161A}
+.lp-stars b{color:var(--accent);letter-spacing:.06em}
+.lp-stars span{color:#6B7280}
+.lp-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1cqw;padding-top:1.7cqw}
+.lp-card{
+  background:#fff;border:1px solid rgba(20,22,26,.09);border-radius:1.1cqw;
+  padding:1.1cqw;display:flex;gap:.95cqw;align-items:flex-start;
+}
+.lp-card .ico2{width:2.3cqw;height:2.3cqw;border-radius:50%;flex:none;display:grid;place-items:center;background:rgba(232,93,4,.13);color:#A64100}
+.lp-card .ico2 svg{width:1.25cqw;height:1.25cqw;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.lp-card b{display:block;font-size:1.2cqw;font-weight:600;line-height:1.3}
+.lp-card small{display:block;font-size:1cqw;line-height:1.4;color:#6B7280;margin-top:.3cqw}
+.lp-chart{margin-top:1.3cqw;background:#fff;border:1px solid rgba(20,22,26,.09);border-radius:1.1cqw;padding:1.15cqw 1.25cqw .9cqw}
+.lp-chart-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:.8cqw}
+.lp-chart-head b{font-size:1.15cqw;font-weight:600}
+.lp-leg{display:flex;gap:1.4cqw;font-size:.95cqw;color:#6B7280}
+.lp-leg i{display:inline-block;width:1.3cqw;height:.28cqw;border-radius:99px;background:var(--accent);margin-right:.45cqw;vertical-align:middle}
+.lp-leg .m i{background:#C4C6C4}
+.lp-chart svg{width:100%;height:8.6cqw;overflow:visible}
+.lp-chart .grid{stroke:rgba(20,22,26,.055);stroke-width:1}
+.lp-chart .prev{fill:none;stroke:#C4C6C4;stroke-width:1.6;stroke-dasharray:3 4;stroke-linecap:round}
+.lp-chart .main{fill:none;stroke:var(--accent);stroke-width:2.2;stroke-linecap:round}
+.lp-chart .area{fill:url(#mockArea)}
+.lp-days{display:flex;justify-content:space-between;font-size:.9cqw;color:#9A9C9A;padding-top:.6cqw}
+
+/* Celular: moldura, ilha dinâmica, status bar e dashboard */
+.phone{
+  position:absolute;right:-2cqw;bottom:-6cqw;width:25cqw;
+  border-radius:4.8cqw;background:#101110;padding:.95cqw;
+  box-shadow:0 45px 75px -30px rgba(0,0,0,.85),0 0 0 1px rgba(255,255,255,.09);
+  transform:translateZ(70px) rotateY(7deg);
+}
+/* botões laterais (volume e power) */
+.phone::before,.phone::after{content:"";position:absolute;right:-.5cqw;width:.5cqw;border-radius:2px;background:#3E3F3D}
+.phone::before{top:9.5cqw;height:3.2cqw}
+.phone::after{top:14.5cqw;height:5.4cqw}
+.p-island{
+  position:absolute;top:1.85cqw;left:50%;transform:translateX(-50%);
+  width:8.2cqw;height:2.15cqw;border-radius:99px;background:#060707;z-index:2;
+}
+.p-screen{
+  position:relative;border-radius:4cqw;background:#F6F6F4;overflow:hidden;
+  display:flex;flex-direction:column;
+}
+.p-body{padding:1.15cqw 1.15cqw 1cqw;display:flex;flex-direction:column;gap:.85cqw}
+.p-status{display:flex;justify-content:space-between;align-items:center;font-size:1.1cqw;font-weight:600;color:#14161A}
+.p-sig{width:6.5cqw;height:1.35cqw}
+.p-head{display:flex;justify-content:space-between;align-items:center}
+.p-head b{display:block;font-family:var(--font-display);font-weight:700;font-size:2cqw;line-height:1.1}
+.p-head small{display:block;font-size:.95cqw;color:#6B7280;margin-top:.15cqw}
+.p-bell{
+  position:relative;width:3.3cqw;height:3.3cqw;border-radius:50%;
+  background:#fff;border:1px solid rgba(20,22,26,.09);display:grid;place-items:center;
+}
+.p-bell svg{width:1.8cqw;height:1.8cqw;stroke:#14161A;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.p-bell i{position:absolute;top:.55cqw;right:.55cqw;width:.85cqw;height:.85cqw;border-radius:50%;background:var(--accent);border:.18cqw solid #F6F6F4}
+.p-kpi{background:#fff;border:1px solid rgba(20,22,26,.09);border-radius:1.7cqw;padding:1.05cqw 1.15cqw;display:flex;flex-direction:column;gap:.25cqw}
+.p-kpi small{font-size:.95cqw;color:#6B7280}
+.p-kpi b{font-family:var(--font-display);font-weight:700;font-size:2.5cqw;line-height:1.05;color:#14161A}
+.p-badge{
+  display:inline-flex;align-items:center;gap:.35cqw;width:max-content;margin-top:.2cqw;
+  padding:.25cqw .8cqw;border-radius:99px;background:rgba(232,93,4,.13);color:#A64100;
+  font-size:.9cqw;font-weight:600;
+}
+.p-kpi svg{width:100%;height:2.3cqw;margin-top:.4cqw}
+.p-chartcard{background:#fff;border:1px solid rgba(20,22,26,.09);border-radius:1.4cqw;padding:.9cqw 1cqw}
+.p-chart-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:.6cqw}
+.p-chart-head small{font-size:.95cqw;color:#6B7280}
+.p-chart-head b{font-size:1cqw;font-weight:600;color:#A64100}
+.p-bars{display:flex;align-items:flex-end;gap:.7cqw;height:4.8cqw}
+.p-bars i{flex:1;border-radius:.45cqw .45cqw .2cqw .2cqw;background:rgba(232,93,4,.26)}
+.p-bars i.mid{background:rgba(232,93,4,.6)}
+.p-bars i.top{background:var(--accent)}
+.p-days{display:flex;gap:.7cqw;margin-top:.6cqw}
+.p-days span{flex:1;text-align:center;font-size:.85cqw;color:#9A9C9A}
+.p-list{display:flex;flex-direction:column;gap:.6cqw}
+.p-sec{font-size:.85cqw;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#9A9C9A}
+.p-row{display:flex;align-items:center;gap:.85cqw;background:#fff;border:1px solid rgba(20,22,26,.08);border-radius:1.2cqw;padding:.6cqw .85cqw}
+.p-av{
+  width:2.3cqw;height:2.3cqw;border-radius:50%;flex:none;
+  background:linear-gradient(160deg,#E9EAE8,#C7C9C6);color:#3D4046;
+  display:grid;place-items:center;font-size:.95cqw;font-weight:600;font-style:normal;
+}
+.p-who{flex:1;min-width:0}
+.p-who b{display:block;font-size:1.05cqw;font-weight:600;line-height:1.25;color:#14161A}
+.p-who small{display:block;font-size:.9cqw;color:#6B7280;line-height:1.25}
+.p-tag{font-size:.85cqw;font-weight:600;padding:.3cqw .85cqw;border-radius:99px;flex:none}
+.p-tag.ok{background:rgba(232,93,4,.14);color:#A64100}
+.p-tag.dim{background:rgba(20,22,26,.06);color:#565A60}
+.p-tabbar{
+  display:flex;justify-content:space-around;align-items:center;
+  padding:.65cqw 0 1.15cqw;background:rgba(255,255,255,.94);border-top:1px solid rgba(20,22,26,.07);
+}
+.p-tabbar span{display:flex;flex-direction:column;align-items:center;gap:.25cqw;font-size:.85cqw;color:#9A9C9A}
+.p-tabbar svg{width:1.75cqw;height:1.75cqw;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.p-tabbar .on{color:var(--accent);font-weight:600}
+.p-fab{
+  position:absolute;right:1.7cqw;bottom:8.6cqw;width:4cqw;height:4cqw;border-radius:50%;
+  background:var(--accent);color:var(--on-accent);display:grid;place-items:center;
+  box-shadow:0 .7cqw 2cqw -.3cqw rgba(232,93,4,.55);
+}
+.p-fab svg{width:1.9cqw;height:1.9cqw;stroke:currentColor;fill:none;stroke-width:2.6;stroke-linecap:round}
+.p-home{
+  position:absolute;bottom:.75cqw;left:50%;transform:translateX(-50%);
+  width:9cqw;height:1.05cqw;border-radius:99px;background:#14161A;opacity:.85;
+}
+
+/* ============================================================================
+   09. PROPOSTA (3 cards, o do meio ativo)
+   ============================================================================ */
+.prop-grid{display:grid;gap:var(--s16);align-items:start}
+.prop-card{display:flex;flex-direction:column;gap:var(--s16);min-height:230px;padding:var(--s32)}
+.prop-num{font-family:var(--font-display);font-size:22px;font-weight:600;color:var(--accent)}
+.prop-card h3{font-size:18px;font-weight:600;line-height:1.35}
+.prop-card p{color:var(--text-muted);font-size:14px}
+.prop-card .more{margin-top:auto;font-size:14px;font-weight:500;color:var(--accent);display:inline-flex;gap:6px;align-items:center;transition:gap var(--dur-base) var(--ease-out),color var(--dur-quick) var(--ease-standard)}
+.prop-card .more:hover{gap:10px}
+.prop-card.is-active{
+  background:var(--accent);color:var(--on-accent);border-color:var(--accent);
+  min-height:262px;
+  box-shadow:0 30px 60px -22px var(--accent-glow);
+}
+/* O card ativo "sobe" só quando há espaço (evita sobreposição no mobile). */
+@media(min-width:640px){
+  .prop-card.is-active{transform:translateY(-24px)}
+}
+.prop-card.is-active .prop-num,.prop-card.is-active p,.prop-card.is-active .more{color:var(--on-accent)}
+.prop-card.is-active p{opacity:.92}
+.prop-card.is-active h3{color:var(--on-accent)}
+
+/* ============================================================================
+   10. SERVIÇOS (grid 3x2)
+   ============================================================================ */
+.svc-grid{display:grid;gap:var(--s16)}
+.svc{display:flex;flex-direction:column;gap:var(--s16);padding:var(--s24)}
+.svc h3{font-size:18px;font-weight:600}
+.svc p{font-size:14px;color:var(--text-muted)}
+.svc ul{display:grid;gap:var(--s8);margin-top:var(--s4)}
+.svc li{position:relative;padding-left:18px;font-size:13.5px;color:var(--text-muted)}
+.svc li::before{
+  content:"";position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;
+  background:var(--accent);opacity:.85;
+}
+.svc .more{margin-top:auto;font-size:14px;font-weight:500;color:var(--accent);display:inline-flex;gap:6px;align-items:center;transition:gap var(--dur-base) var(--ease-out),color var(--dur-quick) var(--ease-standard)}
+.svc .more:hover{gap:10px;color:var(--accent-hover)}
+.extras{
+  margin-top:var(--s32);padding:var(--s16) var(--s24);border-radius:var(--radius-md);
+  border:1px dashed var(--border);color:var(--text-muted);font-size:13.5px;text-align:center;
+}
+.extras strong{color:var(--text);font-weight:500}
+
+/* ============================================================================
+   10.1 PORTFÓLIO: miniaturas desenhadas em HTML/CSS, sem imagem externa
+   Cada miniatura usa cqw (container query) e escala como um print real: o
+   conteúdo interno acompanha a largura do card em qualquer tela.
+   O 3D vem do tilt no mouse + brilho que segue o cursor.
+   ============================================================================ */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+/* Trava a rolagem pelo próprio CSS: some sozinha quando o dialog fecha,
+   sem depender de evento JavaScript. */
+html:has(dialog.case[open]){overflow:hidden}
+
+.pf-bar{display:flex;flex-wrap:wrap;gap:var(--s8);margin-bottom:var(--s32)}
+.pf-filter{
+  display:inline-flex;align-items:center;gap:7px;padding:9px 16px;
+  border:1px solid var(--border);border-radius:var(--radius-full);
+  font-size:13.5px;font-weight:500;color:var(--text-muted);background:rgba(255,255,255,.02);
+  transition:color var(--dur-quick) var(--ease-standard),
+             border-color var(--dur-quick) var(--ease-standard),
+             background var(--dur-base) var(--ease-standard);
+}
+.pf-filter .n{font-size:11px;font-weight:600;opacity:.55}
+.pf-filter:hover{border-color:rgba(232,93,4,.5);color:var(--text)}
+.pf-filter[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.pf-filter[aria-pressed="true"] .n{opacity:.8}
+
+.pf-grid{display:grid;gap:var(--s32) var(--s24)}
+.pf-card{display:flex;flex-direction:column;gap:14px}
+.pf-card.is-hidden{display:none}
+
+/* Botão que abre o case: a moldura é o "print", o resto é meta */
+.pf-open{position:relative;display:block;width:100%;padding:0;border-radius:var(--radius-md);text-align:left}
+.pf-shot{
+  position:relative;display:block;width:100%;aspect-ratio:16/10;overflow:hidden;
+  border:1px solid var(--border);border-radius:var(--radius-md);
+  background:#0F100F;container-type:inline-size;perspective:900px;
+  transition:border-color var(--dur-quick) var(--ease-standard),
+             box-shadow var(--dur-base) var(--ease-out);
+}
+.pf-open:hover .pf-shot,
+.pf-open:focus-visible .pf-shot{border-color:rgba(232,93,4,.55);box-shadow:0 34px 60px -44px rgba(232,93,4,.75)}
+.pf-scene{
+  position:absolute;inset:0;
+  transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) scale(var(--sc,1));
+  transition:transform 170ms var(--ease-out);
+}
+.pf-open:hover .pf-scene{--sc:1.035}
+.pf-glare{
+  position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:radial-gradient(240px circle at var(--gx,50%) var(--gy,0%),rgba(255,255,255,.11),transparent 62%);
+  opacity:0;transition:opacity var(--dur-base) var(--ease-standard);
+}
+.pf-open:hover .pf-glare{opacity:1}
+.pf-cta{
+  position:absolute;left:50%;bottom:14px;z-index:3;
+  display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:var(--radius-full);
+  background:rgba(10,11,10,.84);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(8px);
+  font-size:13px;font-weight:500;color:#fff;white-space:nowrap;
+  opacity:0;transform:translate(-50%,10px);pointer-events:none;
+  transition:opacity var(--dur-base) var(--ease-out),transform var(--dur-base) var(--ease-out);
+}
+.pf-open:hover .pf-cta,.pf-open:focus-visible .pf-cta{opacity:1;transform:translate(-50%,0)}
+
+.pf-meta{display:flex;flex-direction:column;gap:8px}
+.pf-tags{display:flex;flex-wrap:wrap;gap:6px}
+.pf-tag{
+  font-size:10.5px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;
+  color:#fff;background:rgba(232,93,4,.14);border:1px solid rgba(232,93,4,.38);
+  border-radius:var(--radius-full);padding:4px 10px;
+}
+.pf-tag.alt{color:var(--text-muted);background:rgba(255,255,255,.03);border-color:var(--border)}
+.pf-title{font-size:19px;letter-spacing:-.01em}
+.pf-desc{font-size:14px;line-height:1.55;color:var(--text-muted)}
+.pf-res{font-size:13px;color:var(--text-muted);display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+.pf-res b{font-family:var(--font-display);font-size:15px;color:var(--accent);font-weight:700}
+
+/* ---- Cena base: barra de navegador + conteúdo ---- */
+.sc{position:absolute;inset:0;overflow:hidden;background:#FBFBF9;color:#14161A;line-height:1.22;font-family:var(--font-body);text-align:left}
+.sc.dark{background:#0E0F0E;color:#fff}
+.sc-chrome{display:flex;align-items:center;gap:1.1cqw;height:5.6cqw;padding:0 2.4cqw;background:#1B1C1B;color:#9A9C9A;font-size:1.7cqw}
+.sc-chrome i{width:1.2cqw;height:1.2cqw;border-radius:50%;background:#3E3F3D;flex:none}
+.sc-chrome .u{display:flex;align-items:center;gap:.7cqw;margin-left:1cqw;flex:1;height:2.9cqw;border-radius:99px;background:rgba(255,255,255,.08);padding:0 1.5cqw;font-size:1.65cqw;color:#C0C2C0;white-space:nowrap;overflow:hidden}
+.sc-chrome .u b{width:.9cqw;height:.9cqw;border-radius:50%;background:var(--accent);flex:none}
+.sc-body{display:flex;flex-direction:column;gap:2.2cqw;padding:2.4cqw 3cqw}
+.sc-nav{display:flex;align-items:center;gap:2.2cqw;font-size:1.8cqw;color:#6B7280;white-space:nowrap}
+.sc-nav b{font-family:var(--font-display);font-weight:700;font-size:2.4cqw;color:#14161A;margin-right:auto;letter-spacing:-.01em}
+.sc-nav b em{font-style:normal;color:var(--accent)}
+.sc.dark .sc-nav b{color:#fff}
+.sc-btn{display:inline-flex;align-items:center;gap:.6cqw;background:var(--accent);color:var(--on-accent);border-radius:.9cqw;padding:.85cqw 1.7cqw;font-size:1.75cqw;font-weight:600;white-space:nowrap}
+.sc-ghost{display:inline-flex;align-items:center;border:1px solid rgba(255,255,255,.28);border-radius:.9cqw;padding:.85cqw 1.6cqw;font-size:1.75cqw;font-weight:500;white-space:nowrap}
+.sc-kicker{display:inline-flex;align-items:center;gap:.6cqw;font-size:1.55cqw;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:#A64100}
+.sc-kicker i{width:.8cqw;height:.8cqw;border-radius:50%;background:var(--accent)}
+.sc-h{display:block;font-family:var(--font-display);font-weight:700;font-size:4.7cqw;line-height:1.07;letter-spacing:-.015em}
+.sc-h em{font-style:normal;color:var(--accent)}
+.sc-sub{display:block;font-size:2cqw;line-height:1.42;color:#6B7280}
+.sc.dark .sc-sub{color:#9A9C9A}
+.sc-row{display:flex;align-items:center;gap:1.3cqw;flex-wrap:wrap}
+.sc-hero{display:grid;grid-template-columns:1.08fr .92fr;gap:3.2cqw;align-items:center}
+.sc-col{display:flex;flex-direction:column;gap:1.5cqw;min-width:0}
+.sc-photo{position:relative;display:block;aspect-ratio:1/.95;border-radius:2.2cqw;overflow:hidden;background:linear-gradient(155deg,#EFE0CD,#D2B08C 55%,#A9825B)}
+.sc-photo svg{position:absolute;inset:0;width:100%;height:100%}
+.sc-photo .tag{position:absolute;left:1.4cqw;bottom:1.4cqw;padding:.5cqw 1.1cqw;border-radius:99px;background:rgba(10,11,10,.72);color:#fff;font-size:1.4cqw;font-weight:500;backdrop-filter:blur(4px)}
+
+/* ---- Construtora ---- */
+.sc-photo2{position:relative;display:block;aspect-ratio:2.85/1;border-radius:1.8cqw;overflow:hidden;background:linear-gradient(160deg,#2C2D2B,#101110)}
+.sc-photo2 svg{position:absolute;inset:0;width:100%;height:100%}
+.sc-overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;gap:1.3cqw;padding:3cqw;background:linear-gradient(90deg,rgba(10,11,10,.82),rgba(10,11,10,.2) 72%);color:#fff}
+.sc-overlay .sc-kicker{color:#FFB07A}
+.sc-overlay .sc-h{font-size:4cqw}
+.sc-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:2cqw;border-top:1px solid rgba(20,22,26,.1);padding-top:1.8cqw}
+.sc-stats b{display:block;font-family:var(--font-display);font-size:2.7cqw;line-height:1;color:var(--accent)}
+.sc-stats small{display:block;font-size:1.55cqw;color:#6B7280;margin-top:.45cqw}
+
+/* ---- Painel (sistema) ---- */
+.sc-app{display:grid;grid-template-columns:9.5cqw 1fr;gap:2.4cqw;padding:2.4cqw 2.6cqw}
+.sc-side{display:flex;flex-direction:column;gap:1.5cqw;border-right:1px solid rgba(255,255,255,.08);padding-right:2cqw}
+.sc-brand{width:4.2cqw;height:4.2cqw;border-radius:1.1cqw;background:var(--accent);display:grid;place-items:center;margin-bottom:1.2cqw}
+.sc-brand i{width:1.6cqw;height:1.6cqw;border-radius:.5cqw;background:var(--on-accent)}
+.sc-sitem{display:block;height:1.6cqw;border-radius:.6cqw;background:rgba(255,255,255,.12)}
+.sc-sitem.on{background:var(--accent);width:86%}
+.sc-main{display:flex;flex-direction:column;gap:1.7cqw;min-width:0}
+.sc-top{display:flex;align-items:center;justify-content:space-between;gap:1.5cqw}
+.sc-top b{font-family:var(--font-display);font-size:2.5cqw;line-height:1}
+.sc-pill{font-size:1.4cqw;padding:.45cqw 1.1cqw;border-radius:99px;border:1px solid rgba(255,255,255,.2);color:#C4C6C4;white-space:nowrap}
+.sc-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3cqw}
+.sc-kpi{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:1.1cqw;padding:1.3cqw}
+.sc-kpi small{display:block;font-size:1.4cqw;color:#9A9C9A}
+.sc-kpi b{display:block;font-family:var(--font-display);font-size:2.4cqw;line-height:1.1;margin-top:.35cqw}
+.sc-kpi i{display:block;height:.45cqw;border-radius:99px;background:var(--accent);margin-top:.9cqw;width:62%}
+.sc-kpi:nth-child(2) i{width:44%}
+.sc-kpi:nth-child(3) i{width:78%}
+.sc-table{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:1.1cqw;overflow:hidden}
+.sc-tr{display:flex;align-items:center;gap:1.2cqw;padding:1.35cqw 1.4cqw;border-bottom:1px solid rgba(255,255,255,.06);font-size:1.55cqw;color:#C4C6C4}
+.sc-tr:last-child{border-bottom:0}
+.sc-av{width:2.4cqw;height:2.4cqw;border-radius:50%;flex:none;background:rgba(255,255,255,.1);display:grid;place-items:center;font-size:1.2cqw;font-weight:600;color:#E4E6E4}
+.sc-tr b{flex:1;font-weight:500;color:#fff;font-size:1.6cqw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sc-tag{font-size:1.3cqw;font-weight:600;padding:.35cqw .9cqw;border-radius:99px;background:rgba(232,93,4,.16);color:#FFB07A;white-space:nowrap}
+.sc-tag.dim{background:rgba(255,255,255,.08);color:#C4C6C4}
+.sc-bars{display:flex;align-items:flex-end;gap:1cqw;height:8.5cqw;padding:0 .4cqw}
+.sc-bars i{flex:1;border-radius:.4cqw .4cqw .15cqw .15cqw;background:rgba(232,93,4,.28)}
+.sc-bars i.top{background:var(--accent)}
+
+/* ---- Barbearia ---- */
+.sc-book{display:grid;grid-template-columns:1.05fr .95fr;gap:2.6cqw;align-items:start}
+.sc-cal{display:grid;grid-template-columns:repeat(7,1fr);gap:.7cqw}
+.sc-day{border:1px solid rgba(20,22,26,.12);border-radius:.8cqw;padding:.7cqw 0;text-align:center;font-size:1.35cqw;color:#6B7280}
+.sc-day b{display:block;font-size:1.7cqw;color:#14161A;font-weight:600;margin-bottom:.15cqw}
+.sc-day.on{background:var(--accent);border-color:var(--accent);color:rgba(10,11,10,.8)}
+.sc-day.on b{color:var(--on-accent)}
+.sc-slots{display:grid;grid-template-columns:repeat(3,1fr);gap:.7cqw;margin-top:1.3cqw}
+.sc-slot{border:1px solid rgba(20,22,26,.12);border-radius:.8cqw;padding:.9cqw 0;text-align:center;font-size:1.5cqw;color:#3D4046}
+.sc-slot.on{background:rgba(232,93,4,.13);border-color:rgba(232,93,4,.55);color:#A64100;font-weight:600}
+.sc-sum{background:#fff;border:1px solid rgba(20,22,26,.1);border-radius:1.3cqw;padding:1.3cqw;box-shadow:0 14px 24px -18px rgba(0,0,0,.35)}
+.sc-sum .sc-kicker{font-size:1.3cqw}
+.sc-sum b{display:block;font-family:var(--font-display);font-size:2.4cqw;margin:.5cqw 0 .9cqw}
+.sc-sum p{display:flex;justify-content:space-between;font-size:1.45cqw;color:#6B7280;padding:.35cqw 0}
+.sc-sum p strong{color:#14161A;font-weight:600}
+.sc-sum .sc-btn{display:flex;justify-content:center;margin-top:1.1cqw;padding:1.05cqw 1.4cqw;font-size:1.6cqw}
+
+/* ---- Loja de moda ---- */
+.sc-prods{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4cqw}
+.sc-prod .im{display:block;aspect-ratio:1/1.18;border-radius:1cqw;margin-bottom:.9cqw}
+.sc-prod .im.a{background:linear-gradient(160deg,#E7DED2,#C2AE97)}
+.sc-prod .im.b{background:linear-gradient(160deg,#DCD9D3,#AFA79B)}
+.sc-prod .im.c{background:linear-gradient(160deg,#E9D2BC,#C08E5F)}
+.sc-prod b{display:block;font-size:1.6cqw;font-weight:600;color:#14161A}
+.sc-prod small{display:block;font-size:1.45cqw;color:#6B7280;margin-top:.2cqw}
+.sc-prod s{text-decoration:none;color:var(--accent);font-weight:600}
+.sc-float{
+  position:absolute;right:3cqw;bottom:3cqw;width:25cqw;z-index:3;
+  background:rgba(16,17,16,.96);border:1px solid rgba(255,255,255,.16);border-radius:1.4cqw;
+  padding:1.5cqw;color:#fff;box-shadow:0 24px 40px -20px rgba(0,0,0,.75);
+  backdrop-filter:blur(6px);
+}
+.sc-float small{display:block;font-size:1.3cqw;color:#9A9C9A}
+.sc-float b{display:flex;align-items:baseline;gap:.6cqw;font-family:var(--font-display);font-size:3.2cqw;line-height:1.1;margin:.3cqw 0 .7cqw}
+.sc-float b span{font-family:var(--font-body);font-size:1.3cqw;font-weight:500;color:#FFB07A}
+.sc-float .bars{display:flex;align-items:flex-end;gap:.55cqw;height:4.2cqw}
+.sc-float .bars i{flex:1;border-radius:.3cqw .3cqw 0 0;background:rgba(232,93,4,.35)}
+.sc-float .bars i.top{background:var(--accent)}
+
+/* ---- Antes e depois (arraste) ---- */
+.pf-shot.ba{perspective:none}
+.ba-before,.ba-after{display:flex;flex-direction:column}
+.ba-before{background:#EFE9DF;color:#3B352C;font-family:Georgia,"Times New Roman",serif}
+.ba-after{background:#0E0F0E;color:#fff;clip-path:inset(0 calc(100% - var(--pos,55%)) 0 0)}
+.ba-nav{display:flex;align-items:center;gap:2cqw;padding:2.2cqw 3cqw;font-size:1.7cqw;white-space:nowrap}
+.ba-before .ba-nav{border-bottom:1px solid rgba(59,53,44,.22);color:#6E6453}
+.ba-before .ba-nav b{font-size:2.3cqw;margin-right:auto;color:#3B352C;letter-spacing:.02em}
+.ba-after .ba-nav{border-bottom:1px solid rgba(255,255,255,.08);color:#9A9C9A;font-family:var(--font-body)}
+.ba-after .ba-nav b{font-family:var(--font-display);font-size:2.5cqw;margin-right:auto;color:#fff}
+.ba-after .ba-nav b em{font-style:normal;color:var(--accent)}
+.ba-hero{flex:1;display:grid;grid-template-columns:1.06fr .94fr;gap:3cqw;padding:2.6cqw 3cqw;align-items:center;min-height:0}
+.ba-col{display:flex;flex-direction:column;gap:1.3cqw;min-width:0}
+.ba-before .ba-kick{font-size:1.55cqw;letter-spacing:.09em;text-transform:uppercase;color:#8A7F6B}
+.ba-before .ba-h{font-size:4.3cqw;line-height:1.12;font-weight:700}
+.ba-before .ba-txt{font-size:1.75cqw;line-height:1.45;color:#6E6453;max-width:34cqw}
+.ba-before .ba-btn{display:inline-flex;width:max-content;padding:.9cqw 1.8cqw;background:#8C8371;color:#fff;font-size:1.6cqw;border-radius:0;margin-top:.4cqw}
+.ba-after .ba-h{font-family:var(--font-display);font-weight:700;font-size:4.8cqw;line-height:1.06;letter-spacing:-.015em}
+.ba-after .ba-h em{font-style:normal;color:var(--accent)}
+.ba-after .ba-txt{font-size:1.9cqw;line-height:1.45;color:#9A9C9A;max-width:36cqw}
+.ba-hours{display:inline-flex;align-items:center;gap:.5cqw;font-size:1.5cqw;color:#C4C6C4;border:1px solid rgba(255,255,255,.18);border-radius:99px;padding:.55cqw 1.2cqw}
+.ba-hours i{width:.7cqw;height:.7cqw;border-radius:50%;background:var(--accent)}
+.ba-photo{display:block;aspect-ratio:1/1.02;border-radius:2cqw;overflow:hidden;position:relative}
+.ba-before .ba-photo{background:linear-gradient(160deg,#CFC3AE,#A89A82);filter:saturate(.55)}
+.ba-after .ba-photo{background:linear-gradient(155deg,#33251A,#15100D);border:1px solid rgba(255,255,255,.09)}
+.ba-photo svg{position:absolute;inset:0;width:100%;height:100%}
+.ba-strip{display:flex;gap:2.4cqw;padding:1.8cqw 3cqw;border-top:1px solid rgba(20,22,26,.12);font-size:1.55cqw;color:#6E6453}
+.ba-after .ba-strip{border-top-color:rgba(255,255,255,.08);color:#9A9C9A}
+.ba-after .ba-strip span:first-child{color:var(--accent);font-weight:600}
+.ba-line{position:absolute;top:0;bottom:0;left:var(--pos,55%);width:2px;z-index:4;background:var(--accent);transform:translateX(-1px);pointer-events:none;box-shadow:0 0 0 1px rgba(0,0,0,.18)}
+.ba-knob{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:5.4cqw;height:5.4cqw;border-radius:50%;background:var(--accent);color:var(--on-accent);
+  display:grid;place-items:center;box-shadow:0 6px 18px -4px rgba(0,0,0,.6);
+}
+.ba-knob svg{width:2.4cqw;height:2.4cqw;stroke:currentColor;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.ba-tag{position:absolute;top:2.6cqw;z-index:5;padding:.5cqw 1.2cqw;border-radius:99px;background:rgba(10,11,10,.82);color:#fff;font-size:1.45cqw;font-weight:600;letter-spacing:.05em;text-transform:uppercase;pointer-events:none}
+.ba-tag.l{left:2.6cqw}
+.ba-tag.r{right:2.6cqw}
+.ba-range{
+  position:absolute;inset:0;z-index:6;width:100%;height:100%;margin:0;
+  opacity:0;cursor:ew-resize;touch-action:pan-y;-webkit-appearance:none;appearance:none;background:none;
+}
+.ba-range:focus-visible{outline:3px solid var(--accent);outline-offset:-4px}
+
+/* ---- Modal de case ---- */
+.case{
+  width:min(920px,calc(100vw - 24px));max-width:none;max-height:92vh;
+  margin:auto;padding:0;border:1px solid var(--border);border-radius:var(--radius-lg);
+  background:linear-gradient(180deg,#151615,#0B0C0B);color:var(--text);
+  overflow:auto;overscroll-behavior:contain;
+}
+.case::backdrop{background:rgba(4,5,4,.76);backdrop-filter:blur(6px)}
+.case[open]{animation:case-in var(--dur-base) var(--ease-out)}
+@keyframes case-in{from{opacity:0;transform:translateY(14px) scale(.99)}}
+.case-in{position:relative;padding:var(--s16)}
+.case-x{
+  position:absolute;top:calc(var(--s16) + 10px);right:calc(var(--s16) + 10px);z-index:4;
+  width:38px;height:38px;border-radius:50%;display:grid;place-items:center;
+  background:rgba(10,11,10,.78);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(8px);
+  transition:background var(--dur-quick) var(--ease-standard),transform var(--dur-quick) var(--ease-out);
+}
+.case-x:hover{background:var(--accent);color:var(--on-accent);transform:scale(1.05)}
+.case-x svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
+.case-shot{display:block;border-radius:var(--radius-md);overflow:hidden}
+.case-body{display:flex;flex-direction:column;gap:var(--s16);padding:var(--s24) var(--s8) var(--s8)}
+.case-title{font-size:clamp(22px,3vw,30px)}
+.case-desc{font-size:15px;line-height:1.6;color:var(--text-muted);max-width:66ch}
+.case-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s16);margin:0;border-top:1px solid var(--border);padding-top:var(--s16)}
+.case-facts dt{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:5px}
+.case-facts dd{margin:0;font-family:var(--font-display);font-size:15px;font-weight:600;line-height:1.3}
+.case-actions{display:flex;gap:var(--s16);flex-wrap:wrap;align-items:center;padding-top:var(--s8)}
+
+/* Barra de progresso de leitura */
+.scroll-progress{
+  position:fixed;top:0;left:0;right:0;height:2px;z-index:61;pointer-events:none;
+  background:var(--accent);box-shadow:0 0 12px var(--accent-glow);
+  transform:scaleX(0);transform-origin:0 50%;
+}
+
+/* ============================================================================
+   11. PLANOS E PREÇOS (abas)
+   ============================================================================ */
+.tabs{display:flex;gap:var(--s8);flex-wrap:wrap;margin-bottom:var(--s32)}
+.tab{
+  padding:10px 20px;border-radius:var(--radius-full);border:1px solid var(--border);
+  color:var(--text-muted);font-size:14px;font-weight:500;background:rgba(255,255,255,.02);
+  transition:color var(--dur-quick) var(--ease-standard),
+             border-color var(--dur-quick) var(--ease-standard),
+             background var(--dur-base) var(--ease-standard);
+}
+.tab:hover{color:var(--text);border-color:rgba(232,93,4,.5)}
+.tab[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent);font-weight:600}
+.tabpanel[hidden]{display:none}
+/* Troca de aba: o painel entra com fade + 6px (nunca só opacidade) */
+.tabpanel:not([hidden]){animation:panelIn var(--dur-base) var(--ease-out)}
+@keyframes panelIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.plans{display:grid;gap:var(--s16);align-items:stretch}
+.plan{display:flex;flex-direction:column;gap:var(--s16);padding:var(--s32);position:relative}
+.plan.hot{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.plan.hot p,.plan.hot li,.plan.hot .price small,.plan.hot .plan-sub{color:rgba(10,11,10,.9)}
+.plan.hot .price b em{color:rgba(10,11,10,.9)}
+.plan.hot .price b{color:var(--on-accent)}
+.plan.hot li::before{background:var(--on-accent)}
+.plan.hot .btn{background:var(--on-accent);color:var(--accent)}
+.plan.hot .btn:hover{background:#000;color:var(--accent-hover);box-shadow:0 10px 30px -10px rgba(0,0,0,.6)}
+.plan .badge{position:absolute;top:-12px;left:var(--s32)}
+.plan.hot .badge{background:#fff;color:var(--on-accent)} /* selo branco para dar contraste sobre o card laranja */
+.plan h3{font-size:18px;font-weight:600}
+.plan-sub{font-size:13.5px;color:var(--text-muted)}
+.price{display:flex;flex-direction:column;gap:2px;padding-block:var(--s8);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.plan.hot .price{border-color:rgba(10,11,10,.2)}
+.price small{font-size:12px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em}
+.price b{font-family:var(--font-display);font-size:clamp(26px,4vw,34px);font-weight:700;color:#fff;line-height:1.1}
+.price b em{font-style:normal;font-size:14px;font-weight:400;color:var(--text-muted)}
+.price .verba{font-size:12.5px;color:var(--text-muted)}
+.plan ul{display:grid;gap:var(--s8)}
+.plan li{position:relative;padding-left:20px;font-size:14px;color:var(--text-muted)}
+.plan li::before{
+  content:"";position:absolute;left:0;top:7px;width:9px;height:9px;border-radius:50%;
+  border:1.5px solid var(--accent);
+}
+.plan .btn{margin-top:auto}
+.plan-wide{grid-column:1/-1;flex-direction:column}
+@media(min-width:768px){
+  .plan-wide{flex-direction:row;align-items:center;gap:var(--s48)}
+  .plan-wide .plan-main{flex:1 1 46%}
+  .plan-wide ul{flex:1 1 54%;grid-template-columns:1fr 1fr;align-content:center}
+  .plan-wide .btn{flex:none}
+}
+.plans-note{margin-top:var(--s24);font-size:13px;color:var(--text-muted);text-align:center}
+.offers{display:grid;gap:var(--s16);margin-top:var(--s32)}
+.offer{display:flex;gap:var(--s16);align-items:flex-start;padding:var(--s24);border-radius:var(--radius-md);border:1px solid rgba(232,93,4,.4);background:linear-gradient(180deg,rgba(232,93,4,.09),transparent)}
+.offer h3{font-size:16px;font-weight:600;margin-bottom:2px}
+.offer p{font-size:13.5px;color:var(--text-muted)}
+
+/* ============================================================================
+   12. MÉTRICAS / PROVA SOCIAL
+   ============================================================================ */
+.metrics-grid{display:grid;gap:var(--s48);align-items:center}
+.chart-stage{position:relative;min-height:360px;display:grid;place-items:center}
+.chart-box{width:100%;border:1px solid var(--border);border-radius:var(--radius-lg);background:var(--gradient-card);padding:var(--s24)}
+.chart-box svg{width:100%;height:210px;overflow:visible}
+.chart-legend{display:flex;gap:var(--s16);flex-wrap:wrap;margin-top:var(--s16)}
+.chart-legend span{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--text-muted)}
+.chart-legend i{width:14px;height:2px;border-radius:2px;background:var(--accent)}
+.chart-legend i.dim{background:rgba(255,255,255,.25)}
+.float-card{
+  position:absolute;display:flex;gap:var(--s16);align-items:center;
+  padding:12px 16px;border-radius:var(--radius-md);
+  background:rgba(14,15,14,.82);border:1px solid var(--border);backdrop-filter:blur(8px);
+  box-shadow:0 20px 40px -18px rgba(0,0,0,.8);
+}
+.float-card .bar{width:3px;align-self:stretch;border-radius:2px;background:var(--accent);flex:none}
+.float-card b{font-family:var(--font-display);font-size:17px;font-weight:700;display:block;line-height:1.2}
+.float-card small{font-size:11.5px;color:var(--text-muted);display:block}
+.fc-1{left:-8px;top:14%}
+.fc-2{right:-8px;top:44%}
+.fc-3{left:12%;bottom:6%}
+.metric-nodes{position:absolute;inset:0;pointer-events:none}
+.about-metrics{display:flex;flex-direction:column;gap:var(--s16);align-items:flex-start}
+.tst-head{display:flex;flex-direction:column;gap:var(--s16);margin-top:var(--s80)}
+.tst-head h3{font-size:clamp(20px,3vw,26px);max-width:24ch}
+.testimonials{display:grid;gap:var(--s16);margin-top:var(--s32)}
+.tst{display:flex;flex-direction:column;gap:var(--s16)}
+.tst-top{display:flex;align-items:center;justify-content:space-between;gap:var(--s8)}
+.tst-svc{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);border:1px solid var(--border);border-radius:var(--radius-full);padding:3px 10px;white-space:nowrap}
+.tst blockquote{margin:0;font-size:15px;color:var(--text);line-height:1.6}
+.tst figcaption{display:flex;align-items:center;gap:var(--s16);margin-top:auto}
+.tst .who strong{display:block;font-size:14px;font-weight:600}
+.tst .who span{font-size:12.5px;color:var(--text-muted)}
+.tst .av{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:600;background:linear-gradient(160deg,#232422,#101110);border:1px solid rgba(255,255,255,.22);flex:none}
+
+/* ============================================================================
+   13. PROCESSO (timeline horizontal)
+   ============================================================================ */
+.steps{display:grid;gap:var(--s24);counter-reset:step}
+.step{position:relative;padding-top:var(--s32)}
+.step::before{
+  content:"";position:absolute;top:11px;left:0;right:0;height:1.5px;
+  background:linear-gradient(90deg,rgba(232,93,4,.55),var(--grid));}
+.step::after{
+  content:"";position:absolute;top:5px;left:0;width:13px;height:13px;border-radius:50%;
+  background:var(--bg);border:1.5px solid var(--accent);box-shadow:0 0 14px var(--accent-glow);
+}
+.step-num{font-family:var(--font-display);font-size:13px;font-weight:600;color:var(--accent);letter-spacing:.1em}
+.step h3{font-size:16px;font-weight:600;margin-top:var(--s8)}
+.step p{font-size:13.5px;color:var(--text-muted);margin-top:var(--s4)}
+
+/* ============================================================================
+   14. SOBRE
+   ============================================================================ */
+.about-grid{display:grid;gap:var(--s48);align-items:center}
+.photo-wrap{position:relative;width:min(300px,80vw);aspect-ratio:1;justify-self:center}
+.photo-ring{position:absolute;inset:-18px;border-radius:50%;border:1.5px solid var(--accent);opacity:.45;animation:orbit 30s linear infinite}
+.photo-ring.b{inset:-34px;border-style:dashed;opacity:.22;animation-duration:45s;animation-direction:reverse}
+.photo-dot{position:absolute;top:-21px;left:50%;width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px var(--accent-glow)}
+.photo{
+  position:relative;width:100%;height:100%;border-radius:50%;overflow:hidden;
+  border:1px solid var(--border);
+  background:
+    radial-gradient(80% 80% at 50% 20%,rgba(232,93,4,.18),transparent 70%),
+    linear-gradient(180deg,#1B1C1B,#0C0D0C);
+  display:grid;place-items:center;
+}
+.photo svg{width:52%;height:52%;stroke:var(--accent);fill:none;stroke-width:1.2;opacity:.8}
+.tools{display:flex;flex-wrap:wrap;gap:var(--s8)}
+.tool{
+  padding:6px 14px;border-radius:var(--radius-full);border:1px solid var(--border);
+  font-size:12.5px;color:var(--text-muted);background:rgba(255,255,255,.02);
+  transition:border-color var(--dur-quick) var(--ease-standard),color var(--dur-quick) var(--ease-standard);
+}
+.tool:hover{border-color:rgba(232,93,4,.5);color:var(--text)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s16);margin-top:var(--s32)}
+.stat b{font-family:var(--font-display);font-size:clamp(22px,4vw,30px);font-weight:700;color:var(--accent);display:block;line-height:1.1}
+.stat span{font-size:12.5px;color:var(--text-muted)}
+
+/* ============================================================================
+   15. FAQ (accordion acessível)
+   ============================================================================ */
+.faq{display:grid;gap:var(--s8);max-width:900px;margin-inline:auto}
+.faq-item{border:1px solid var(--border);border-radius:var(--radius-md);background:var(--gradient-card);overflow:hidden;transition:border-color var(--dur-quick) var(--ease-standard)}
+.faq-item:hover{border-color:rgba(232,93,4,.4)}
+.faq-q{
+  width:100%;display:flex;align-items:center;justify-content:space-between;gap:var(--s16);
+  padding:18px var(--s24);text-align:left;font-size:15.5px;font-weight:500;font-family:var(--font-display);
+}
+.faq-q .sign{flex:none;width:24px;height:24px;border-radius:50%;border:1px solid rgba(232,93,4,.55);color:var(--accent);display:grid;place-items:center;font-size:15px;line-height:1;transition:transform var(--dur-base) var(--ease-out),background var(--dur-quick) var(--ease-standard)}
+.faq-q[aria-expanded="true"] .sign{transform:rotate(45deg);background:rgba(232,93,4,.15)}
+/* Direcional: abre devagar (420ms, desacelerando) e fecha rápido (260ms, acelerando) */
+.faq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows var(--dur-base) var(--ease-in)}
+.faq-item.is-open .faq-a{grid-template-rows:1fr;transition:grid-template-rows var(--dur-slow) var(--ease-out)}
+.faq-a > div{overflow:hidden}
+.faq-a p{padding:0 var(--s24) 20px;font-size:14px;color:var(--text-muted)}
+
+/* ============================================================================
+   16. CTA FINAL + FOOTER
+   ============================================================================ */
+.cta-final{
+  position:relative;text-align:center;padding:var(--s80) var(--s24);border-radius:var(--radius-lg);
+  border:1px solid var(--border);background:var(--gradient-card);overflow:hidden;
+}
+.cta-final .glow{
+  position:absolute;left:50%;top:-40%;width:min(700px,100%);height:420px;transform:translateX(-50%);
+  background:radial-gradient(50% 50% at 50% 50%,var(--accent-glow),transparent 70%);filter:blur(40px);
+}
+.cta-final > *{position:relative}
+.cta-final h2{margin:var(--s16) auto var(--s24);max-width:18ch}
+.cta-actions{display:flex;gap:var(--s16);justify-content:center;align-items:center;flex-wrap:wrap}
+.footer{border-top:1px solid var(--border);margin-top:var(--s120);padding-block:var(--s48)}
+.footer-grid{display:grid;gap:var(--s32);grid-template-columns:1fr}
+.footer-col .footer-title{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);font-weight:500;margin-bottom:var(--s16)}
+.footer-col a,.footer-col p{display:block;font-size:14px;color:var(--text-muted);padding:4px 0}
+.footer-col a:hover{color:var(--accent)}
+.footer-bottom{display:flex;justify-content:space-between;gap:var(--s16);flex-wrap:wrap;margin-top:var(--s48);padding-top:var(--s24);border-top:1px solid var(--border);font-size:12.5px;color:var(--text-muted)}
+
+/* Botão flutuante de WhatsApp */
+.wa-float{
+  position:fixed;right:18px;bottom:18px;z-index:70;width:56px;height:56px;border-radius:50%;
+  background:var(--accent);color:var(--on-accent);display:grid;place-items:center;
+  box-shadow:0 12px 30px -8px var(--accent-glow),0 0 0 6px rgba(232,93,4,.12);
+  transition:transform var(--dur-quick) var(--ease-out),background var(--dur-quick) var(--ease-standard);
+}
+.wa-float:hover{background:var(--accent-hover);transform:scale(1.06)}
+.wa-float:active{transform:scale(.95)}
+.wa-float svg{width:26px;height:26px;fill:currentColor}
+
+/* Skip link (acessibilidade) */
+.skip{position:absolute;left:-9999px;top:0;z-index:100;background:var(--accent);color:var(--on-accent);padding:10px 16px;border-radius:0 0 var(--radius-sm) 0;font-weight:600}
+.skip:focus{left:0}
+
+/* ============================================================================
+   17. RESPONSIVO: mobile-first, breakpoints 640 / 1024 / 1280
+   ============================================================================ */
+@media(min-width:640px){
+  .container{padding-inline:32px}
+  .services-grid,.svc-grid{grid-template-columns:repeat(2,1fr)}
+  .offers{grid-template-columns:repeat(2,1fr)}
+  .testimonials{grid-template-columns:repeat(2,1fr)}
+  .prop-grid{grid-template-columns:repeat(3,1fr)}
+  .pf-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-grid{grid-template-columns:1.4fr 1fr 1fr}
+  .plans{grid-template-columns:repeat(2,1fr)}
+}
+@media(min-width:1024px){
+  .section{padding-block:120px}
+  .hero{padding-top:calc(var(--nav-h) + 80px);padding-bottom:120px}
+  .hero-grid{grid-template-columns:1.05fr 1fr}
+  .nav-links{display:flex}
+  .nav-cta{display:inline-flex}
+  .burger{display:none}
+  .mobile-menu{display:none}
+  .svc-grid{grid-template-columns:repeat(3,1fr)}
+  .metrics-grid{grid-template-columns:1.05fr 1fr}
+  .about-grid{grid-template-columns:minmax(0,.85fr) 1.15fr}
+  .steps{grid-template-columns:repeat(4,1fr)}
+  .testimonials{grid-template-columns:repeat(3,1fr)}
+  .pf-grid{grid-template-columns:repeat(3,1fr)}
+  .plans.cols-2{grid-template-columns:repeat(2,1fr)}
+  .plans.cols-3{grid-template-columns:repeat(3,1fr)}
+}
+@media(min-width:1280px){
+  .container{max-width:1460px;padding-inline:130px}
+}
+@media(max-width:520px){
+  /* no celular o mockup é proporcionalmente menor: reduz o respiro do palco */
+  .stage{min-height:290px}
+  .float-card{position:static;margin-top:var(--s16);width:100%}
+  .chart-stage{min-height:auto}
+  .case-facts{grid-template-columns:1fr 1fr}
+  .case-body{padding:var(--s24) 0 0}
+  .case-actions .btn,.case-actions .btn-ghost{width:100%;justify-content:center}
+}
+
+/* ============================================================================
+   18. PREFERÊNCIA POR MENOS MOVIMENTO: desliga tudo
+   ============================================================================ */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important;scroll-behavior:auto !important}
+  .js [data-reveal]{opacity:1;transform:none}
+  .prop-card.is-active{transform:none}
+}
+</style>
+
+<!-- ============================================================================
+     SCHEMA.ORG: SEO local / serviços. TROQUE telefone, e-mail, cidade e URL.
+     ============================================================================ -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":["ProfessionalService","LocalBusiness"],
+  "name":"Marcelo Palumbo | Desenvolvimento Web e Tráfego Pago",
+  "description":"Criação de sites, landing pages, sistemas web sob medida e gestão de tráfego pago (Meta Ads e Google Ads).",
+  "email":"marcelo.palumbof@gmail.com",
+  "telephone":"+5571981061578",
+  "url":"https://seudominio.com.br/",
+  "areaServed":[{"@type":"Country","name":"Brasil"}],
+  "address":{"@type":"PostalAddress","addressLocality":"Salvador","addressRegion":"BA","addressCountry":"BR"},
+  "priceRange":"R$$",
+  "sameAs":["https://www.instagram.com/marcelopalumbo_/"],
+  "makesOffer":[
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Criação de Landing Page"},"priceCurrency":"BRL","price":"1500"},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Site Institucional"},"priceCurrency":"BRL","price":"2500"},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Sistema Web Sob Medida"},"priceCurrency":"BRL","price":"5000"},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Gestão de Tráfego Pago (Meta Ads e Google Ads)"},"priceCurrency":"BRL","price":"1350"}
+  ]
+}
+</script>
+</head>
+<body>
+
+<a class="skip" href="#main">Pular para o conteúdo</a>
+<div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="bg-layer" aria-hidden="true"></div>
+
+<!-- ============================================================================
+     NAVBAR: logo com o seu nome
+     ============================================================================ -->
+<header>
+  <nav class="nav" id="nav" aria-label="Menu principal">
+    <div class="container nav-inner">
+      <a href="#inicio" class="logo" aria-label="Marcelo Palumbo, ir para o início">Marcelo Palumbo<span class="accent">.</span></a>
+
+      <div class="nav-links">
+        <a href="#inicio">Início</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#portfolio">Portfólio</a>
+        <a href="#planos">Planos</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#contato">Contato</a>
+      </div>
+
+      <!-- CTA do topo (edite o texto em data-wa) -->
+      <a class="btn nav-cta" data-wa="Olá! Vim pelo seu portfólio e quero um orçamento." data-cta="nav">Falar no WhatsApp</a>
+
+      <button class="burger" id="burger" aria-expanded="false" aria-controls="mobile-menu" aria-label="Abrir menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#inicio">Início</a>
+    <a href="#servicos">Serviços</a>
+    <a href="#portfolio">Portfólio</a>
+    <a href="#planos">Planos</a>
+    <a href="#sobre">Sobre</a>
+    <a href="#contato">Contato</a>
+    <a class="btn" data-wa="Olá! Vim pelo seu portfólio e quero um orçamento." data-cta="menu-mobile" style="justify-content:center">Falar no WhatsApp</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ==========================================================================
+       SEÇÃO 01: HERO
+       Edite: eyebrow, H1, texto de apoio, número de clientes e as iniciais do avatar group
+       ========================================================================== -->
+  <section class="hero" id="inicio">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow" data-reveal><span class="dot"></span>Sites, sistemas e tráfego pago</p>
+
+        <h1 data-reveal>
+          Sites que <span class="accent">vendem</span>, sistemas que <span class="accent">organizam</span>
+          e anúncios que <span class="accent">trazem clientes</span>.
+          <span class="grad">Do primeiro clique ao fechamento, sem enrolação.</span>
+        </h1>
+
+        <div class="social-proof" data-reveal>
+          <div class="avatars" aria-hidden="true">
+            <span class="av">EC</span>
+            <span class="av">GS</span>
+            <span class="av">FC</span>
+            <span class="av more">80+</span>
+          </div>
+          <p class="proof-text">
+            <strong>+80 projetos entregues</strong>
+            em Salvador e em todo o Brasil
+          </p>
+        </div>
+
+        <p class="lead" data-reveal>
+          Crio landing pages, sites e sistemas web sob medida e gerencio campanhas no Meta Ads e
+          Google Ads para transformar visitas em contatos e vendas. Foco total em resultado.
+        </p>
+
+        <div class="hero-actions" data-reveal>
+          <a class="btn" data-wa="Olá! Vim pelo seu portfólio e quero um orçamento." data-cta="hero-primario">
+            Quero meu projeto <span class="arw" aria-hidden="true">→</span>
+          </a>
+          <a class="btn-circle" href="#planos" aria-label="Ver planos e preços" data-cta="hero-planos">
+            <span class="ring" aria-hidden="true"></span>
+            <span class="core" aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Mockup 3D: navegador + celular (100% HTML/CSS) -->
+      <div class="stage" data-reveal aria-hidden="true">
+        <span class="ghost">CRIAR</span>
+        <svg class="orbits" viewBox="0 0 760 500" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <ellipse cx="380" cy="250" rx="342" ry="152"></ellipse>
+          <ellipse cx="380" cy="250" rx="262" ry="208" opacity=".2"></ellipse>
+
+          <!-- Ponto 1: percorre a elipse maior (30s) -->
+          <g transform="translate(380 250) scale(1 .4444)">
+            <g>
+              <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="30s" repeatCount="indefinite"></animateTransform>
+              <circle class="node" cx="0" cy="-342" r="5"></circle>
+            </g>
+          </g>
+
+          <!-- Ponto 2: percorre a elipse menor no sentido inverso (45s) -->
+          <g transform="translate(380 250) scale(1 .794)">
+            <g>
+              <animateTransform attributeName="transform" type="rotate" from="360" to="0" dur="45s" repeatCount="indefinite"></animateTransform>
+              <circle class="node" cx="0" cy="-262" r="4" opacity=".75"></circle>
+            </g>
+          </g>
+        </svg>
+        <span class="glow-under"></span>
+
+        <div class="mock-3d">
+          <!-- Janela do navegador. O texto daqui é decorativo: troque a URL
+               pelo seu domínio quando publicar. -->
+          <div class="window">
+            <div class="win-bar">
+              <span class="win-lights"><i></i><i></i><i></i></span>
+              <span class="win-nav">
+                <svg class="wico" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>
+                <svg class="wico" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+                <svg class="wico" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-2.6-6.4"/><path d="M21 3v5h-5"/></svg>
+              </span>
+              <span class="win-url">
+                <svg class="wico" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8.5 11V8a3.5 3.5 0 0 1 7 0v3"/></svg>
+                marcelopalumbo.com.br
+              </span>
+              <span class="win-right">
+                <svg class="wico" viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.9L12 17l-5.2 2.7 1-5.9L3.5 9.7l5.9-.9z"/></svg>
+                <svg class="wico" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.1" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.1" fill="currentColor" stroke="none"/><circle cx="12" cy="19" r="1.1" fill="currentColor" stroke="none"/></svg>
+              </span>
+            </div>
+
+            <!-- A landing page em si (versão em miniatura do conteúdo real) -->
+            <div class="lp">
+              <div class="lp-nav">
+                <span class="lp-logo"><i></i>Marcelo</span>
+                <span class="lp-menu"><span>Serviços</span><span>Planos</span><span>Contato</span></span>
+                <span class="lp-navbtn">WhatsApp</span>
+              </div>
+
+              <div class="lp-hero">
+                <span class="lp-chip"><i></i>Sites, sistemas e tráfego pago</span>
+                <p class="lp-h">Sites que <b>vendem</b>, sistemas que <b>organizam</b> e anúncios que <b>trazem clientes</b>.</p>
+                <p class="lp-sub">Landing pages, sistemas web e campanhas no Meta Ads e Google Ads.</p>
+                <div class="lp-actions">
+                  <span class="lp-btn">Quero meu projeto →</span>
+                  <span class="lp-btn2"><svg viewBox="0 0 24 24"><path d="M20.5 11.7A8.5 8.5 0 0 1 8.2 19.3L3.5 20.5l1.2-4.6A8.5 8.5 0 1 1 20.5 11.7z"/></svg>WhatsApp</span>
+                </div>
+                <div class="lp-proof">
+                  <span class="lp-avs"><i>EC</i><i>GS</i><i>FC</i><i class="hot">80+</i></span>
+                  <span class="lp-stars"><b>★★★★★</b> 5,0 <span>· +80 projetos entregues</span></span>
+                </div>
+              </div>
+
+              <div class="lp-cards">
+                <div class="lp-card">
+                  <span class="ico2"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M4 9h16"/></svg></span>
+                  <span><b>Landing Page</b><small>Página única de alta conversão.</small></span>
+                </div>
+                <div class="lp-card">
+                  <span class="ico2"><svg viewBox="0 0 24 24"><path d="M4 21h16M6 21V8l6-4 6 4v13"/><path d="M10 21v-5h4v5"/></svg></span>
+                  <span><b>Site Institucional</b><small>Presença profissional completa.</small></span>
+                </div>
+                <div class="lp-card">
+                  <span class="ico2"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span>
+                  <span><b>Sistemas Web</b><small>Painéis e automações sob medida.</small></span>
+                </div>
+              </div>
+
+              <div class="lp-chart">
+                <div class="lp-chart-head">
+                  <b>Resultado dos anúncios</b>
+                  <span class="lp-leg"><span><i></i>Leads</span><span class="m"><i></i>Antes</span></span>
+                </div>
+                <svg viewBox="0 0 320 60" preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id="mockArea" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0" stop-color="#E85D04" stop-opacity=".2"/>
+                      <stop offset="1" stop-color="#E85D04" stop-opacity="0"/>
+                    </linearGradient>
+                  </defs>
+                  <path class="grid" d="M0 15H320M0 30H320M0 45H320"/>
+                  <path class="prev" d="M0 52C40 50 60 44 100 45C140 46 160 42 200 43C240 44 280 40 320 38"/>
+                  <path class="area" d="M0 48C30 46 45 30 70 32C95 34 105 40 130 36C155 32 170 18 200 20C230 22 245 12 275 10C295 8.5 305 6 320 4L320 60L0 60Z"/>
+                  <path class="main" d="M0 48C30 46 45 30 70 32C95 34 105 40 130 36C155 32 170 18 200 20C230 22 245 12 275 10C295 8.5 305 6 320 4"/>
+                  <circle cx="130" cy="36" r="2.6" fill="#fff" stroke="#E85D04" stroke-width="1.8"/>
+                  <circle cx="320" cy="4" r="3" fill="#E85D04"/>
+                </svg>
+                <div class="lp-days"><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Celular: painel do sistema, com ilha dinâmica e status bar -->
+          <div class="phone">
+            <span class="p-island"></span>
+            <div class="p-screen">
+              <div class="p-body">
+                <div class="p-status">
+                  <span>09:41</span>
+                  <svg class="p-sig" viewBox="0 0 52 12">
+                    <rect x="0" y="7" width="3" height="5" rx="1" fill="#14161A"/>
+                    <rect x="5" y="5" width="3" height="7" rx="1" fill="#14161A"/>
+                    <rect x="10" y="2.5" width="3" height="9.5" rx="1" fill="#14161A"/>
+                    <rect x="15" y="0" width="3" height="12" rx="1" fill="#14161A"/>
+                    <path d="M24 8.5a6.5 6.5 0 0 1 9 0" stroke="#14161A" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+                    <path d="M26.5 5.8a3.2 3.2 0 0 1 4 0" stroke="#14161A" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+                    <circle cx="28.5" cy="9.8" r="1.1" fill="#14161A"/>
+                    <rect x="38" y="1.5" width="11" height="9" rx="2.5" fill="none" stroke="#14161A" stroke-width="1.3"/>
+                    <rect x="39.8" y="3.3" width="6.4" height="5.4" rx="1.2" fill="#14161A"/>
+                    <path d="M50.5 4.5v3" stroke="#14161A" stroke-width="1.6" stroke-linecap="round"/>
+                  </svg>
+                </div>
+
+                <div class="p-head">
+                  <span><b>Painel</b><small>segunda, 16 de outubro</small></span>
+                  <span class="p-bell"><svg viewBox="0 0 24 24"><path d="M18 9a6 6 0 1 0-12 0c0 6-2.5 7-2.5 7h17S18 15 18 9"/><path d="M10.3 20a2 2 0 0 0 3.4 0"/></svg><i></i></span>
+                </div>
+
+                <div class="p-kpi">
+                  <small>Faturamento do mês</small>
+                  <b>R$ 18.420</b>
+                  <span class="p-badge">▲ 12,4% vs. mês passado</span>
+                  <svg viewBox="0 0 100 22" preserveAspectRatio="none">
+                    <path d="M0 17C12 16 18 10 30 11C42 12 48 6 60 7C72 8 80 3 100 2" fill="none" stroke="#E85D04" stroke-width="1.8" vector-effect="non-scaling-stroke" stroke-linecap="round"/>
+                  </svg>
+                </div>
+
+                <div class="p-chartcard">
+                  <div class="p-chart-head"><small>Pedidos por dia</small><b>+18%</b></div>
+                  <div class="p-bars">
+                    <i style="height:34%"></i><i style="height:52%"></i><i style="height:44%"></i>
+                    <i style="height:70%"></i><i class="mid" style="height:58%"></i>
+                    <i class="mid" style="height:86%"></i><i class="top" style="height:100%"></i>
+                  </div>
+                  <div class="p-days"><span>S</span><span>T</span><span>Q</span><span>Q</span><span>Q</span><span>S</span><span>S</span></div>
+                </div>
+
+                <div class="p-list">
+                  <small class="p-sec">Atividade recente</small>
+                  <div class="p-row"><span class="p-av">JM</span><span class="p-who"><b>Joana M.</b><small>Pedido #1042</small></span><span class="p-tag ok">Novo</span></div>
+                  <div class="p-row"><span class="p-av">RC</span><span class="p-who"><b>Rafael C.</b><small>Assinatura mensal</small></span><span class="p-tag ok">Aprovado</span></div>
+                  <div class="p-row"><span class="p-av">LT</span><span class="p-who"><b>Luana T.</b><small>Orçamento enviado</small></span><span class="p-tag dim">Pendente</span></div>
+                </div>
+              </div>
+
+              <div class="p-tabbar">
+                <span class="on"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7"/><path d="M6 9.5V20h12V9.5"/></svg>Início</span>
+                <span><svg viewBox="0 0 24 24"><path d="M4 7.5V20h16V7.5"/><path d="M2.5 7.5L12 2l9.5 5.5"/></svg>Pedidos</span>
+                <span><svg viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3.5"/><path d="M3 20c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5"/><circle cx="17" cy="9" r="2.6"/><path d="M15.5 14.7c2.8.2 5.5 2 5.5 5.3"/></svg>Clientes</span>
+                <span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.8v3M12 18.2v3M2.8 12h3M18.2 12h3M5.5 5.5l2.1 2.1M16.4 16.4l2.1 2.1M18.5 5.5l-2.1 2.1M7.6 16.4l-2.1 2.1"/></svg>Ajustes</span>
+              </div>
+              <span class="p-fab"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
+              <span class="p-home"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SEÇÃO 02: PROPOSTA (3 cards, o do meio ativo em laranja)
+       ========================================================================== -->
+  <section class="section" id="proposta">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <p class="eyebrow"><span class="dot"></span>Como eu trabalho</p>
+        <h2 class="h2-wrap">Seu parceiro de <span class="accent">crescimento</span> <span class="grad">digital.</span></h2>
+      </div>
+
+      <div class="prop-grid" id="prop-grid">
+        <article class="card prop-card" data-reveal tabindex="0">
+          <span class="prop-num">01</span>
+          <h3>Design focado em conversão</h3>
+          <p>Nada de site bonito que ninguém usa. Cada seção existe para guiar o visitante até o botão de contato.</p>
+        </article>
+
+        <article class="card prop-card is-active" data-reveal tabindex="0">
+          <span class="prop-num">02</span>
+          <h3>Tecnologia e tráfego com foco em resultado</h3>
+          <p>Sites rápidos e campanhas no Meta Ads e Google Ads ajustadas toda semana.</p>
+          <a class="more" href="#planos">Saiba mais <span aria-hidden="true">→</span></a>
+        </article>
+
+        <article class="card prop-card" data-reveal tabindex="0">
+          <span class="prop-num">03</span>
+          <h3>Suporte e acompanhamento próximo</h3>
+          <p>Você fala direto comigo no WhatsApp. Sem intermediário, sem fila de atendimento, sem sumiço depois da entrega.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SEÇÃO 03: SERVIÇOS (grid 3x2)
+       ========================================================================== -->
+  <section class="section" id="servicos">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <p class="eyebrow"><span class="dot"></span>Serviços</p>
+        <h2 class="h2-wrap">O que eu <span class="accent">faço</span> <span class="grad">pelo seu negócio.</span></h2>
+        <p class="lead">Do site que apresenta ao sistema que organiza a operação, tudo com foco em vender mais e trabalhar menos.</p>
+      </div>
+
+      <div class="svc-grid">
+        <!-- Card 1 -->
+        <article class="card svc" data-reveal>
+          <span class="ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 14h8"/></svg>
+          </span>
+          <h3>Landing Page</h3>
+          <p>Página única de alta conversão, feita para uma oferta e um objetivo.</p>
+          <ul>
+            <li>Copy orientada à conversão</li>
+            <li>Botão direto para o WhatsApp</li>
+            <li>Pronta em até 7 dias úteis</li>
+          </ul>
+          <a class="more" href="#planos">Ver planos <span aria-hidden="true">→</span></a>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="card svc" data-reveal>
+          <span class="ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14"/><path d="M9 21v-5h6v5M9 11h.01M15 11h.01"/></svg>
+          </span>
+          <h3>Site Institucional</h3>
+          <p>Presença profissional completa para quem precisa ser encontrado e levado a sério.</p>
+          <ul>
+            <li>Até 5 páginas personalizadas</li>
+            <li>SEO básico + Google Meu Negócio</li>
+            <li>Blog opcional incluso</li>
+          </ul>
+          <a class="more" href="#planos">Ver planos <span aria-hidden="true">→</span></a>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="card svc" data-reveal>
+          <span class="ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>
+          </span>
+          <h3>Sistema Web Sob Medida</h3>
+          <p>Painéis, CRMs, agendamentos, pedidos e automações do seu jeito, nada de gambiarra em planilha.</p>
+          <ul>
+            <li>Login, permissões e banco de dados</li>
+            <li>Treinamento da sua equipe</li>
+            <li>30 dias de suporte pós-entrega</li>
+          </ul>
+          <a class="more" href="#planos">Ver planos <span aria-hidden="true">→</span></a>
+        </article>
+
+        <!-- Card 4 -->
+        <article class="card svc" data-reveal>
+          <span class="ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-2.6-6.4"/><path d="M21 4v5h-5"/></svg>
+          </span>
+          <h3>Redesign de Site</h3>
+          <p>Seu site atual funciona, mas parece velho e converte pouco? A gente moderniza.</p>
+          <ul>
+            <li>Novo design responsivo</li>
+            <li>Mais velocidade e SEO básico</li>
+            <li>Conteúdo atual migrado sem perder nada</li>
+          </ul>
+          <a class="more" href="#planos">Ver planos <span aria-hidden="true">→</span></a>
+        </article>
+
+        <!-- Card 5 -->
+        <article class="card svc" data-reveal>
+          <span class="ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 3l8 4v6c0 4.5-3.2 7.4-8 8-4.8-.6-8-3.5-8-8V7z"/><path d="M9.2 12.2l2 2 3.6-4"/></svg>
+          </span>
+          <h3>Manutenção Mensal</h3>
+          <p>Seu site sempre atualizado, seguro e no ar, sem você precisar pensar nisso.</p>
+          <ul>
+            <li>Atualizações e backups</li>
+            <li>Monitoramento e correções</li>
+            <li>Até 2h de alterações por mês</li>
+          </ul>
+          <a class="more" href="#planos">Ver planos <span aria-hidden="true">→</span></a>
+        </article>
+
+        <!-- Card 6 -->
+        <article class="card svc" data-reveal>
+          <span class="ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M4 14v-3a8 8 0 0 1 16 0v3"/><rect x="3" y="13" width="4" height="6" rx="2"/><rect x="17" y="13" width="4" height="6" rx="2"/><path d="M20 19v.5a2.5 2.5 0 0 1-2.5 2.5H13"/></svg>
+          </span>
+          <h3>Gestão de Tráfego Pago</h3>
+          <p>Meta Ads e Google Ads com estratégia, teste e leitura de números, não só impulsionar post.</p>
+          <ul>
+            <li>Segmentação e criativos testados</li>
+            <li>Otimização e relatórios periódicos</li>
+            <li>Custo por lead sempre no radar</li>
+          </ul>
+          <a class="more" href="#planos">Ver planos <span aria-hidden="true">→</span></a>
+        </article>
+      </div>
+
+      <p class="extras" data-reveal>
+        <strong>Também faço:</strong> integrações com WhatsApp, automações, SEO básico e
+        criação de criativos para anúncios.
+      </p>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SEÇÃO 04: PORTFÓLIO
+       As miniaturas são desenhadas em HTML/CSS, sem imagem externa.
+       Para usar prints reais: troque o conteúdo de .pf-shot por
+       <img src="print.jpg" alt="..." style="width:100%;height:100%;object-fit:cover">
+       e atualize os textos e os números de cada card.
+       ========================================================================== -->
+  <section class="section" id="portfolio">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <p class="eyebrow"><span class="dot"></span>Portfólio</p>
+        <h2 class="h2-wrap">Do rascunho ao <span class="accent">projeto no ar</span><span class="grad">.</span></h2>
+        <p class="lead">Uma seleção de sites, sistemas e campanhas que saíram do papel. Filtre por tipo, passe o mouse sobre os cards e arraste a comparação para ver o antes e o depois.</p>
+      </div>
+
+      <div class="pf-bar" data-reveal role="group" aria-label="Filtrar projetos por tipo">
+        <button class="pf-filter" type="button" data-filter="all" aria-pressed="true">Todos <span class="n">6</span></button>
+        <button class="pf-filter" type="button" data-filter="site" aria-pressed="false">Sites <span class="n">3</span></button>
+        <button class="pf-filter" type="button" data-filter="sistema" aria-pressed="false">Sistemas <span class="n">2</span></button>
+        <button class="pf-filter" type="button" data-filter="trafego" aria-pressed="false">Tráfego pago <span class="n">1</span></button>
+        <p class="sr-only" id="pf-live" aria-live="polite"></p>
+      </div>
+
+      <div class="pf-grid" id="pf-grid">
+
+        <!-- 1. Restaurante: comparação antes/depois -->
+        <article class="pf-card" data-cat="site" data-reveal>
+          <div class="pf-shot ba" style="--pos:55%">
+            <!-- Antes -->
+            <div class="sc ba-before" aria-hidden="true">
+              <div class="ba-nav"><b>Sabor Caseiro</b><span>Home</span><span>Cardápio</span><span>Contato</span></div>
+              <div class="ba-hero">
+                <div class="ba-col">
+                  <span class="ba-kick">Bem-vindo ao nosso site</span>
+                  <span class="ba-h">Comida caseira<br>todos os dias</span>
+                  <span class="ba-txt">Confira o nosso cardápio e venha almoçar com a gente. Temos prato do dia e delivery.</span>
+                  <span class="ba-btn">Ver cardápio</span>
+                </div>
+                <span class="ba-photo">
+                  <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice"><circle cx="50" cy="50" r="30" fill="none" stroke="rgba(40,35,25,.22)" stroke-width="2"/><circle cx="50" cy="50" r="20" fill="rgba(40,35,25,.08)"/></svg>
+                </span>
+              </div>
+              <div class="ba-strip"><span>Almoço</span><span>Jantar</span><span>Delivery</span></div>
+            </div>
+
+            <!-- Depois (recortado pelo controle) -->
+            <div class="sc ba-after" aria-hidden="true">
+              <div class="ba-nav"><b>Sabor<em>.</em></b><span>Cardápio</span><span>Ambiente</span><span class="sc-btn">Reservar mesa</span></div>
+              <div class="ba-hero">
+                <div class="ba-col">
+                  <span class="sc-kicker"><i></i>Cozinha brasileira</span>
+                  <span class="ba-h">Sabor que fica<br>na <em>memória</em>.</span>
+                  <span class="ba-txt">Almoço, jantar e delivery no mesmo lugar, com reserva em dois cliques.</span>
+                  <div class="sc-row"><span class="sc-btn">Reservar mesa →</span><span class="ba-hours"><i></i>Aberto até 23h</span></div>
+                </div>
+                <span class="ba-photo">
+                  <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice"><circle cx="50" cy="50" r="31" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="1.4"/><circle cx="50" cy="50" r="21" fill="rgba(232,93,4,.16)" stroke="rgba(232,93,4,.45)" stroke-width="1.4"/><circle cx="44" cy="46" r="5" fill="rgba(255,255,255,.35)"/><circle cx="57" cy="52" r="3.4" fill="rgba(232,93,4,.6)"/><circle cx="47" cy="57" r="2.8" fill="rgba(255,255,255,.22)"/></svg>
+                </span>
+              </div>
+              <div class="ba-strip"><span>★ 4,9</span><span>+2.400 avaliações</span><span>Delivery em 40 min</span></div>
+            </div>
+
+            <span class="ba-line" aria-hidden="true">
+              <span class="ba-knob"><svg viewBox="0 0 24 24"><path d="M9.5 7l-5 5 5 5M14.5 7l5 5-5 5"/></svg></span>
+            </span>
+            <span class="ba-tag l" aria-hidden="true">Depois</span>
+            <span class="ba-tag r" aria-hidden="true">Antes</span>
+            <input class="ba-range" type="range" min="0" max="100" value="55" step="1"
+                   aria-label="Comparar o site do restaurante antes e depois do redesign">
+          </div>
+          <div class="pf-meta">
+            <div class="pf-tags"><span class="pf-tag">Redesign</span><span class="pf-tag alt">Restaurante</span></div>
+            <h3 class="pf-title">Restaurante Sabor</h3>
+            <p class="pf-desc">Site refeito com cardápio digital, reserva de mesa e leitura confortável no celular.</p>
+            <p class="pf-res"><b>Arraste</b> para comparar o antes e o depois</p>
+          </div>
+        </article>
+
+        <!-- 2. Clínica: landing page -->
+        <article class="pf-card" data-cat="site" data-reveal
+          data-title="Clínica odontológica"
+          data-tags="Landing page|Saúde"
+          data-desc="Página única com um objetivo: levar o visitante até o agendamento da avaliação. Prova social, explicação do tratamento e WhatsApp em todos os blocos."
+          data-escopo="Landing page + integração com WhatsApp"
+          data-prazo="6 dias úteis"
+          data-resultado="+3x agendamentos no primeiro mês">
+          <button class="pf-open" type="button" data-case aria-label="Ver detalhes do projeto Clínica odontológica">
+            <span class="pf-shot" aria-hidden="true">
+              <span class="pf-scene">
+                <span class="sc">
+                  <span class="sc-chrome"><i></i><i></i><i></i><span class="u"><b></b>clinicavida.com.br</span></span>
+                  <span class="sc-body">
+                    <span class="sc-nav"><b>Clínica Vida</b><span>Tratamentos</span><span>Equipe</span><span class="sc-btn">Agendar</span></span>
+                    <span class="sc-hero">
+                      <span class="sc-col">
+                        <span class="sc-kicker">Odontologia em Salvador</span>
+                        <span class="sc-h">Seu sorriso<br>em boas <em>mãos</em>.</span>
+                        <span class="sc-sub">Avaliação com especialista e plano de tratamento claro, sem surpresa no orçamento.</span>
+                        <span class="sc-row"><span class="sc-btn">Agendar avaliação →</span><span class="sc-sub" style="font-size:1.5cqw">★★★★★ 4,9</span></span>
+                      </span>
+                      <span class="sc-photo">
+                        <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMax slice"><circle cx="50" cy="40" r="17" fill="rgba(70,45,25,.26)"/><path d="M12 100c0-21 17-33 38-33s38 12 38 33z" fill="rgba(70,45,25,.26)"/></svg>
+                        <span class="tag">Dra. Ana Reis · CRO 4321</span>
+                      </span>
+                    </span>
+                  </span>
+                </span>
+              </span>
+              <span class="pf-glare"></span>
+            </span>
+            <span class="pf-cta">Ver detalhes <span aria-hidden="true">→</span></span>
+          </button>
+          <div class="pf-meta">
+            <div class="pf-tags"><span class="pf-tag">Landing page</span><span class="pf-tag alt">Saúde</span></div>
+            <h3 class="pf-title">Clínica odontológica</h3>
+            <p class="pf-desc">Agendamento de avaliação direto no WhatsApp, com prova social e carregamento rápido no 4G.</p>
+            <p class="pf-res"><b>+3x</b> agendamentos no primeiro mês</p>
+          </div>
+        </article>
+
+        <!-- 3. Construtora: site institucional -->
+        <article class="pf-card" data-cat="site" data-reveal
+          data-title="Construtora"
+          data-tags="Site institucional|Construção civil"
+          data-desc="Vitrine de empreendimentos com plantas, localização e formulário curto. O corretor recebe o contato já com o imóvel de interesse."
+          data-escopo="Site de 5 páginas + galeria de empreendimentos"
+          data-prazo="3 semanas"
+          data-resultado="Leads com empreendimento de interesse">
+          <button class="pf-open" type="button" data-case aria-label="Ver detalhes do projeto Construtora">
+            <span class="pf-shot" aria-hidden="true">
+              <span class="pf-scene">
+                <span class="sc">
+                  <span class="sc-chrome"><i></i><i></i><i></i><span class="u"><b></b>mrengenharia.com.br</span></span>
+                  <span class="sc-body">
+                    <span class="sc-nav"><b>MR Engenharia</b><span>Empreendimentos</span><span>Sobre</span><span class="sc-btn">Fale com corretor</span></span>
+                    <span class="sc-photo2">
+                      <svg viewBox="0 0 200 70" preserveAspectRatio="xMidYMax slice"><g fill="rgba(255,255,255,.1)"><rect x="6" y="34" width="18" height="36"/><rect x="28" y="20" width="14" height="50"/><rect x="46" y="44" width="22" height="26"/><rect x="72" y="12" width="16" height="58"/><rect x="92" y="38" width="26" height="32"/><rect x="122" y="24" width="15" height="46"/><rect x="141" y="46" width="20" height="24"/><rect x="165" y="30" width="19" height="40"/></g><g fill="rgba(232,93,4,.55)"><rect x="77" y="20" width="3" height="3"/><rect x="83" y="20" width="3" height="3"/><rect x="77" y="28" width="3" height="3"/><rect x="83" y="28" width="3" height="3"/><rect x="127" y="32" width="3" height="3"/><rect x="133" y="32" width="3" height="3"/><rect x="169" y="38" width="3" height="3"/><rect x="175" y="38" width="3" height="3"/></g></svg>
+                      <span class="sc-overlay">
+                        <span class="sc-kicker">Lançamento 2026</span>
+                        <span class="sc-h">Seu próximo endereço<br>começa <em>aqui</em>.</span>
+                        <span class="sc-row"><span class="sc-btn">Conhecer plantas</span><span class="sc-ghost">Agendar visita</span></span>
+                      </span>
+                    </span>
+                    <span class="sc-stats">
+                      <span><b>18</b><small>anos de obra entregue</small></span>
+                      <span><b>+2.400</b><small>famílias atendidas</small></span>
+                      <span><b>7</b><small>empreendimentos ativos</small></span>
+                    </span>
+                  </span>
+                </span>
+              </span>
+              <span class="pf-glare"></span>
+            </span>
+            <span class="pf-cta">Ver detalhes <span aria-hidden="true">→</span></span>
+          </button>
+          <div class="pf-meta">
+            <div class="pf-tags"><span class="pf-tag">Site institucional</span><span class="pf-tag alt">Construção</span></div>
+            <h3 class="pf-title">Construtora</h3>
+            <p class="pf-desc">Empreendimentos, plantas e localização em um site que passa confiança antes da primeira visita.</p>
+            <p class="pf-res"><b>Leads</b> já chegam com o imóvel de interesse</p>
+          </div>
+        </article>
+
+        <!-- 4. Painel de pedidos: sistema -->
+        <article class="pf-card" data-cat="sistema" data-reveal
+          data-title="Painel de pedidos"
+          data-tags="Sistema web|Operação"
+          data-desc="Pedidos, status e histórico em um só lugar, com login por perfil e relatório diário. A equipe deixa a planilha e o caderno de lado."
+          data-escopo="Painel administrativo + banco de dados"
+          data-prazo="5 semanas"
+          data-resultado="Pedido nenhum perdido no WhatsApp">
+          <button class="pf-open" type="button" data-case aria-label="Ver detalhes do projeto Painel de pedidos">
+            <span class="pf-shot" aria-hidden="true">
+              <span class="pf-scene">
+                <span class="sc dark">
+                  <span class="sc-chrome"><i></i><i></i><i></i><span class="u"><b></b>app.seunegocio.com.br/pedidos</span></span>
+                  <span class="sc-app">
+                    <span class="sc-side">
+                      <span class="sc-brand"><i></i></span>
+                      <span class="sc-sitem on"></span>
+                      <span class="sc-sitem"></span>
+                      <span class="sc-sitem"></span>
+                      <span class="sc-sitem"></span>
+                      <span class="sc-sitem"></span>
+                    </span>
+                    <span class="sc-main">
+                      <span class="sc-top"><b>Pedidos</b><span class="sc-pill">Hoje · 24</span></span>
+                      <span class="sc-kpis">
+                        <span class="sc-kpi"><small>Faturamento</small><b>R$ 8.240</b><i></i></span>
+                        <span class="sc-kpi"><small>Ticket médio</small><b>R$ 343</b><i></i></span>
+                        <span class="sc-kpi"><small>Entregues</small><b>21</b><i></i></span>
+                      </span>
+                      <span class="sc-table">
+                        <span class="sc-tr"><span class="sc-av">JM</span><b>Joana Martins</b><span class="sc-tag">Novo</span></span>
+                        <span class="sc-tr"><span class="sc-av">RC</span><b>Rafael Costa</b><span class="sc-tag dim">Enviado</span></span>
+                        <span class="sc-tr"><span class="sc-av">LT</span><b>Luana Teixeira</b><span class="sc-tag dim">Pago</span></span>
+                        <span class="sc-tr"><span class="sc-av">BS</span><b>Bruno Sá</b><span class="sc-tag">Novo</span></span>
+                      </span>
+                      <span class="sc-bars"><i style="height:38%"></i><i style="height:55%"></i><i class="top" style="height:72%"></i><i style="height:48%"></i><i style="height:84%"></i><i class="top" style="height:100%"></i><i style="height:62%"></i></span>
+                    </span>
+                  </span>
+                </span>
+              </span>
+              <span class="pf-glare"></span>
+            </span>
+            <span class="pf-cta">Ver detalhes <span aria-hidden="true">→</span></span>
+          </button>
+          <div class="pf-meta">
+            <div class="pf-tags"><span class="pf-tag">Sistema web</span><span class="pf-tag alt">Operação</span></div>
+            <h3 class="pf-title">Painel de pedidos</h3>
+            <p class="pf-desc">Status, histórico e faturamento do dia na mesma tela, acessível pelo celular da equipe.</p>
+            <p class="pf-res"><b>Fim</b> das planilhas e do pedido perdido</p>
+          </div>
+        </article>
+
+        <!-- 5. Barbearia: agendamento -->
+        <article class="pf-card" data-cat="sistema" data-reveal
+          data-title="Barbearia"
+          data-tags="Sistema web|Agendamento"
+          data-desc="Agenda online com horários livres em tempo real, confirmação automática e histórico do cliente. O dono acompanha a ocupação da semana sem abrir o WhatsApp."
+          data-escopo="Agenda online + painel do dono"
+          data-prazo="4 semanas"
+          data-resultado="Agenda cheia sem trocar mensagem">
+          <button class="pf-open" type="button" data-case aria-label="Ver detalhes do projeto Barbearia">
+            <span class="pf-shot" aria-hidden="true">
+              <span class="pf-scene">
+                <span class="sc">
+                  <span class="sc-chrome"><i></i><i></i><i></i><span class="u"><b></b>barbeariadomario.com.br</span></span>
+                  <span class="sc-body" style="gap:1.8cqw">
+                    <span class="sc-nav"><b>Dom Mário</b><span>Serviços</span><span>Equipe</span><span class="sc-btn">Agendar</span></span>
+                    <span class="sc-col" style="gap:1cqw">
+                      <span class="sc-kicker">Agendamento online</span>
+                      <span class="sc-h" style="font-size:3.6cqw">Escolha o melhor horário.</span>
+                    </span>
+                    <span class="sc-book">
+                      <span class="sc-cal">
+                        <span class="sc-day"><b>12</b>Seg</span>
+                        <span class="sc-day"><b>13</b>Ter</span>
+                        <span class="sc-day on"><b>14</b>Qua</span>
+                        <span class="sc-day"><b>15</b>Qui</span>
+                        <span class="sc-day"><b>16</b>Sex</span>
+                        <span class="sc-day"><b>17</b>Sáb</span>
+                        <span class="sc-day"><b>18</b>Dom</span>
+                      </span>
+                      <span class="sc-sum">
+                        <span class="sc-kicker">Quarta, 14</span>
+                        <b>Corte + barba</b>
+                        <span class="sc-slots" style="grid-template-columns:repeat(3,1fr);margin-top:0">
+                          <span class="sc-slot">09:00</span>
+                          <span class="sc-slot on">10:30</span>
+                          <span class="sc-slot">14:00</span>
+                        </span>
+                        <p><span>Profissional</span><strong>Mário</strong></p>
+                        <p><span>Duração</span><strong>50 min</strong></p>
+                        <span class="sc-btn">Confirmar horário</span>
+                      </span>
+                    </span>
+                  </span>
+                </span>
+              </span>
+              <span class="pf-glare"></span>
+            </span>
+            <span class="pf-cta">Ver detalhes <span aria-hidden="true">→</span></span>
+          </button>
+          <div class="pf-meta">
+            <div class="pf-tags"><span class="pf-tag">Sistema web</span><span class="pf-tag alt">Agendamento</span></div>
+            <h3 class="pf-title">Barbearia</h3>
+            <p class="pf-desc">O cliente marca sozinho e o horário já aparece bloqueado para os outros. Nada de ida e volta no WhatsApp.</p>
+            <p class="pf-res"><b>Agenda cheia</b> sem trocar mensagem</p>
+          </div>
+        </article>
+
+        <!-- 6. Loja de moda: tráfego pago -->
+        <article class="pf-card" data-cat="trafego" data-reveal
+          data-title="Loja de moda"
+          data-tags="Tráfego pago|Moda"
+          data-desc="Campanhas de Meta Ads e Google Ads com criativos testados em conjuntos pequenos, leitura semanal de números e ajuste de verba no que traz venda."
+          data-escopo="Gestão de campanhas + criativos"
+          data-prazo="Acompanhamento mensal"
+          data-resultado="ROAS de 4,2x com custo por venda em queda">
+          <button class="pf-open" type="button" data-case aria-label="Ver detalhes do projeto Loja de moda">
+            <span class="pf-shot" aria-hidden="true">
+              <span class="pf-scene">
+                <span class="sc">
+                  <span class="sc-chrome"><i></i><i></i><i></i><span class="u"><b></b>aurorastore.com.br</span></span>
+                  <span class="sc-body">
+                    <span class="sc-nav"><b>Aurora</b><span>Novidades</span><span>Feminino</span><span>Masculino</span><span class="sc-btn">Sacola · 2</span></span>
+                    <span class="sc-prods">
+                      <span class="sc-prod"><span class="im a"></span><b>Vestido linho</b><small><s>R$ 249</s> · 3x R$ 79</small></span>
+                      <span class="sc-prod"><span class="im b"></span><b>Camisa oversized</b><small>R$ 189</small></span>
+                      <span class="sc-prod"><span class="im c"></span><b>Bolsa couro</b><small>R$ 320</small></span>
+                    </span>
+                  </span>
+                  <span class="sc-float">
+                    <small>Meta Ads · últimos 30 dias</small>
+                    <b>4,2x <span>ROAS</span></b>
+                    <span class="bars"><i style="height:34%"></i><i style="height:52%"></i><i style="height:44%"></i><i style="height:68%"></i><i class="top" style="height:88%"></i><i class="top" style="height:100%"></i></span>
+                  </span>
+                </span>
+              </span>
+              <span class="pf-glare"></span>
+            </span>
+            <span class="pf-cta">Ver detalhes <span aria-hidden="true">→</span></span>
+          </button>
+          <div class="pf-meta">
+            <div class="pf-tags"><span class="pf-tag">Tráfego pago</span><span class="pf-tag alt">Moda</span></div>
+            <h3 class="pf-title">Loja de moda</h3>
+            <p class="pf-desc">Campanhas no Meta e no Google com criativos testados e verba concentrada no que vende.</p>
+            <p class="pf-res"><b>4,2x</b> de retorno com custo por venda em queda</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SEÇÃO 05: PLANOS E PREÇOS
+       PARA MUDAR PREÇOS: edite os <b> de cada card.
+       PARA MUDAR A MENSAGEM DO WHATSAPP: edite o atributo data-wa do botão.
+       ========================================================================== -->
+  <section class="section" id="planos">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <p class="eyebrow"><span class="dot"></span>Planos e preços</p>
+        <h2 class="h2-wrap">Preço claro, <span class="accent">sem surpresa</span> <span class="grad">no fim do mês.</span></h2>
+        <p class="lead">Valores transparentes para você decidir de forma tranquila. O orçamento final depende do escopo, mas você já sabe por onde começa.</p>
+      </div>
+
+      <div class="tabs" role="tablist" aria-label="Categorias de planos" data-reveal>
+        <button class="tab" role="tab" id="tab-sites" aria-selected="true" aria-controls="panel-sites">Sites</button>
+        <button class="tab" role="tab" id="tab-sistemas" aria-selected="false" aria-controls="panel-sistemas" tabindex="-1">Sistemas e Redesign</button>
+        <button class="tab" role="tab" id="tab-trafego" aria-selected="false" aria-controls="panel-trafego" tabindex="-1">Tráfego Pago</button>
+      </div>
+
+      <!-- ============ ABA 1: SITES (pagamento único) ============ -->
+      <div class="tabpanel" role="tabpanel" id="panel-sites" aria-labelledby="tab-sites" tabindex="0">
+        <div class="plans cols-2">
+          <article class="card plan" data-reveal>
+            <h3>Landing Page</h3>
+            <p class="plan-sub">Para vender uma coisa só, do jeito certo.</p>
+            <div class="price">
+              <small>A partir de</small>
+              <b>R$ 1.500 <em>· pagamento único</em></b>
+            </div>
+            <ul>
+              <li>1 página 100% responsiva</li>
+              <li>Copy orientada à conversão</li>
+              <li>Botão de WhatsApp e formulário</li>
+              <li>Entrega em até 7 dias úteis</li>
+            </ul>
+            <a class="btn" data-wa="Quero orçamento do plano Landing Page" data-cta="plano-landing-page">Quero este plano <span class="arw" aria-hidden="true">→</span></a>
+          </article>
+
+          <article class="card plan hot" data-reveal>
+            <span class="pill badge">Mais completo</span>
+            <h3>Site Institucional</h3>
+            <p class="plan-sub">Sua empresa levada a sério na internet.</p>
+            <div class="price">
+              <small>A partir de</small>
+              <b>R$ 2.500 <em>· pagamento único</em></b>
+            </div>
+            <ul>
+              <li>Até 5 páginas com design personalizado</li>
+              <li>SEO básico para aparecer no Google</li>
+              <li>Blog opcional incluso</li>
+              <li>Configuração do Google Meu Negócio</li>
+              <li>Entrega em até 15 dias úteis</li>
+            </ul>
+            <a class="btn" data-wa="Quero orçamento do plano Site Institucional" data-cta="plano-site-institucional">Quero este plano <span class="arw" aria-hidden="true">→</span></a>
+          </article>
+        </div>
+      </div>
+
+      <!-- ============ ABA 2: SISTEMAS E REDESIGN (pagamento único) ============ -->
+      <div class="tabpanel" role="tabpanel" id="panel-sistemas" aria-labelledby="tab-sistemas" tabindex="0" hidden>
+        <div class="plans cols-2">
+          <article class="card plan" data-reveal>
+            <h3>Redesign de Site</h3>
+            <p class="plan-sub">Seu site atual, repaginado e mais rápido.</p>
+            <div class="price">
+              <small>A partir de</small>
+              <b>R$ 2.000 <em>· pagamento único</em></b>
+            </div>
+            <ul>
+              <li>Novo design responsivo</li>
+              <li>Otimização de velocidade</li>
+              <li>SEO básico</li>
+              <li>Melhoria da taxa de conversão</li>
+              <li>Migração do conteúdo existente</li>
+            </ul>
+            <a class="btn" data-wa="Quero orçamento do plano Redesign de Site" data-cta="plano-redesign">Quero este plano <span class="arw" aria-hidden="true">→</span></a>
+          </article>
+
+          <article class="card plan hot" data-reveal>
+            <span class="pill badge">Sob medida</span>
+            <h3>Sistema Web Sob Medida</h3>
+            <p class="plan-sub">Seu processo organizado em um sistema que só sua equipe usa.</p>
+            <div class="price">
+              <small>A partir de</small>
+              <b>R$ 5.000 <em>· pagamento único</em></b>
+            </div>
+            <ul>
+              <li>Levantamento de requisitos</li>
+              <li>Layout, desenvolvimento e banco de dados</li>
+              <li>Login e permissões por usuário</li>
+              <li>Treinamento da equipe</li>
+              <li>30 dias de suporte pós-entrega</li>
+            </ul>
+            <a class="btn" data-wa="Quero orçamento de um Sistema Web Sob Medida" data-cta="plano-sistema">Quero este plano <span class="arw" aria-hidden="true">→</span></a>
+          </article>
+
+          <!-- Card horizontal largo -->
+          <article class="card plan plan-wide" data-reveal>
+            <div class="plan-main">
+              <span class="pill badge">Recomendado</span>
+              <h3 style="margin-top:8px">Manutenção Mensal</h3>
+              <p class="plan-sub">Adicione a qualquer site ou sistema e fique tranquilo.</p>
+              <div class="price" style="max-width:260px">
+                <small>Mensal</small>
+                <b>R$ 250 <em>/mês</em></b>
+              </div>
+            </div>
+            <ul>
+              <li>Atualizações de segurança</li>
+              <li>Backups automáticos</li>
+              <li>Monitoramento de disponibilidade</li>
+              <li>Correções de erros</li>
+              <li>Até 2h de alterações por mês</li>
+              <li>Suporte direto no WhatsApp</li>
+            </ul>
+            <a class="btn" data-wa="Quero adicionar a Manutenção Mensal (R$ 250/mês)" data-cta="plano-manutencao">Quero este plano <span class="arw" aria-hidden="true">→</span></a>
+          </article>
+        </div>
+      </div>
+
+      <!-- ============ ABA 3: TRÁFEGO PAGO (mensal) ============ -->
+      <div class="tabpanel" role="tabpanel" id="panel-trafego" aria-labelledby="tab-trafego" tabindex="0" hidden>
+        <div class="plans cols-3">
+          <article class="card plan" data-reveal>
+            <h3>Start</h3>
+            <p class="plan-sub">Para quem está começando a anunciar.</p>
+            <div class="price">
+              <small>Mensal</small>
+              <b>R$ 1.350 <em>/mês</em></b>
+              <span class="verba">Verba de anúncios até R$ 5.000</span>
+            </div>
+            <ul>
+              <li>1 plataforma (Meta ou Google)</li>
+              <li>Até 3 campanhas</li>
+              <li>Criativos e segmentação</li>
+              <li>Relatório mensal</li>
+            </ul>
+            <a class="btn" data-wa="Quero orçamento do plano de Tráfego Pago Start" data-cta="plano-trafego-start">Quero este plano <span class="arw" aria-hidden="true">→</span></a>
+          </article>
+
+          <article class="card plan hot" data-reveal>
+            <span class="pill badge">Mais escolhido</span>
+            <h3>Growth</h3>
+            <p class="plan-sub">Para quem já quer escala e previsibilidade.</p>
+            <div class="price">
+              <small>Mensal</small>
+              <b>R$ 2.290 <em>/mês</em></b>
+              <span class="verba">Verba de anúncios de R$ 5.000 a R$ 20.000</span>
+            </div>
+            <ul>
+              <li>Meta Ads + Google Ads</li>
+              <li>Otimização semanal</li>
+              <li>Relatório quinzenal</li>
+              <li>Reunião mensal de resultado</li>
+            </ul>
+            <a class="btn" data-wa="Quero orçamento do plano de Tráfego Pago Growth" data-cta="plano-trafego-growth">Quero este plano <span class="arw" aria-hidden="true">→</span></a>
+          </article>
+
+          <article class="card plan" data-reveal>
+            <h3>Scale</h3>
+            <p class="plan-sub">Para operações que investem alto todo mês.</p>
+            <div class="price">
+              <small>A partir de</small>
+              <b>R$ 3.490 <em>/mês</em></b>
+              <span class="verba">Verba de anúncios acima de R$ 20.000</span>
+            </div>
+            <ul>
+              <li>Estratégia completa de canais</li>
+              <li>Testes de criativos e públicos</li>
+              <li>Dashboards de acompanhamento</li>
+              <li>Suporte prioritário</li>
+            </ul>
+            <a class="btn" data-wa="Quero orçamento do plano de Tráfego Pago Scale" data-cta="plano-trafego-scale">Quero este plano <span class="arw" aria-hidden="true">→</span></a>
+          </article>
+        </div>
+      </div>
+
+      <p class="plans-note" data-reveal>
+        Valores a partir de. O orçamento final depende do escopo. Verba de anúncios não inclusa,
+        ela é paga por você direto para a plataforma.
+      </p>
+
+      <!-- Blocos de destaque -->
+      <div class="offers">
+        <div class="offer" data-reveal>
+          <span class="ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 3v18M17 8H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </span>
+          <div>
+            <h3>Pacote Site + Tráfego</h3>
+            <p>Feche o site comigo e ganhe <strong>10% de desconto no primeiro mês</strong> da gestão de tráfego.</p>
+          </div>
+        </div>
+        <div class="offer" data-reveal>
+          <span class="ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 2.5l3 6.2 6.8.9-5 4.7 1.3 6.7L12 17.8 5.9 21l1.3-6.7-5-4.7 6.8-.9z"/></svg>
+          </span>
+          <div>
+            <h3>Site + Manutenção</h3>
+            <p><strong>Primeiro mês de manutenção grátis</strong> ao fechar qualquer site. Depois, R$ 250/mês.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SEÇÃO 06: MÉTRICAS E PROVA SOCIAL
+       TROQUE os números dos cards flutuantes e os depoimentos pelos REAIS.
+       ========================================================================== -->
+  <section class="section" id="metricas">
+    <div class="container">
+      <div class="metrics-grid">
+        <!-- Gráfico decorativo + cards flutuantes -->
+        <div class="chart-stage" data-reveal>
+          <div class="chart-box">
+            <svg viewBox="0 0 560 220" preserveAspectRatio="none" role="img" aria-label="Gráfico decorativo de crescimento de resultados">
+              <path d="M0 190 C60 186 84 150 130 152 C176 154 196 176 250 160 C304 144 322 92 380 96 C438 100 470 52 560 26"
+                    fill="none" stroke="rgba(255,255,255,.14)" stroke-width="1.5" stroke-dasharray="4 6"></path>
+              <path d="M0 196 C56 192 88 158 134 160 C180 162 202 132 254 124 C310 116 330 74 386 70 C444 66 480 40 560 18"
+                    fill="none" stroke="#E85D04" stroke-width="2" stroke-linecap="round"></path>
+              <circle cx="134" cy="160" r="4.5" fill="#0A0B0A" stroke="#E85D04" stroke-width="2.5"></circle>
+              <circle cx="254" cy="124" r="4.5" fill="#0A0B0A" stroke="#E85D04" stroke-width="2.5"></circle>
+              <circle cx="386" cy="70"  r="4.5" fill="#0A0B0A" stroke="#E85D04" stroke-width="2.5"></circle>
+              <circle cx="560" cy="18"  r="5"   fill="#E85D04"></circle>
+            </svg>
+            <div class="chart-legend">
+              <span><i></i> Leads e vendas</span>
+              <span><i class="dim"></i> Média anterior</span>
+            </div>
+          </div>
+
+          <!-- Cards flutuantes de métrica -->
+          <div class="float-card fc-1">
+            <span class="bar" aria-hidden="true"></span>
+            <span><b>R$ 4,20</b><small>de retorno por R$ 1 investido</small></span>
+          </div>
+          <div class="float-card fc-2">
+            <span class="bar" aria-hidden="true"></span>
+            <span><b>−38%</b><small>no custo por lead</small></span>
+          </div>
+          <div class="float-card fc-3">
+            <span class="bar" aria-hidden="true"></span>
+            <span><b>+120</b><small>leads por mês</small></span>
+          </div>
+        </div>
+
+        <!-- Coluna de texto -->
+        <div class="about-metrics">
+          <p class="eyebrow" data-reveal><span class="dot"></span>Resultados</p>
+          <h2 data-reveal>Resultados que você <span class="accent">vê</span> e <span class="grad">mede.</span></h2>
+          <p class="lead" data-reveal>
+            Site bonito sem número é despesa. Eu acompanho cliques, leads e custo por contato
+            para você saber exatamente onde cada real investido está trabalhando.
+          </p>
+          <p class="rating" role="img" data-reveal aria-label="Avaliação 5 de 5 estrelas">★★★★★</p>
+          <div class="hero-actions" data-reveal>
+            <a class="btn-ghost" href="#planos" data-cta="metricas-planos">Ver mais <span aria-hidden="true">→</span></a>
+            <a class="link-muted" data-wa="Tenho uma dúvida sobre resultados e quero conversar" data-cta="metricas-duvida">Tirar dúvida ?</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Depoimentos -->
+      <div class="tst-head" data-reveal>
+        <p class="eyebrow"><span class="dot"></span>Depoimentos</p>
+        <h3>Quem já contratou <span class="accent">conta como foi</span>.</h3>
+      </div>
+
+      <div class="testimonials">
+        <figure class="card tst" data-reveal>
+          <div class="tst-top">
+            <p class="rating" aria-label="Avaliação 5 de 5 estrelas">★★★★★</p>
+            <span class="tst-svc">Landing page</span>
+          </div>
+          <blockquote>“Antes a gente recebia pedido de informação no direct e perdia no meio da conversa. A nova página mostra o método, responde as dúvidas principais e leva a família direto para o WhatsApp. Só nas matrículas do começo do ano foram 62 contatos, quase todos já perguntando valor.”</blockquote>
+          <figcaption>
+            <span class="av" aria-hidden="true">EC</span>
+            <span class="who"><strong>Coordenação</strong><span>Escola Novo Conceito</span></span>
+          </figcaption>
+        </figure>
+
+        <figure class="card tst" data-reveal>
+          <div class="tst-top">
+            <p class="rating" aria-label="Avaliação 5 de 5 estrelas">★★★★★</p>
+            <span class="tst-svc">Sistema web</span>
+          </div>
+          <blockquote>“Eu anotava pedido em papel até o celular acabar a bateria. Hoje cai tudo no sistema, com endereço e forma de pagamento, e a cozinha imprime sozinha. No primeiro mês o domingo deixou de ser o dia de perder pedido.”</blockquote>
+          <figcaption>
+            <span class="av" aria-hidden="true">GS</span>
+            <span class="who"><strong>Proprietário</strong><span>Gomes Salgados</span></span>
+          </figcaption>
+        </figure>
+
+        <figure class="card tst" data-reveal>
+          <div class="tst-top">
+            <p class="rating" aria-label="Avaliação 5 de 5 estrelas">★★★★★</p>
+            <span class="tst-svc">Site + SEO</span>
+          </div>
+          <blockquote>“O problema não era o visual, era o Google não achar a gente. Ele reorganizou as páginas por serviço e o agendamento passou a cair direto na nossa agenda. O movimento de bairro cresceu sem aumentar o investimento em anúncio.”</blockquote>
+          <figcaption>
+            <span class="av" aria-hidden="true">FC</span>
+            <span class="who"><strong>Sócios</strong><span>FlowCut</span></span>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SEÇÃO 07: PROCESSO
+       ========================================================================== -->
+  <section class="section" id="processo">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <p class="eyebrow"><span class="dot"></span>Processo</p>
+        <h2 class="h2-wrap">Como o projeto <span class="accent">acontece</span> <span class="grad">na prática.</span></h2>
+        <p class="lead">Quatro passos simples, sem mistério e sem reunião que não resolve nada.</p>
+      </div>
+
+      <div class="steps">
+        <article class="step" data-reveal>
+          <span class="step-num">01</span>
+          <h3>Conversa e diagnóstico</h3>
+          <p>Entendo seu negócio, seu público e o que você precisa alcançar.</p>
+        </article>
+        <article class="step" data-reveal>
+          <span class="step-num">02</span>
+          <h3>Proposta e design</h3>
+          <p>Você recebe escopo, prazo e valor. Aprovado, começo o layout.</p>
+        </article>
+        <article class="step" data-reveal>
+          <span class="step-num">03</span>
+          <h3>Desenvolvimento e lançamento</h3>
+          <p>Construo, testo no celular e no desktop e coloco tudo no ar.</p>
+        </article>
+        <article class="step" data-reveal>
+          <span class="step-num">04</span>
+          <h3>Otimização e manutenção</h3>
+          <p>Acompanho os números e ajusto o que faz o resultado crescer.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SEÇÃO 08: SOBRE
+       TROQUE a foto: substitua o <span class="photo"> por <img src="sua-foto.jpg" ...>
+       ========================================================================== -->
+  <section class="section" id="sobre">
+    <div class="container about-grid">
+      <div class="photo-wrap" data-reveal>
+        <span class="photo-ring"></span>
+        <span class="photo-dot"></span>
+        <span class="photo-ring b"></span>
+        <div class="photo">
+          <!-- Espaço da foto: troque o SVG por <img src="foto.jpg" alt="Marcelo Palumbo" loading="lazy" width="300" height="300"> -->
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+        </div>
+      </div>
+
+      <div class="about-metrics">
+        <p class="eyebrow" data-reveal><span class="dot"></span>Sobre</p>
+        <h2 data-reveal>Quem vai <span class="accent">cuidar</span> do seu <span class="grad">projeto.</span></h2>
+        <p class="lead" data-reveal>
+          Sou o Marcelo, designer e desenvolvedor web. Crio sites, landing pages e
+          sistemas para negócios que precisam vender mais e organizar a operação.
+        </p>
+        <p class="lead" data-reveal>
+          Trabalho direto com o dono do negócio, sem intermediário: você fala comigo no WhatsApp do
+          primeiro contato até muito depois da entrega.
+        </p>
+        <p class="lead" data-reveal>
+          Meu compromisso é com resultado, não com vaidade de design. Se não gera contato, não serve.
+        </p>
+
+        <div class="tools" data-reveal aria-label="Ferramentas e tecnologias">
+          <span class="tool">Meta Ads</span>
+          <span class="tool">Google Ads</span>
+          <span class="tool">Figma</span>
+          <span class="tool">HTML / CSS / JS</span>
+          <span class="tool">Next.js</span>
+          <span class="tool">WordPress</span>
+          <span class="tool">Banco de dados</span>
+        </div>
+
+        <div class="stats" data-reveal>
+          <div class="stat"><b><span data-count="5">5</span>+</b><span>anos de experiência</span></div>
+          <div class="stat"><b><span data-count="80">80</span>+</b><span>projetos entregues</span></div>
+          <div class="stat"><b><span data-count="98">98</span>%</b><span>clientes satisfeitos</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SEÇÃO 09: FAQ (accordion acessível por teclado)
+       ========================================================================== -->
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section-head" data-reveal style="align-items:center;text-align:center">
+        <p class="eyebrow"><span class="dot"></span>Dúvidas frequentes</p>
+        <h2 class="h2-wrap" style="margin-inline:auto">Perguntas que <span class="accent">todo cliente</span> <span class="grad">faz.</span></h2>
+      </div>
+
+      <div class="faq">
+        <div class="faq-item" data-reveal>
+          <h3 style="margin:0">
+            <button class="faq-q" aria-expanded="false" aria-controls="faq-1" id="faq-b1">
+              Qual é o prazo de entrega? <span class="sign" aria-hidden="true">+</span>
+            </button>
+          </h3>
+          <div class="faq-a" id="faq-1" role="region" aria-labelledby="faq-b1"><div>
+            <p>Landing page em até 7 dias úteis, site institucional em até 15 dias úteis e sistemas web normalmente de 4 a 8 semanas, dependendo do escopo. O prazo começa a contar quando recebo os conteúdos (textos, fotos e logo).</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item" data-reveal>
+          <h3 style="margin:0">
+            <button class="faq-q" aria-expanded="false" aria-controls="faq-2" id="faq-b2">
+              Quais são as formas de pagamento? <span class="sign" aria-hidden="true">+</span>
+            </button>
+          </h3>
+          <div class="faq-a" id="faq-2" role="region" aria-labelledby="faq-b2"><div>
+            <p>Pix, cartão de crédito e parcelamento. Para sites e sistemas, trabalhamos com entrada para iniciar e o restante na entrega. Em projetos maiores dá para dividir em etapas. A gestão de tráfego é mensal.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item" data-reveal>
+          <h3 style="margin:0">
+            <button class="faq-q" aria-expanded="false" aria-controls="faq-3" id="faq-b3">
+              O que eu preciso ter para começar? <span class="sign" aria-hidden="true">+</span>
+            </button>
+          </h3>
+          <div class="faq-a" id="faq-3" role="region" aria-labelledby="faq-b3"><div>
+            <p>Basicamente três coisas: o que seu negócio faz, para quem você vende e qual é o seu objetivo (mais contatos, mais pedidos, mais agendamentos). Logo e fotos ajudam, mas se você não tiver, eu resolvo isso com você.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item" data-reveal>
+          <h3 style="margin:0">
+            <button class="faq-q" aria-expanded="false" aria-controls="faq-4" id="faq-b4">
+              A verba de anúncios fica na minha conta? <span class="sign" aria-hidden="true">+</span>
+            </button>
+          </h3>
+          <div class="faq-a" id="faq-4" role="region" aria-labelledby="faq-b4"><div>
+            <p>Sim, sempre. Você paga a verba direto para o Meta ou o Google, na sua conta e no seu cartão. Eu cuido da gestão: estratégia, criativos, público e otimização. Meu valor é separado da verba.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item" data-reveal>
+          <h3 style="margin:0">
+            <button class="faq-q" aria-expanded="false" aria-controls="faq-5" id="faq-b5">
+              Existe contrato mínimo para tráfego pago? <span class="sign" aria-hidden="true">+</span>
+            </button>
+          </h3>
+          <div class="faq-a" id="faq-5" role="region" aria-labelledby="faq-b5"><div>
+            <p>Sim, o mínimo é 3 meses. Campanha precisa de tempo de aprendizado, testes de público e de criativo para sair do achismo e chegar em números confiáveis.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item" data-reveal>
+          <h3 style="margin:0">
+            <button class="faq-q" aria-expanded="false" aria-controls="faq-6" id="faq-b6">
+              Hospedagem e domínio estão inclusos? <span class="sign" aria-hidden="true">+</span>
+            </button>
+          </h3>
+          <div class="faq-a" id="faq-6" role="region" aria-labelledby="faq-b6"><div>
+            <p>Não, eles são contratados no seu nome. Assim, o domínio é seu de verdade. Eu te ajudo a registrar e configurar tudo, e a hospedagem costuma ficar em uma faixa baixa de valor por ano.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item" data-reveal>
+          <h3 style="margin:0">
+            <button class="faq-q" aria-expanded="false" aria-controls="faq-7" id="faq-b7">
+              Qual a diferença entre site e sistema web? <span class="sign" aria-hidden="true">+</span>
+            </button>
+          </h3>
+          <div class="faq-a" id="faq-7" role="region" aria-labelledby="faq-b7"><div>
+            <p>Site apresenta o negócio e gera contato. Sistema web trabalha: login, cadastro, painéis, relatórios e automações do seu processo. Na dúvida, eu analiso seu caso e te digo o que faz mais sentido agora.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item" data-reveal>
+          <h3 style="margin:0">
+            <button class="faq-q" aria-expanded="false" aria-controls="faq-8" id="faq-b8">
+              O código do projeto é meu? <span class="sign" aria-hidden="true">+</span>
+            </button>
+          </h3>
+          <div class="faq-a" id="faq-8" role="region" aria-labelledby="faq-b8"><div>
+            <p>Sim. Após a quitação, o código e todos os acessos são seus. Você não fica dependente de mim para nada. Se quiser levar para outro profissional um dia, é o seu direito.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item" data-reveal>
+          <h3 style="margin:0">
+            <button class="faq-q" aria-expanded="false" aria-controls="faq-9" id="faq-b9">
+              O que está incluso na manutenção mensal? <span class="sign" aria-hidden="true">+</span>
+            </button>
+          </h3>
+          <div class="faq-a" id="faq-9" role="region" aria-labelledby="faq-b9"><div>
+            <p>Atualizações, backups, monitoramento, correção de erros e até 2 horas de alterações por mês (trocar textos, imagens, adicionar seções). Mudanças grandes viram um orçamento à parte, sempre aprovado antes.</p>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SEÇÃO 10: CTA FINAL
+       ========================================================================== -->
+  <section class="section" id="contato">
+    <div class="container">
+      <div class="cta-final" data-reveal>
+        <span class="glow" aria-hidden="true"></span>
+        <p class="eyebrow" style="justify-content:center"><span class="dot"></span>Vamos começar</p>
+        <h2>Pronto para <span class="accent">crescer</span>? Vamos conversar.</h2>
+        <p class="lead" style="margin:0 auto var(--s32);text-align:center">
+          Me conte em uma mensagem o que você precisa. Eu respondo com o caminho, o prazo e o valor.
+        </p>
+        <div class="cta-actions">
+          <a class="btn" data-wa="Olá! Quero conversar sobre um projeto." data-cta="cta-final">
+            Falar no WhatsApp <span class="arw" aria-hidden="true">→</span>
+          </a>
+          <a class="link-muted" href="mailto:marcelo.palumbof@gmail.com" data-cta="cta-final-email">Prefiro por e-mail</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============================================================================
+     FOOTER
+     ============================================================================ -->
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="footer-col">
+      <a href="#inicio" class="logo">Marcelo Palumbo<span class="accent">.</span></a>
+      <p style="max-width:34ch;margin-top:var(--s8)">
+        Criação de sites, sistemas web e gestão de tráfego pago para negócios que querem crescer.
+      </p>
+      <p style="color:var(--text-muted);font-size:13px;margin-top:var(--s16)">Salvador, BA · atendendo todo o Brasil</p>
+    </div>
+
+    <div class="footer-col">
+      <h3 class="footer-title">Navegação</h3>
+      <a href="#inicio">Início</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#planos">Planos</a>
+      <a href="#metricas">Resultados</a>
+      <a href="#faq">FAQ</a>
+    </div>
+
+    <div class="footer-col">
+      <h3 class="footer-title">Contato</h3>
+      <a data-wa="Olá! Vim pelo seu portfólio e quero um orçamento." data-cta="footer-whatsapp">WhatsApp</a>
+      <a href="mailto:marcelo.palumbof@gmail.com">marcelo.palumbof@gmail.com</a>
+      <a href="https://www.instagram.com/marcelopalumbo_/" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </div>
+
+  <div class="container footer-bottom">
+    <span>© 2026 Marcelo Palumbo. Todos os direitos reservados.</span>
+    <span>Feito à mão, em código, sem template.</span>
+  </div>
+</footer>
+
+<!-- Botão flutuante de WhatsApp -->
+<a class="wa-float" data-wa="Olá! Vim pelo seu portfólio e quero um orçamento." data-cta="botao-flutuante" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C8.8 3 3 8.8 3 16c0 2.3.6 4.5 1.7 6.4L3 29l6.8-1.8c1.9 1 4 1.6 6.2 1.6 7.2 0 13-5.8 13-13S23.2 3 16 3zm0 23.6c-2 0-3.9-.5-5.5-1.5l-.4-.2-4 1.1 1.1-3.9-.3-.4A10.5 10.5 0 0 1 5.4 16C5.4 10.1 10.1 5.4 16 5.4S26.6 10.1 26.6 16 21.9 26.6 16 26.6zm5.9-7.9c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.2s-.8 1-1 1.2c-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5s-.7-1.7-.9-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5 4.5.7.3 1.2.5 1.7.6.7.2 1.3.2 1.8.1.6-.1 1.9-.8 2.1-1.5.3-.8.3-1.4.2-1.5-.1-.1-.3-.2-.6-.3z"/></svg>
+</a>
+
+<!-- ============================================================================
+     MODAL DE CASE: aberto pelos cards do portfólio (script 15)
+     ============================================================================ -->
+<dialog class="case" id="case-dialog" aria-labelledby="case-title">
+  <div class="case-in">
+    <button class="case-x" type="button" data-close-case aria-label="Fechar detalhes do projeto">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <div class="case-shot" id="case-shot" aria-hidden="true"></div>
+    <div class="case-body">
+      <div class="pf-tags" id="case-tags"></div>
+      <h3 class="case-title" id="case-title"></h3>
+      <p class="case-desc" id="case-desc"></p>
+      <dl class="case-facts">
+        <div><dt>Escopo</dt><dd id="case-escopo"></dd></div>
+        <div><dt>Prazo</dt><dd id="case-prazo"></dd></div>
+        <div><dt>Resultado</dt><dd id="case-resultado"></dd></div>
+      </dl>
+      <div class="case-actions">
+        <a class="btn" id="case-wa" data-cta="case-modal">Quero algo parecido</a>
+        <button class="btn-ghost" type="button" data-close-case>Voltar ao portfólio</button>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<script>
+/* ============================================================================
+   ⚙️  CONFIGURAÇÃO: EDITE SÓ AQUI
+   Tudo que é repetitivo no site (nome, WhatsApp, e-mail, links) vem daqui.
+   ============================================================================ */
+const CONFIG = {
+  // Seu WhatsApp no formato 55 + DDD + número (sem espaços, traços ou +)
+  // Ex.: 5571981061578  ->  55 (Brasil) 71 (DDD) + número
+  whatsapp: "5571981061578",
+
+  // Nome usado no rodapé, no logo e no schema (o logo está fixo no HTML: "Marcelo.")
+  nome: "Marcelo Palumbo",
+
+  // Contato alternativo
+  email: "marcelo.palumbof@gmail.com",
+  instagram: "https://www.instagram.com/marcelopalumbo_/",
+
+  // Mensagem padrão quando o botão não define uma específica (data-wa)
+  mensagemPadrao: "Olá! Vim pelo seu portfólio e quero um orçamento."
+};
+
+/* ============================================================================
+   01. LINKS DE WHATSAPP
+   Todo elemento com [data-wa] recebe o link wa.me + a mensagem própria.
+   Para criar um botão novo, basta:  <a data-wa="Quero orçamento de X">Texto</a>
+   ============================================================================ */
+(function buildWhatsAppLinks(){
+  const tel = String(CONFIG.whatsapp).replace(/\D/g, "");
+  document.querySelectorAll("[data-wa]").forEach(function(el){
+    const texto = el.getAttribute("data-wa") || CONFIG.mensagemPadrao;
+    el.setAttribute("href", "https://wa.me/" + tel + "?text=" + encodeURIComponent(texto));
+    el.setAttribute("target", "_blank");
+    el.setAttribute("rel", "noopener");
+  });
+  // E-mail e Instagram vindos do CONFIG
+  document.querySelectorAll('a[href^="mailto:"]').forEach(function(el){ el.href = "mailto:" + CONFIG.email; });
+  const ig = document.querySelector('a[href*="instagram.com"]');
+  if (ig && CONFIG.instagram) ig.href = CONFIG.instagram;
+})();
+
+/* ============================================================================
+   02. RASTREAMENTO DE CLIQUES NOS CTAs
+   Cada [data-cta] recebe um evento. Descomente as linhas do Pixel/GA quando
+   instalar as tags no <head>. Isso alimenta campanhas de remarketing.
+   ============================================================================ */
+(function trackCTAs(){
+  document.querySelectorAll("[data-cta]").forEach(function(el){
+    el.addEventListener("click", function(){
+      const origem = el.getAttribute("data-cta");
+      try {
+        // if (window.fbq)   fbq('track', 'Contact', { content_name: origem });
+        // if (window.gtag)  gtag('event', 'click_whatsapp', { origem: origem });
+      } catch(e){}
+      // console.log('[CTA]', origem);
+    });
+  });
+})();
+
+/* ============================================================================
+   03. NAVBAR: sombra ao rolar + menu mobile
+   ============================================================================ */
+(function navbar(){
+  const nav = document.getElementById("nav");
+  const burger = document.getElementById("burger");
+  const menu = document.getElementById("mobile-menu");
+
+  const onScroll = function(){ nav.classList.toggle("is-scrolled", window.scrollY > 20); };
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive:true });
+
+  burger.addEventListener("click", function(){
+    const open = burger.getAttribute("aria-expanded") === "true";
+    burger.setAttribute("aria-expanded", String(!open));
+    burger.setAttribute("aria-label", open ? "Abrir menu" : "Fechar menu");
+    menu.classList.toggle("is-open", !open);
+  });
+
+  menu.querySelectorAll("a").forEach(function(a){
+    a.addEventListener("click", function(){
+      burger.setAttribute("aria-expanded","false");
+      menu.classList.remove("is-open");
+    });
+  });
+})();
+
+/* ============================================================================
+   04. CARDS DA PROPOSTA: o card sob o mouse (ou foco) fica ativo
+   ============================================================================ */
+(function proposalCards(){
+  const grid = document.getElementById("prop-grid");
+  if(!grid) return;
+  const cards = Array.from(grid.querySelectorAll(".prop-card"));
+  const padrao = cards[1];
+
+  function ativar(card){
+    cards.forEach(function(c){ c.classList.toggle("is-active", c === card); });
+  }
+  cards.forEach(function(card){
+    card.addEventListener("mouseenter", function(){ ativar(card); });
+    card.addEventListener("focusin",    function(){ ativar(card); });
+  });
+  grid.addEventListener("mouseleave", function(){ ativar(padrao); });
+  grid.addEventListener("focusout",   function(){ ativar(padrao); });
+})();
+
+/* ============================================================================
+   05. ABAS DE PREÇOS (acessíveis: setas do teclado, Home e End)
+   ============================================================================ */
+(function tabs(){
+  const list = document.querySelector('[role="tablist"]');
+  if(!list) return;
+  const tabsArr = Array.from(list.querySelectorAll('[role="tab"]'));
+
+  const select = function(tab){
+    tabsArr.forEach(function(t){
+      const on = t === tab;
+      t.setAttribute("aria-selected", String(on));
+      t.tabIndex = on ? 0 : -1;
+      const panel = document.getElementById(t.getAttribute("aria-controls"));
+      if(!panel) return;
+      // Conteúdo que estava em display:none não é observado pelo
+      // IntersectionObserver: se ficar por conta dele, os cards ficam
+      // invisíveis. Então revelamos aqui, em cascata, de forma determinística.
+      if(on){
+        panel.querySelectorAll("[data-reveal]").forEach(function(el, i){
+          if(el.classList.contains("is-in")) return;
+          el.style.setProperty("--reveal-delay", Math.min(i * 60, 180) + "ms");
+          el.classList.add("is-in");
+        });
+      }
+      panel.hidden = !on;
+    });
+  };
+
+  tabsArr.forEach(function(tab, i){
+    tab.addEventListener("click", function(){ select(tab); });
+    tab.addEventListener("keydown", function(e){
+      let next = null;
+      if(e.key === "ArrowRight") next = tabsArr[(i + 1) % tabsArr.length];
+      if(e.key === "ArrowLeft")  next = tabsArr[(i - 1 + tabsArr.length) % tabsArr.length];
+      if(e.key === "Home")       next = tabsArr[0];
+      if(e.key === "End")        next = tabsArr[tabsArr.length - 1];
+      if(next){ e.preventDefault(); next.focus(); select(next); }
+    });
+  });
+})();
+
+/* ============================================================================
+   06. FAQ: ACCORDION ACESSÍVEL (botões + aria-expanded)
+   ============================================================================ */
+(function accordion(){
+  const items = document.querySelectorAll(".faq-item");
+  items.forEach(function(item){
+    const btn = item.querySelector(".faq-q");
+    btn.addEventListener("click", function(){
+      const open = btn.getAttribute("aria-expanded") === "true";
+      // fecha os outros (deixe em aberto vários se preferir: comente o bloco abaixo)
+      items.forEach(function(other){
+        if(other !== item){
+          other.classList.remove("is-open");
+          other.querySelector(".faq-q").setAttribute("aria-expanded", "false");
+        }
+      });
+      btn.setAttribute("aria-expanded", String(!open));
+      item.classList.toggle("is-open", !open);
+    });
+  });
+})();
+
+/* ============================================================================
+   07. ANIMAÇÕES DE ENTRADA: fade + translateY(24px) em 600ms, escalonado
+   Coreografia: os itens entram na ordem do documento (o H1 é sempre o primeiro
+   a entrar, é o herói da seção), com 60ms entre irmãos e teto de 240ms, então
+   nenhuma seção leva mais de ~840ms para assentar.
+   O atraso vai por custom property (--reveal-delay), não por transition-delay:
+   transition-delay ficaria grudado no elemento e atrasaria os hovers depois.
+   ============================================================================ */
+(function reveal(){
+  const alvos = document.querySelectorAll("[data-reveal]");
+  const semMovimento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if(semMovimento || !("IntersectionObserver" in window)){
+    alvos.forEach(function(el){ el.classList.add("is-in"); });
+    return;
+  }
+
+  const io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry, i){
+      if(!entry.isIntersecting) return;
+      const el = entry.target;
+      el.style.setProperty("--reveal-delay", Math.min(i * 60, 240) + "ms");
+      el.classList.add("is-in");
+      io.unobserve(el);
+    });
+  }, { rootMargin: "0px 0px -10% 0px", threshold: 0.12 });
+
+  alvos.forEach(function(el){ io.observe(el); });
+})();
+
+/* ============================================================================
+   08. CONTADOR DAS ESTATÍSTICAS (sobre)
+   Números sobem em 1100ms com desaceleração (cúbica), mesma personalidade
+   do resto da página: rápido no começo, assentando no fim.
+   ============================================================================ */
+(function counters(){  const nums = document.querySelectorAll("[data-count]");
+  if(!nums.length || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(!entry.isIntersecting) return;
+      const el = entry.target;
+      const fim = parseInt(el.getAttribute("data-count"), 10) || 0;
+      const inicio = performance.now();
+      const dur = 1100;
+      function passo(agora){
+        const p = Math.min((agora - inicio) / dur, 1);
+        el.textContent = Math.round(fim * (1 - Math.pow(1 - p, 3)));
+        if(p < 1) requestAnimationFrame(passo);
+      }
+      requestAnimationFrame(passo);
+      io.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+
+  nums.forEach(function(n){ io.observe(n); });
+})();
+
+/* ============================================================================
+   09. ÓRBITAS DO HERO: desliga a rotação se o usuário pedir menos movimento
+   ============================================================================ */
+(function orbits(){
+  if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  document.querySelectorAll(".orbits").forEach(function(svg){
+    if(typeof svg.pauseAnimations === "function") svg.pauseAnimations();
+  });
+})();
+
+/* ============================================================================
+   10. BARRA DE PROGRESSO DE LEITURA (só decorativa, aria-hidden no HTML)
+   ============================================================================ */
+(function readingProgress(){
+  const barra = document.getElementById("scroll-progress");
+  if(!barra) return;
+  let agendado = false;
+
+  function atualizar(){
+    agendado = false;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const p = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
+    barra.style.transform = "scaleX(" + p.toFixed(4) + ")";
+  }
+  function pedir(){
+    if(agendado) return;
+    agendado = true;
+    requestAnimationFrame(atualizar);
+  }
+  atualizar();
+  window.addEventListener("scroll", pedir, { passive: true });
+  window.addEventListener("resize", pedir);
+})();
+
+/* ============================================================================
+   11. PORTFÓLIO: FILTRO POR TIPO
+   aria-pressed guarda o estado; um aria-live anuncia quantos projetos sobraram.
+   ============================================================================ */
+(function portfolioFilter(){
+  const barra = document.querySelector(".pf-bar");
+  if(!barra) return;
+  const botoes = Array.from(barra.querySelectorAll(".pf-filter"));
+  const cards = Array.from(document.querySelectorAll("#pf-grid .pf-card"));
+  const aviso = document.getElementById("pf-live");
+  const semMovimento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function aplicar(filtro){
+    let total = 0;
+    cards.forEach(function(card){
+      const mostrar = filtro === "all" || card.getAttribute("data-cat") === filtro;
+      card.classList.toggle("is-hidden", !mostrar);
+      if(!mostrar) return;
+      total++;
+      // O card pode ter ficado escondido antes de entrar na tela: garante o reveal.
+      card.classList.add("is-in");
+      card.querySelectorAll("[data-reveal]").forEach(function(el){ el.classList.add("is-in"); });
+      if(!semMovimento && typeof card.animate === "function"){
+        card.animate(
+          [{ opacity: 0, transform: "translateY(10px)" }, { opacity: 1, transform: "none" }],
+          { duration: 320, easing: "cubic-bezier(.05,.7,.1,1)" }
+        );
+      }
+    });
+    if(aviso){
+      const atual = botoes.filter(function(b){ return b.getAttribute("aria-pressed") === "true"; })[0];
+      const nome = atual ? atual.textContent.replace(/\s*\d+\s*$/, "").trim() : "";
+      aviso.textContent = total + (total === 1 ? " projeto" : " projetos") +
+        (filtro === "all" ? " no portfólio" : " em " + nome);
+    }
+  }
+
+  botoes.forEach(function(btn){
+    btn.addEventListener("click", function(){
+      botoes.forEach(function(b){ b.setAttribute("aria-pressed", String(b === btn)); });
+      aplicar(btn.getAttribute("data-filter"));
+    });
+  });
+})();
+
+/* ============================================================================
+   12. TILT 3D DAS MINIATURAS + BRILHO QUE SEGUE O CURSOR
+   Só com mouse: no toque não existe hover e o gesto é de rolagem.
+   ============================================================================ */
+(function tiltCards(){
+  const aberturas = Array.from(document.querySelectorAll(".pf-open"));
+  if(!aberturas.length) return;
+  if(window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  if(!window.matchMedia("(hover:hover) and (pointer:fine)").matches) return;
+
+  aberturas.forEach(function(botao){
+    const moldura = botao.querySelector(".pf-shot");
+    const cena = botao.querySelector(".pf-scene");
+    const brilho = botao.querySelector(".pf-glare");
+    if(!moldura || !cena) return;
+    let raf = 0, px = .5, py = .5;
+
+    function pintar(){
+      raf = 0;
+      cena.style.setProperty("--ry", ((px - .5) * 7).toFixed(2) + "deg");
+      cena.style.setProperty("--rx", ((.5 - py) * 5).toFixed(2) + "deg");
+      if(brilho){
+        brilho.style.setProperty("--gx", (px * 100).toFixed(1) + "%");
+        brilho.style.setProperty("--gy", (py * 100).toFixed(1) + "%");
+      }
+    }
+    botao.addEventListener("pointermove", function(e){
+      if(e.pointerType !== "mouse") return;
+      const r = moldura.getBoundingClientRect();
+      px = (e.clientX - r.left) / r.width;
+      py = (e.clientY - r.top) / r.height;
+      if(!raf) raf = requestAnimationFrame(pintar);
+    });
+    botao.addEventListener("pointerleave", function(){
+      cena.style.setProperty("--ry", "0deg");
+      cena.style.setProperty("--rx", "0deg");
+    });
+  });
+})();
+
+/* ============================================================================
+   13. PARALLAX 3D DO HERO: o mockup acompanha o mouse de leve
+   ============================================================================ */
+(function heroParallax(){
+  const palco = document.querySelector(".hero .stage");
+  const mock = document.querySelector(".hero .mock-3d");
+  if(!palco || !mock) return;
+  if(window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  if(!window.matchMedia("(hover:hover) and (pointer:fine)").matches) return;
+  let raf = 0, x = 0, y = 0;
+
+  palco.addEventListener("pointermove", function(e){
+    if(e.pointerType !== "mouse") return;
+    const r = palco.getBoundingClientRect();
+    x = (e.clientX - r.left) / r.width - .5;
+    y = (e.clientY - r.top) / r.height - .5;
+    if(raf) return;
+    raf = requestAnimationFrame(function(){
+      raf = 0;
+      mock.style.setProperty("--ry", (x * 4).toFixed(2) + "deg");
+      mock.style.setProperty("--rx", (-y * 3).toFixed(2) + "deg");
+      mock.style.setProperty("--mx", (x * -10).toFixed(1) + "px");
+      mock.style.setProperty("--my", (y * -10).toFixed(1) + "px");
+    });
+  });
+  palco.addEventListener("pointerleave", function(){
+    mock.style.setProperty("--ry", "0deg");
+    mock.style.setProperty("--rx", "0deg");
+    mock.style.setProperty("--mx", "0px");
+    mock.style.setProperty("--my", "0px");
+  });
+})();
+
+/* ============================================================================
+   14. COMPARAÇÃO ANTES/DEPOIS
+   Um input range nativo por cima: teclado, toque e leitor de tela de graça.
+   ============================================================================ */
+(function beforeAfter(){
+  document.querySelectorAll(".pf-shot.ba").forEach(function(moldura){
+    const controle = moldura.querySelector(".ba-range");
+    if(!controle) return;
+    function aplicar(){ moldura.style.setProperty("--pos", controle.value + "%"); }
+    controle.addEventListener("input", aplicar);
+    aplicar();
+  });
+})();
+
+/* ============================================================================
+   15. MODAL DE CASE DO PORTFÓLIO
+   <dialog> nativo: ESC, foco preso e fundo inerte vêm do navegador.
+   ============================================================================ */
+(function caseModal(){
+  const dlg = document.getElementById("case-dialog");
+  if(!dlg) return;
+  const caixa = document.getElementById("case-shot");
+  const tags = document.getElementById("case-tags");
+  const titulo = document.getElementById("case-title");
+  const desc = document.getElementById("case-desc");
+  const escopo = document.getElementById("case-escopo");
+  const prazo = document.getElementById("case-prazo");
+  const resultado = document.getElementById("case-resultado");
+  const wa = document.getElementById("case-wa");
+  const fechar = dlg.querySelector("[data-close-case]");
+  let anterior = null;
+
+  function abrir(card){
+    const d = card.dataset;
+    titulo.textContent = d.title || "Projeto";
+    desc.textContent = d.desc || "";
+    escopo.textContent = d.escopo || "";
+    prazo.textContent = d.prazo || "";
+    resultado.textContent = d.resultado || "";
+
+    tags.textContent = "";
+    (d.tags || "").split("|").forEach(function(t, i){
+      if(!t) return;
+      const s = document.createElement("span");
+      s.className = "pf-tag" + (i ? " alt" : "");
+      s.textContent = t;
+      tags.appendChild(s);
+    });
+
+    caixa.textContent = "";
+    const print = card.querySelector(".pf-shot");
+    if(print){
+      const clone = print.cloneNode(true);
+      const cena = clone.querySelector(".pf-scene");
+      if(cena){ cena.style.removeProperty("--rx"); cena.style.removeProperty("--ry"); }
+      caixa.appendChild(clone);
+    }
+    if(wa){
+      const tel = String(CONFIG.whatsapp).replace(/\D/g, "");
+      const msg = "Olá! Vi o projeto de " + (d.title || "você") + " no seu portfólio e quero algo parecido.";
+      wa.href = "https://wa.me/" + tel + "?text=" + encodeURIComponent(msg);
+    }
+
+    anterior = document.activeElement;
+    dlg.showModal();
+    if(fechar) fechar.focus();
+  }
+
+  // Limpeza idempotente: pode rodar mais de uma vez sem efeito colateral.
+  function limpar(){
+    caixa.textContent = "";
+    if(anterior && typeof anterior.focus === "function") anterior.focus();
+  }
+  function fecharModal(){
+    if(dlg.open) dlg.close();
+    limpar();
+  }
+
+  document.querySelectorAll("[data-case]").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      const card = btn.closest(".pf-card");
+      if(card) abrir(card);
+    });
+  });
+
+  dlg.querySelectorAll("[data-close-case]").forEach(function(btn){
+    btn.addEventListener("click", fecharModal);
+  });
+
+  // Clique no fundo (fora da caixa) fecha
+  dlg.addEventListener("click", function(e){
+    if(e.target === dlg) fecharModal();
+  });
+
+  // ESC: controla o fechamento aqui para limpar e devolver o foco na hora
+  dlg.addEventListener("cancel", function(e){
+    e.preventDefault();
+    fecharModal();
+  });
+
+  // Rede de segurança para qualquer outro caminho de fechamento
+  dlg.addEventListener("close", limpar);
+})();
+</script>
+</body>
+</html>
