@@ -255,7 +255,7 @@ h2{font-size:clamp(28px,5vw,44px)}
 .card{
   position:relative;background:var(--gradient-card);
   border:1px solid var(--border);border-radius:var(--radius-lg);
-  padding:var(--s24);backdrop-filter:blur(6px);
+  padding:var(--s24);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
   /* a borda responde rápido e a sombra chega depois (follow-through) */
   transition:border-color var(--dur-quick) var(--ease-standard),
              background var(--dur-base) var(--ease-standard),
@@ -278,7 +278,7 @@ h2{font-size:clamp(28px,5vw,44px)}
              border-color var(--dur-base) var(--ease-standard),
              backdrop-filter var(--dur-base) var(--ease-standard);
 }
-.nav.is-scrolled{background:rgba(10,11,10,.72);backdrop-filter:blur(14px);border-bottom-color:var(--border)}
+.nav.is-scrolled{background:rgba(10,11,10,.72);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom-color:var(--border)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:var(--s24);width:100%}
 .logo{font-family:var(--font-display);font-weight:700;font-size:19px;color:var(--accent);letter-spacing:-.02em}
 .nav-links{display:none;gap:var(--s32);align-items:center}
@@ -292,8 +292,12 @@ h2{font-size:clamp(28px,5vw,44px)}
 .burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-4px) rotate(-45deg)}
 .mobile-menu{
   position:fixed;top:var(--nav-h);left:0;right:0;z-index:59;
-  background:rgba(10,11,10,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);
+  background:rgba(10,11,10,.96);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);
   padding:var(--s24);display:grid;gap:var(--s16);
+  /* rola sozinho se a tela for baixa (celular deitado), sem travar a página */
+  max-height:calc(100vh - var(--nav-h));
+  max-height:calc(100dvh - var(--nav-h));
+  overflow-y:auto;overscroll-behavior:contain;
   transform:translateY(-12px);opacity:0;visibility:hidden;
   /* fecha rápido e acelerando (saída); abre mais devagar e desacelerando */
   transition:transform var(--dur-quick) var(--ease-in),opacity var(--dur-quick) var(--ease-in),visibility 0s linear var(--dur-quick);
@@ -302,7 +306,7 @@ h2{font-size:clamp(28px,5vw,44px)}
   transform:none;opacity:1;visibility:visible;
   transition:transform var(--dur-base) var(--ease-out),opacity var(--dur-base) var(--ease-out),visibility 0s;
 }
-.mobile-menu a{font-size:17px;color:var(--text-muted);padding:6px 0;border-bottom:1px solid var(--grid)}
+.mobile-menu a{font-size:17px;color:var(--text-muted);padding:11px 0;border-bottom:1px solid var(--grid)}
 .mobile-menu a:hover{color:var(--accent)}
 
 /* ============================================================================
@@ -608,7 +612,7 @@ html:has(dialog.case[open]){overflow:hidden}
 
 .pf-bar{display:flex;flex-wrap:wrap;gap:var(--s8);margin-bottom:var(--s32)}
 .pf-filter{
-  display:inline-flex;align-items:center;gap:7px;padding:9px 16px;
+  display:inline-flex;align-items:center;gap:7px;padding:10px 16px;
   border:1px solid var(--border);border-radius:var(--radius-full);
   font-size:13.5px;font-weight:500;color:var(--text-muted);background:rgba(255,255,255,.02);
   transition:color var(--dur-quick) var(--ease-standard),
@@ -650,7 +654,7 @@ html:has(dialog.case[open]){overflow:hidden}
 .pf-cta{
   position:absolute;left:50%;bottom:14px;z-index:3;
   display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:var(--radius-full);
-  background:rgba(10,11,10,.84);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(8px);
+  background:rgba(10,11,10,.84);border:1px solid rgba(255,255,255,.18);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
   font-size:13px;font-weight:500;color:#fff;white-space:nowrap;
   opacity:0;transform:translate(-50%,10px);pointer-events:none;
   transition:opacity var(--dur-base) var(--ease-out),transform var(--dur-base) var(--ease-out);
@@ -695,7 +699,7 @@ html:has(dialog.case[open]){overflow:hidden}
 .sc-col{display:flex;flex-direction:column;gap:1.5cqw;min-width:0}
 .sc-photo{position:relative;display:block;aspect-ratio:1/.95;border-radius:2.2cqw;overflow:hidden;background:linear-gradient(155deg,#EFE0CD,#D2B08C 55%,#A9825B)}
 .sc-photo svg{position:absolute;inset:0;width:100%;height:100%}
-.sc-photo .tag{position:absolute;left:1.4cqw;bottom:1.4cqw;padding:.5cqw 1.1cqw;border-radius:99px;background:rgba(10,11,10,.72);color:#fff;font-size:1.4cqw;font-weight:500;backdrop-filter:blur(4px)}
+.sc-photo .tag{position:absolute;left:1.4cqw;bottom:1.4cqw;padding:.5cqw 1.1cqw;border-radius:99px;background:rgba(10,11,10,.72);color:#fff;font-size:1.4cqw;font-weight:500;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
 
 /* ---- Construtora ---- */
 .sc-photo2{position:relative;display:block;aspect-ratio:2.85/1;border-radius:1.8cqw;overflow:hidden;background:linear-gradient(160deg,#2C2D2B,#101110)}
@@ -766,7 +770,7 @@ html:has(dialog.case[open]){overflow:hidden}
   position:absolute;right:3cqw;bottom:3cqw;width:25cqw;z-index:3;
   background:rgba(16,17,16,.96);border:1px solid rgba(255,255,255,.16);border-radius:1.4cqw;
   padding:1.5cqw;color:#fff;box-shadow:0 24px 40px -20px rgba(0,0,0,.75);
-  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
 }
 .sc-float small{display:block;font-size:1.3cqw;color:#9A9C9A}
 .sc-float b{display:flex;align-items:baseline;gap:.6cqw;font-family:var(--font-display);font-size:3.2cqw;line-height:1.1;margin:.3cqw 0 .7cqw}
@@ -827,14 +831,14 @@ html:has(dialog.case[open]){overflow:hidden}
   background:linear-gradient(180deg,#151615,#0B0C0B);color:var(--text);
   overflow:auto;overscroll-behavior:contain;
 }
-.case::backdrop{background:rgba(4,5,4,.76);backdrop-filter:blur(6px)}
+.case::backdrop{background:rgba(4,5,4,.76);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
 .case[open]{animation:case-in var(--dur-base) var(--ease-out)}
 @keyframes case-in{from{opacity:0;transform:translateY(14px) scale(.99)}}
 .case-in{position:relative;padding:var(--s16)}
 .case-x{
   position:absolute;top:calc(var(--s16) + 10px);right:calc(var(--s16) + 10px);z-index:4;
   width:38px;height:38px;border-radius:50%;display:grid;place-items:center;
-  background:rgba(10,11,10,.78);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(8px);
+  background:rgba(10,11,10,.78);border:1px solid rgba(255,255,255,.22);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
   transition:background var(--dur-quick) var(--ease-standard),transform var(--dur-quick) var(--ease-out);
 }
 .case-x:hover{background:var(--accent);color:var(--on-accent);transform:scale(1.05)}
@@ -925,7 +929,7 @@ html:has(dialog.case[open]){overflow:hidden}
 .float-card{
   position:absolute;display:flex;gap:var(--s16);align-items:center;
   padding:12px 16px;border-radius:var(--radius-md);
-  background:rgba(14,15,14,.82);border:1px solid var(--border);backdrop-filter:blur(8px);
+  background:rgba(14,15,14,.82);border:1px solid var(--border);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
   box-shadow:0 20px 40px -18px rgba(0,0,0,.8);
 }
 .float-card .bar{width:3px;align-self:stretch;border-radius:2px;background:var(--accent);flex:none}
@@ -1087,6 +1091,30 @@ html:has(dialog.case[open]){overflow:hidden}
   .case-facts{grid-template-columns:1fr 1fr}
   .case-body{padding:var(--s24) 0 0}
   .case-actions .btn,.case-actions .btn-ghost{width:100%;justify-content:center}
+  /* menos respiro vertical: no celular a página fica longa */
+  .section{padding-block:56px}
+  .hero{padding-bottom:48px}
+  /* anéis da foto do Sobre cabem até em tela de 320px */
+  .photo-ring{inset:-12px}
+  .photo-ring.b{inset:-22px}
+  .photo-dot{top:-15px}
+  .pf-cta{padding:8px 14px;font-size:12.5px;bottom:12px}
+}
+
+/* Sem hover (toque): o convite do card precisa ficar visível,
+   senão ninguém descobre que a miniatura abre o case. */
+@media(hover:none){
+  .pf-cta{opacity:1;transform:translate(-50%,0)}
+}
+
+/* Tela baixa (celular deitado): sobra pouca altura útil,
+   então o herói e os títulos encolhem para caber na primeira dobra */
+@media(max-height:520px){
+  .hero{padding-top:calc(var(--nav-h) + 28px);padding-bottom:48px}
+  .stage{min-height:240px}
+  .section{padding-block:56px}
+  h1{font-size:clamp(28px,4.6vw,44px)}
+  h2{font-size:clamp(24px,3.6vw,32px)}
 }
 
 /* ============================================================================
