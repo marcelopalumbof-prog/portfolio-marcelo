@@ -5,7 +5,7 @@ const path = require('path');
 const WIDTH = 1080;
 const HEIGHT = 1920;
 const FPS = 30;
-const DURATION = 24;
+const DURATION = 48; // aumentado de 24 para 48s
 const TOTAL_FRAMES = DURATION * FPS;
 const OUT_DIR = path.join(__dirname, 'frames-desktop');
 
@@ -32,7 +32,19 @@ async function main() {
   await page.goto('http://127.0.0.1:8099/brag-desktop.html', { waitUntil: 'networkidle0' });
   
   // Aguardar a animação inicializar e o conteúdo do site carregar
-  await new Promise(r => setTimeout(r, 2500));
+  // O site demora um pouco para carregar via fetch dentro do brag-desktop.html
+  await new Promise(r => setTimeout(r, 3500));
+
+  // Verificar se o conteúdo do site foi injetado
+  const siteLoaded = await page.evaluate(() => {
+    const content = document.getElementById('siteContent');
+    return content && content.innerHTML.length > 100 && content.classList.contains('site-loaded');
+  });
+  
+  if (!siteLoaded) {
+    console.log('Aguardando mais tempo para o site carregar...');
+    await new Promise(r => setTimeout(r, 3000));
+  }
 
   let frameNum = 0;
   const startTime = Date.now();
@@ -50,7 +62,7 @@ async function main() {
     await page.screenshot({ path: fname, fullPage: false });
     frameNum++;
 
-    if (i % 30 === 0 || i === TOTAL_FRAMES) {
+    if (i % 60 === 0 || i === TOTAL_FRAMES) {
       process.stdout.write(`\rCapturado ${i}/${TOTAL_FRAMES} frames (t=${targetTime.toFixed(2)}s)`);
     }
   }

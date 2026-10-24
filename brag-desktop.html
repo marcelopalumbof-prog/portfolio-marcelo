@@ -7,39 +7,28 @@
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html, body { width: 1080px; height: 1920px; overflow: hidden; background: #0A0B0A; font-family: 'Inter', system-ui, sans-serif; }
-  .scene { position: absolute; inset: 0; width: 100%; height: 100%; background: #0A0B0A; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+  .scene { position: absolute; inset: 0; width: 100%; height: 100%; background: #0A0B0A; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; }
   .scene.active { opacity: 1; pointer-events: auto; }
   
-  /* Layout desktop centralizado na vertical */
-  .desktop-wrap { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(var(--scale, 1)); width: 1440px; height: 2560px; }
+  .bg-grid { position: absolute; inset: 0; background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 100px 100px; opacity: 0.25; pointer-events: none; }
   
-  /* Fundo escuro com grade */
-  .bg-grid { position: absolute; inset: 0; background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 100px 100px; opacity: 0.3; pointer-events: none; }
-  
-  /* Cursor */
-  .cursor { position: absolute; width: 24px; height: 24px; background: #E85D04; border-radius: 50%; box-shadow: 0 0 16px rgba(232,93,4,.7); pointer-events: none; z-index: 100; transform: translate(-50%, -50%); transition: transform 0.1s ease; }
+  .cursor { position: absolute; width: 26px; height: 26px; background: #E85D04; border-radius: 50%; box-shadow: 0 0 18px rgba(232,93,4,.8); pointer-events: none; z-index: 100; transform: translate(-50%, -50%); transition: transform 0.08s ease; }
   .ripple { position: absolute; border: 2px solid rgba(255,255,255,.5); border-radius: 50%; pointer-events: none; z-index: 95; transform: translate(-50%, -50%) scale(0); opacity: 0; }
   
-  /* Áreas seguras Reels */
   .safe-top { position: absolute; top: 0; left: 0; width: 100%; height: 250px; background: #0A0B0A; z-index: 200; pointer-events: none; }
   .safe-bottom { position: absolute; bottom: 0; left: 0; width: 100%; height: 400px; background: #0A0B0A; z-index: 200; pointer-events: none; }
   
-  /* Caption */
-  .caption { position: absolute; left: 50%; transform: translateX(-50%); top: 130px; font-family: 'Syne', 'Unbounded', system-ui, sans-serif; font-weight: 800; font-size: 34px; color: #FFFFFF; text-align: center; max-width: 900px; line-height: 1.2; pointer-events: none; z-index: 150; opacity: 0; transition: opacity 0.4s ease; text-shadow: 0 4px 20px rgba(0,0,0,.6); }
+  .caption { position: absolute; left: 50%; transform: translateX(-50%); top: 520px; font-family: 'Syne', 'Unbounded', system-ui, sans-serif; font-weight: 800; font-size: 36px; color: #FFFFFF; text-align: center; max-width: 900px; line-height: 1.2; pointer-events: none; z-index: 150; opacity: 0; transition: opacity 0.4s ease; text-shadow: 0 4px 20px rgba(0,0,0,.7); }
   .caption.show { opacity: 1; }
-  .caption.accent-text { color: #E85D04; }
   .caption .accent { color: #E85D04; }
   
-  /* SFX tag */
   .sfx-tag { position: absolute; font-family: 'Syne', system-ui, sans-serif; font-weight: 700; font-size: 18px; color: #E85D04; pointer-events: none; z-index: 90; opacity: 0; transition: opacity 0.3s ease; padding: 6px 14px; border-radius: 999px; background: rgba(232,93,4,.15); border: 1px solid rgba(232,93,4,.4); }
   .sfx-tag.show { opacity: 1; }
   
-  /* Logo */
   .logo { position: absolute; top: 60px; left: 60px; font-family: 'Syne', system-ui, sans-serif; font-weight: 700; font-size: 28px; color: #E85D04; letter-spacing: -0.02em; z-index: 150; opacity: 0; transition: opacity 0.5s ease; }
   .logo.show { opacity: 1; }
   
-  /* Tela final */
-  .final-card { position: absolute; left: 50%; transform: translateX(-50%); bottom: 420px; width: 860px; text-align: center; padding: 70px 40px; border-radius: 30px; border: 1px solid rgba(255,255,255,.14); background: linear-gradient(180deg,#151615,#0E0F0E); color: #FFFFFF; z-index: 150; opacity: 0; transition: opacity 0.7s ease; box-shadow: 0 40px 120px -40px rgba(0,0,0,.8); }
+  .final-card { position: absolute; left: 50%; transform: translateX(-50%); bottom: 460px; width: 860px; text-align: center; padding: 70px 40px; border-radius: 30px; border: 1px solid rgba(255,255,255,.14); background: linear-gradient(180deg,#151615,#0E0F0E); color: #FFFFFF; z-index: 150; opacity: 0; transition: opacity 0.8s ease; box-shadow: 0 40px 120px -40px rgba(0,0,0,.8); }
   .final-card.show { opacity: 1; }
   .final-card h2 { font-family: 'Syne', system-ui, sans-serif; font-weight: 800; font-size: 42px; margin-bottom: 14px; line-height: 1.1; }
   .final-card p { font-size: 18px; color: #8A8C8A; line-height: 1.5; margin-bottom: 26px; }
@@ -48,27 +37,19 @@
   .final-info { margin-top: 30px; font-size: 16px; color: #FFFFFF; }
   .final-info .accent { color: #E85D04; font-weight: 700; }
   
-  /* Área do desktop - será preenchida com o site real via iframe ou conteúdo injetado */
   .desktop-viewport { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.62); width: 1440px; min-height: 2560px; transform-origin: top center; z-index: 10; pointer-events: none; }
   
-  /* Sombra do desktop */
-  .desktop-shadow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.62); width: 1520px; height: 2640px; background: rgba(0,0,0,.5); border-radius: 40px; filter: blur(40px); z-index: 8; pointer-events: none; opacity: 0; transition: opacity 0.5s ease; }
+  .desktop-shadow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.62); width: 1520px; height: 2640px; background: rgba(0,0,0,.45); border-radius: 40px; filter: blur(40px); z-index: 8; pointer-events: none; opacity: 0; transition: opacity 0.6s ease; }
   .desktop-shadow.show { opacity: 1; }
   
-  /* Zoom container */
-  .zoom-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; transform-origin: center center; transition: transform 0.8s cubic-bezier(.05,.7,.1,1); }
+  .zoom-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; transform-origin: center center; transition: transform 1s cubic-bezier(.05,.7,.1,1); }
   
-  /* Botão flutuante WhatsApp no desktop */
-  .wa-float { position: fixed; right: 18px; bottom: 18px; z-index: 70; width: 56px; height: 56px; border-radius: 50%; background: #E85D04; color: #0A0B0A; display: grid; place-items: center; box-shadow: 0 12px 30px -8px rgba(232,93,4,.35); }
+  /* Iframe do site real */
+  .site-iframe { position: absolute; top: 0; left: 0; width: 1440px; min-height: 2560px; border: none; background: #0A0B0A; }
   
-  /* Conteúdo do site real (injetado do index.html) */
-  .site-content { position: absolute; top: 0; left: 0; width: 1440px; min-height: 2560px; }
+  .zoom-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; transform-origin: center center; transition: transform 1s cubic-bezier(.05,.7,.1,1); }
   
-  /* Esconder scrollbars no desktop view */
-  .site-content::-webkit-scrollbar { display: none; }
-  
-  /* Transições de seção */
-  .section-fade { transition: opacity 0.6s ease; }
+  .site-loaded { opacity: 1 !important; transition: opacity 0.8s ease; }
 </style>
 </head>
 <body>
@@ -83,7 +64,7 @@
 <div class="desktop-viewport" id="desktopViewport">
   <div class="zoom-container" id="zoomContainer">
     <div class="desktop-shadow-inner" style="position:absolute;inset:0;background:rgba(0,0,0,.3);border-radius:30px;opacity:0.4;"></div>
-    <div class="site-content" id="siteContent"></div>
+    <iframe class="site-iframe" id="siteFrame" src="http://127.0.0.1:8099/index.html"></iframe>
   </div>
 </div>
 
@@ -109,7 +90,7 @@
   const caption = document.getElementById('caption');
   const sfx = document.getElementById('sfx');
   const zoomContainer = document.getElementById('zoomContainer');
-  const siteContent = document.getElementById('siteContent');
+  const siteFrame = document.getElementById('siteFrame');
   const logo = document.getElementById('logo');
   const desktopShadow = document.getElementById('desktopShadow');
   const finalCard = document.getElementById('finalCard');
@@ -117,55 +98,10 @@
   const WIDTH = 1080;
   const HEIGHT = 1920;
   const FPS = 30;
-  const DURATION = 24;
+  const DURATION = 48;
   const TOTAL_FRAMES = DURATION * FPS;
   let frame = 0;
-  
-  // Carregar conteúdo real do site no desktop viewport
-  async function loadSiteContent() {
-    try {
-      const resp = await fetch('http://127.0.0.1:8099/index.html');
-      const html = await resp.text();
-      // Extrair apenas o <body> content (sem head)
-      const bodyMatch = html.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
-      if (bodyMatch) {
-        siteContent.innerHTML = bodyMatch[1];
-      } else {
-        siteContent.innerHTML = html;
-      }
-      // Ajustar para desktop view - remover scripts que podem interferir
-      siteContent.querySelectorAll('script').forEach(s => s.remove());
-      siteContent.querySelectorAll('link[rel="stylesheet"]').forEach(l => l.remove());
-      siteContent.querySelectorAll('style').forEach(st => st.remove());
-      
-      // Ajustar links internos para não navegar
-      siteContent.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', e => e.preventDefault());
-        a.style.cursor = 'pointer';
-      });
-      
-      // Ajustar o hero mockup para ficar visível no desktop
-      const hero = siteContent.querySelector('.hero');
-      if (hero) {
-        hero.style.paddingTop = '120px';
-        hero.style.paddingBottom = '120px';
-      }
-      
-      // Esconder o botão flutuante WhatsApp no desktop view (será mostrado na tela final)
-      const waFloat = siteContent.querySelector('.wa-float');
-      if (waFloat) waFloat.style.display = 'none';
-      
-      // Ajustar section padding para desktop
-      siteContent.querySelectorAll('.section').forEach(s => {
-        s.style.paddingBlock = '120px';
-      });
-      
-      console.log('Conteúdo do site carregado no desktop viewport');
-    } catch(e) {
-      console.error('Erro ao carregar site:', e);
-      siteContent.innerHTML = '<div style="color:#FFFFFF;padding:100px;font-family:Inter;font-size:24px;">Erro ao carregar site</div>';
-    }
-  }
+  let siteReady = false;
   
   function showScene(time) {
     scenes.forEach(sc => {
@@ -179,13 +115,9 @@
     });
   }
   
-  function setCaption(text, accentPart = null, top = 130) {
+  function setCaption(text, top = 520) {
     caption.style.top = top + 'px';
-    if (accentPart) {
-      caption.innerHTML = text.replace(accentPart, '<span class="accent">' + accentPart + '</span>');
-    } else {
-      caption.textContent = text;
-    }
+    caption.innerHTML = text;
     caption.classList.add('show');
   }
   
@@ -198,7 +130,7 @@
     sfx.style.top = y + 'px';
     sfx.textContent = text;
     sfx.classList.add('show');
-    setTimeout(() => sfx.classList.remove('show'), 600);
+    setTimeout(() => sfx.classList.remove('show'), 700);
   }
   
   function moveCursor(x, y) {
@@ -212,14 +144,14 @@
     ripple.style.transform = 'translate(-50%, -50%) scale(0)';
     ripple.style.opacity = '0';
     requestAnimationFrame(() => {
-      ripple.style.transition = 'transform 0.4s cubic-bezier(.05,.7,.1,1), opacity 0.4s ease';
+      ripple.style.transition = 'transform 0.5s cubic-bezier(.05,.7,.1,1), opacity 0.5s ease';
       ripple.style.transform = 'translate(-50%, -50%) scale(2.5)';
       ripple.style.opacity = '0.7';
       setTimeout(() => {
         ripple.style.transition = 'none';
         ripple.style.transform = 'translate(-50%, -50%) scale(0)';
         ripple.style.opacity = '0';
-      }, 400);
+      }, 500);
     });
   }
   
@@ -227,201 +159,197 @@
     zoomContainer.style.transform = `scale(${scale}) translate(${-x}%, ${-y}%)`;
   }
   
-  function showElement(selector, show = true, delay = 0) {
-    setTimeout(() => {
-      const el = siteContent.querySelector(selector);
-      if (el) {
-        el.style.opacity = show ? '1' : '0';
-        el.style.transition = 'opacity 0.5s ease';
-      }
-    }, delay);
-  }
+  // Aguardar o iframe carregar
+  siteFrame.addEventListener('load', () => {
+    siteReady = true;
+    console.log('Iframe do site carregado');
+  });
   
-  function scrollTo(y, duration = 1000) {
-    const start = siteContent.scrollTop || 0;
-    const change = y - start;
-    const startTime = performance.now();
-    function ease(t) { return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t; }
-    function step(now) {
-      const elapsed = now - startTime;
-      const p = Math.min(elapsed / duration, 1);
-      siteContent.scrollTop = start + change * ease(p);
-      if (p < 1) requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
-  }
+  // Timeout de segurança
+  setTimeout(() => { if(!siteReady) { siteReady = true; console.log('Timeout do iframe - continuando'); } }, 5000);
   
-  // Inicializar
-  loadSiteContent();
-  
-  // Loop principal
   function tick() {
+    if (!siteReady) {
+      requestAnimationFrame(tick);
+      return;
+    }
+    
     const time = frame / FPS;
     showScene(time);
     
-    // Mostrar elementos base
     logo.classList.add('show');
     desktopShadow.classList.add('show');
     
-    // Cena 0-1.5: Logo apenas, fade in desktop
-    if (time >= 0 && time < 1.5) {
+    // Cena 0-2.5: Logo apenas, fade in desktop
+    if (time >= 0 && time < 2.5) {
       hideCaption();
-      const p = Math.min(time / 1.5, 1);
-      siteContent.style.opacity = p;
+      const p = Math.min(time / 2.5, 1);
       setZoom(0.62 + (0.05 * p));
     }
     
-    // Cena 1.5-3.0: "Sites que vendem."
-    if (time >= 1.5 && time < 3.0) {
-      setCaption("Sites que <span class=\"accent\">vendem</span>.", "vendem");
-      moveCursor(720 + Math.sin(time * 3) * 30, 960 + Math.cos(time * 2) * 20);
-      siteContent.style.opacity = '1';
+    // Cena 2.5-5.5: "Sites que vendem."
+    if (time >= 2.5 && time < 5.5) {
+      setCaption("Sites que <span class=\"accent\">vendem</span>.", 520);
+      moveCursor(720 + Math.sin(time * 2) * 30, 960 + Math.cos(time * 1.5) * 20);
       setZoom(0.67);
     }
     
-    // Cena 3.0-4.5: "Sistemas que organizam."
-    if (time >= 3.0 && time < 4.5) {
-      setCaption("Sistemas que <span class=\"accent\">organizam</span>.", "organizam");
-      moveCursor(720 + Math.sin(time * 3 + 2) * 30, 960 + Math.cos(time * 2 + 2) * 20);
+    // Cena 5.5-8.5: "Sistemas que organizam."
+    if (time >= 5.5 && time < 8.5) {
+      setCaption("Sistemas que <span class=\"accent\">organizam</span>.", 520);
+      moveCursor(720 + Math.sin(time * 2 + 2) * 30, 960 + Math.cos(time * 1.5 + 2) * 20);
       setZoom(0.67);
     }
     
-    // Cena 4.5-6.0: "Anúncios que trazem clientes."
-    if (time >= 4.5 && time < 6.0) {
-      setCaption("Anúncios que <span class=\"accent\">trazem clientes</span>.", "trazem clientes");
-      moveCursor(720 + Math.sin(time * 3 + 4) * 30, 960 + Math.cos(time * 2 + 4) * 20);
+    // Cena 8.5-11.5: "Anúncios que trazem clientes."
+    if (time >= 8.5 && time < 11.5) {
+      setCaption("Anúncios que <span class=\"accent\">trazem clientes</span>.", 520);
+      moveCursor(720 + Math.sin(time * 2 + 4) * 30, 960 + Math.cos(time * 1.5 + 4) * 20);
       setZoom(0.67);
     }
     
-    // Cena 6.0-8.0: Hero - cursor no botão "Quero meu projeto"
-    if (time >= 6.0 && time < 8.0) {
-      setCaption("Quero meu projeto", "Quero meu projeto", 1100);
-      // Cursor se move para o botão hero
-      const btnX = 300 + (time - 6.0) * 100;
-      const btnY = 1050;
-      moveCursor(Math.min(btnX, 560), btnY);
-      setZoom(0.72, 40, 45);
-      if (frame === Math.round(6.0 * FPS)) triggerRipple(520, 1050);
-      showElement('.btn[data-cta="hero-primario"]', true, 100);
+    // Cena 11.5-14.5: Hero - cursor no botão "Quero meu projeto"
+    if (time >= 11.5 && time < 14.5) {
+      setCaption("Quero meu projeto", 1050);
+      moveCursor(520 + Math.sin(time) * 20, 1050);
+      setZoom(0.70, 40, 45);
+      if (frame === Math.round(11.5 * FPS)) triggerRipple(520, 1050);
     }
     
-    // Cena 8.0-9.5: "+80 projetos entregues"
-    if (time >= 8.0 && time < 9.5) {
-      setCaption("+80 projetos entregues", "+80 projetos entregues", 1000);
+    // Cena 14.5-17.5: "+80 projetos entregues"
+    if (time >= 14.5 && time < 17.5) {
+      setCaption("+80 projetos entregues", 1000);
       moveCursor(520, 1050);
-      setZoom(0.72, 40, 45);
-      if (frame === Math.round(8.0 * FPS)) { triggerRipple(520, 1050); setSFX("pop", 520, 1050); }
-      showElement('.social-proof', true, 100);
+      setZoom(0.70, 40, 45);
+      if (frame === Math.round(14.5 * FPS)) { triggerRipple(520, 1050); setSFX("pop", 520, 1050); }
     }
     
-    // Cena 9.5-11.0: "★★★★★ 5,0"
-    if (time >= 9.5 && time < 11.0) {
-      setCaption("★★★★★ 5,0", "★★★★★ 5,0", 1080);
+    // Cena 17.5-20.5: "★★★★★ 5,0"
+    if (time >= 17.5 && time < 20.5) {
+      setCaption("★★★★★ 5,0", 1080);
       moveCursor(520, 1050);
-      setZoom(0.72, 40, 45);
-      showElement('.rating', true, 100);
+      setZoom(0.70, 40, 45);
     }
     
-    // Cena 11.0-13.0: Scroll para Serviços
-    if (time >= 11.0 && time < 13.0) {
-      setCaption("Serviços", "Serviços", 1200);
-      const p = (time - 11.0) / 2.0;
-      scrollTo(Math.min(1400 * p, 1400), 2000);
-      moveCursor(720 + Math.sin(time * 4) * 40, 960 + Math.cos(time * 3) * 30);
+    // Cena 20.5-24.5: Scroll para Serviços
+    if (time >= 20.5 && time < 24.5) {
+      setCaption("Serviços", 1200);
+      const p = (time - 20.5) / 4.0;
+      moveCursor(720 + Math.sin(time * 3) * 40, 960 + Math.cos(time * 2) * 30);
       setZoom(0.65, 50, 50);
-      showElement('#servicos', true, 200);
+      // Simular scroll via JS no iframe
+      try {
+        const iframeDoc = siteFrame.contentDocument || siteFrame.contentWindow.document;
+        if (iframeDoc) iframeDoc.scrollingElement.scrollTop = Math.min(1400 * p, 1400);
+      } catch(e) {}
     }
     
-    // Cena 13.0-15.0: Hover nos cards de serviços
-    if (time >= 13.0 && time < 15.0) {
-      setCaption("Landing Page / Site Institucional / Sistema Web / Tráfego Pago", "Landing Page / Site Institucional / Sistema Web / Tráfego Pago", 1250);
-      const p = (time - 13.0) / 2.0;
-      const cards = ['.svc:nth-child(1)', '.svc:nth-child(2)', '.svc:nth-child(3)', '.svc:nth-child(6)'];
-      const cardIdx = Math.min(Math.floor(p * 4), 3);
-      const card = siteContent.querySelector(cards[cardIdx]);
-      if (card) {
-        const r = card.getBoundingClientRect();
-        moveCursor(r.left + r.width/2, r.top + r.height/2 - 100);
-        card.style.borderColor = 'rgba(232,93,4,.45)';
-        card.style.boxShadow = '0 22px 44px -30px rgba(232,93,4,.5)';
-      }
-      setZoom(0.65, 50, 50);
-    }
-    
-    // Cena 15.0-17.0: Filtros portfólio
-    if (time >= 15.0 && time < 17.0) {
-      setCaption("Filtros: Todos → Sistemas → Tráfego pago", "Filtros", 1300);
-      const p = (time - 15.0) / 2.0;
+    // Cena 24.5-28.5: Filtros portfólio
+    if (time >= 24.5 && time < 28.5) {
+      setCaption("Filtros: Todos → Sistemas → Tráfego pago", 1300);
+      const p = (time - 24.5) / 4.0;
       const filters = ['.pf-filter[data-filter="all"]', '.pf-filter[data-filter="sistema"]', '.pf-filter[data-filter="trafego"]'];
       const fIdx = Math.min(Math.floor(p * 3), 2);
-      const filter = siteContent.querySelector(filters[fIdx]);
-      if (filter) {
-        const r = filter.getBoundingClientRect();
-        moveCursor(r.left + r.width/2, r.top + r.height/2);
-        filter.classList.add('active');
-      }
+      
+      try {
+        const iframeDoc = siteFrame.contentDocument || siteFrame.contentWindow.document;
+        if (iframeDoc) {
+          filters.forEach(f => { const el = iframeDoc.querySelector(f); if(el) el.classList.remove('active'); });
+          const filter = iframeDoc.querySelector(filters[fIdx]);
+          if (filter) {
+            const r = filter.getBoundingClientRect();
+            // Ajustar coordenadas para o espaço da página principal
+            const iframeRect = siteFrame.getBoundingClientRect();
+            moveCursor(iframeRect.left + r.left + r.width/2, iframeRect.top + r.top + r.height/2);
+            filter.classList.add('active');
+          }
+        }
+      } catch(e) {}
       setZoom(0.68, 50, 55);
-      showElement('#portfolio', true, 200);
     }
     
-    // Cena 17.0-20.0: Slider antes/depois Restaurante
-    if (time >= 17.0 && time < 20.0) {
-      setCaption("Antes / Depois", "Antes / Depois", 1400);
-      const p = (time - 17.0) / 3.0;
+    // Cena 28.5-32.5: Slider antes/depois Restaurante
+    if (time >= 28.5 && time < 32.5) {
+      setCaption("Antes / Depois", 1400);
+      const p = (time - 28.5) / 4.0;
       const knobX = 720 + p * 200;
-      moveCursor(knobX, 1150 + Math.sin(time * 5) * 10);
-      const baRange = siteContent.querySelector('.ba-range');
-      if (baRange) {
-        const val = Math.round(55 + p * 40);
-        baRange.value = val;
-        baRange.dispatchEvent(new Event('input'));
-      }
+      moveCursor(knobX, 1150 + Math.sin(time * 4) * 10);
+      try {
+        const iframeDoc = siteFrame.contentDocument || siteFrame.contentWindow.document;
+        if (iframeDoc) {
+          const baRange = iframeDoc.querySelector('.ba-range');
+          if (baRange) {
+            const val = Math.round(55 + p * 40);
+            baRange.value = val;
+            baRange.dispatchEvent(new Event('input'));
+          }
+        }
+      } catch(e) {}
       setZoom(0.70, 55, 60);
-      if (frame === Math.round(17.0 * FPS)) { triggerRipple(720, 1150); setSFX("whoosh", 720, 1150); }
-      showElement('.pf-card:first-child', true, 200);
+      if (frame === Math.round(28.5 * FPS)) { triggerRipple(720, 1150); setSFX("whoosh", 720, 1150); }
     }
     
-    // Cena 20.0-21.5: Métricas flutuantes
-    if (time >= 20.0 && time < 21.5) {
-      setCaption("R$ 4,20 por R$ 1", "R$ 4,20", 900);
-      moveCursor(400 + Math.sin(time * 3) * 40, 700);
+    // Cena 32.5-34.5: Métrica R$ 4,20
+    if (time >= 32.5 && time < 34.5) {
+      setCaption("R$ 4,20 por R$ 1", 900);
+      moveCursor(400 + Math.sin(time * 2) * 40, 700);
       setZoom(0.60, 30, 40);
-      if (frame === Math.round(20.0 * FPS)) { triggerRipple(400, 700); setSFX("pop", 400, 700); }
-      showElement('.float-card', true, 100);
+      if (frame === Math.round(32.5 * FPS)) { triggerRipple(400, 700); setSFX("pop", 400, 700); }
     }
     
-    // Cena 21.5-22.5: Mais métricas
-    if (time >= 21.5 && time < 22.5) {
-      setCaption("−38% custo por lead", "−38%", 900);
-      moveCursor(700 + Math.sin(time * 3) * 40, 850);
+    // Cena 34.5-36.5: Métrica −38%
+    if (time >= 34.5 && time < 36.5) {
+      setCaption("−38% custo por lead", 900);
+      moveCursor(700 + Math.sin(time * 2) * 40, 850);
       setZoom(0.60, 50, 45);
-      if (frame === Math.round(21.5 * FPS)) { triggerRipple(700, 850); setSFX("pop", 700, 850); }
+      if (frame === Math.round(34.5 * FPS)) { triggerRipple(700, 850); setSFX("pop", 700, 850); }
     }
     
-    // Cena 22.5-23.5: Abas planos
-    if (time >= 22.5 && time < 23.5) {
-      setCaption("Planos: Sites / Sistemas / Tráfego", "Planos", 1200);
-      const p = (time - 22.5) / 1.0;
+    // Cena 36.5-38.5: Métrica +120
+    if (time >= 36.5 && time < 38.5) {
+      setCaption("+120 leads por mês", 900);
+      moveCursor(400 + Math.sin(time * 2) * 40, 1000);
+      setZoom(0.60, 30, 50);
+      if (frame === Math.round(36.5 * FPS)) { triggerRipple(400, 1000); setSFX("pop", 400, 1000); }
+    }
+    
+    // Cena 38.5-41.5: Abas planos
+    if (time >= 38.5 && time < 41.5) {
+      setCaption("Planos: Sites / Sistemas / Tráfego", 1200);
+      const p = (time - 38.5) / 3.0;
       const tabs = ['.tab#tab-sites', '.tab#tab-sistemas', '.tab#tab-trafego'];
-      const tIdx = Math.min(Math.floor(p * 3), 2);
-      const tab = siteContent.querySelector(tabs[tIdx]);
-      if (tab) {
-        const r = tab.getBoundingClientRect();
-        moveCursor(r.left + r.width/2, r.top + r.height/2);
-        tab.classList.add('active');
-      }
+      
+      try {
+        const iframeDoc = siteFrame.contentDocument || siteFrame.contentWindow.document;
+        if (iframeDoc) {
+          tabs.forEach(t => { const el = iframeDoc.querySelector(t); if(el) el.classList.remove('active'); });
+          const tIdx = Math.min(Math.floor(p * 3), 2);
+          const tab = iframeDoc.querySelector(tabs[tIdx]);
+          if (tab) {
+            const r = tab.getBoundingClientRect();
+            const iframeRect = siteFrame.getBoundingClientRect();
+            moveCursor(iframeRect.left + r.left + r.width/2, iframeRect.top + r.top + r.height/2);
+            tab.classList.add('active');
+          }
+        }
+      } catch(e) {}
       setZoom(0.65, 50, 55);
-      if (frame === Math.round(22.5 * FPS)) { triggerRipple(400, 1200); setSFX("clique", 400, 1200); }
-      showElement('#planos', true, 200);
+      if (frame === Math.round(38.5 * FPS)) { triggerRipple(400, 1200); setSFX("clique", 400, 1200); }
     }
     
-    // Cena 23.5-24.0: CTA WhatsApp + tela final
-    if (time >= 23.5 && time < 24.0) {
-      setCaption("Falar no WhatsApp", "Falar no WhatsApp", 1700);
+    // Cena 41.5-45.0: CTA WhatsApp
+    if (time >= 41.5 && time < 45.0) {
+      setCaption("Falar no WhatsApp", 1700);
       moveCursor(940, 1780);
       setZoom(0.55, 85, 90);
-      if (frame === Math.round(23.5 * FPS)) { triggerRipple(940, 1780); setSFX("clique", 940, 1780); }
-      showElement('.wa-float', true, 100);
+      if (frame === Math.round(41.5 * FPS)) { triggerRipple(940, 1780); setSFX("clique", 940, 1780); }
+      finalCard.classList.add('show');
+    }
+    
+    // Cena 45.0-48.0: Tela final
+    if (time >= 45.0 && time <= 48.0) {
+      hideCaption();
+      setZoom(0.55, 85, 90);
       finalCard.classList.add('show');
     }
     
