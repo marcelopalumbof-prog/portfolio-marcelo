@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marcelo Palumbo - Reels</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1920px; overflow: hidden; background: #0A0B0A; font-family: 'Inter', system-ui, sans-serif; }
+  .scene { position: absolute; inset: 0; width: 100%; height: 100%; background: #0A0B0A; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+  .scene.active { opacity: 1; pointer-events: auto; }
+  .phone-frame { position: absolute; width: 470px; height: 940px; background: #151615; border-radius: 50px; border: 12px solid #0A0B0A; box-shadow: 0 40px 120px -30px rgba(232,93,4,.35); overflow: hidden; }
+  .phone-screen { position: absolute; inset: 24px; width: 422px; height: 892px; background: #FBFBF9; border-radius: 38px; overflow: hidden; }
+  .cursor { position: absolute; width: 24px; height: 24px; background: #E85D04; border-radius: 50%; box-shadow: 0 0 12px rgba(232,93,4,.6); pointer-events: none; z-index: 50; transform: translate(-50%, -50%); }
+  .ripple { position: absolute; border: 2px solid rgba(255,255,255,.6); border-radius: 50%; pointer-events: none; z-index: 48; transform: translate(-50%, -50%) scale(0); opacity: 0; }
+  .safe-top { position: absolute; top: 0; left: 0; width: 100%; height: 250px; background: #0A0B0A; z-index: 100; pointer-events: none; }
+  .safe-bottom { position: absolute; bottom: 0; left: 0; width: 100%; height: 400px; background: #0A0B0A; z-index: 100; pointer-events: none; }
+  h1 { font-family: 'Syne', 'Unbounded', system-ui, sans-serif; font-weight: 800; line-height: 1.12; letter-spacing: -0.01em; color: #FFFFFF; }
+  .accent { color: #E85D04; }
+  .grad { background: linear-gradient(90deg,#fff 0%,#777 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .eyebrow { font-size: 14px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #8A8C8A; margin-bottom: 16px; }
+  .eyebrow .dot { width: 7px; height: 7px; border-radius: 50%; background: #E85D04; box-shadow: 0 0 10px rgba(232,93,4,.35); display: inline-block; margin-right: 8px; vertical-align: middle; }
+  .subtitle { font-size: 16px; color: #8A8C8A; line-height: 1.6; }
+  .caption { position: absolute; left: 50%; transform: translateX(-50%); bottom: 620px; font-size: 32px; font-weight: 800; font-family: 'Syne', 'Unbounded', system-ui, sans-serif; color: #FFFFFF; text-align: center; max-width: 900px; line-height: 1.2; pointer-events: none; z-index: 40; opacity: 0; transition: opacity 0.4s ease; }
+  .caption.show { opacity: 1; }
+  .logo { font-family: 'Syne', system-ui, sans-serif; font-weight: 700; font-size: 30px; color: #E85D04; letter-spacing: -0.02em; position: absolute; top: 140px; left: 50%; transform: translateX(-50%); z-index: 30; opacity: 0; transition: opacity 0.5s ease; }
+  .logo.show { opacity: 1; }
+  .accent-dot { color: #E85D04; }
+  .sfx-tag { position: absolute; font-family: 'Syne', system-ui, sans-serif; font-weight: 700; font-size: 20px; color: #E85D04; pointer-events: none; z-index: 45; opacity: 0; transition: opacity 0.3s ease; }
+  .sfx-tag.show { opacity: 1; }
+  .btn { display: inline-flex; align-items: center; gap: 12px; padding: 14px 28px; border-radius: 12px; background: #E85D04; color: #0A0B0A; font-weight: 700; font-size: 17px; white-space: nowrap; cursor: pointer; box-shadow: 0 0 0 1px rgba(255,255,255,.08), 0 10px 30px -8px rgba(232,93,4,.35); transition: background 0.12s cubic-bezier(.05,.7,.1,1), transform 0.12s cubic-bezier(.05,.7,.1,1); }
+  .btn:active { transform: translateY(1px) scale(.985); background: #FF7A1F; }
+  .btn .arw { transition: transform 0.26s cubic-bezier(.4,0,.2,1); }
+  .btn:active .arw { transform: translateX(3px); }
+  .chip { display: inline-flex; align-items: center; gap: 8px; padding: 11px 18px; border: 1px solid rgba(255,255,255,.14); border-radius: 999px; font-size: 15px; font-weight: 500; color: #8A8C8A; background: rgba(255,255,255,.02); cursor: pointer; transition: color 0.12s, border-color 0.12s, background 0.26s; }
+  .chip.active { background: #E85D04; border-color: #E85D04; color: #0A0B0A; }
+  .chip .n { font-size: 11px; font-weight: 600; opacity: 0.55; }
+  .tabs { display: flex; gap: 12px; margin-bottom: 32px; }
+  .tab { padding: 12px 24px; border-radius: 999px; border: 1px solid rgba(255,255,255,.14); color: #8A8C8A; font-size: 15px; font-weight: 500; background: rgba(255,255,255,.02); cursor: pointer; transition: color 0.12s, border-color 0.12s, background 0.26s; }
+  .tab.active { background: #E85D04; border-color: #E85D04; color: #0A0B0A; font-weight: 600; }
+  .metric-card { position: absolute; padding: 14px 20px; border-radius: 16px; background: rgba(14,15,14,.82); border: 1px solid rgba(255,255,255,.14); backdrop-filter: blur(8px); box-shadow: 0 20px 40px -18px rgba(0,0,0,.8); display: flex; gap: 14px; align-items: center; }
+  .metric-card .bar { width: 4px; height: 44px; border-radius: 2px; background: #E85D04; flex: none; }
+  .metric-card .text b { font-family: 'Syne', system-ui, sans-serif; font-size: 20px; font-weight: 700; color: #FFFFFF; display: block; line-height: 1.2; }
+  .metric-card .text small { font-size: 12px; color: #8A8C8A; display: block; }
+  .counter { font-family: 'Syne', system-ui, sans-serif; font-weight: 700; font-size: 34px; color: #E85D04; }
+  .final-card { position: absolute; left: 50%; transform: translateX(-50%); bottom: 460px; width: 900px; text-align: center; padding: 80px 40px; border-radius: 30px; border: 1px solid rgba(255,255,255,.14); background: linear-gradient(180deg,#151615,#0E0F0E); color: #FFFFFF; z-index: 30; opacity: 0; transition: opacity 0.6s ease; }
+  .final-card.show { opacity: 1; }
+  .final-card h2 { font-family: 'Syne', system-ui, sans-serif; font-weight: 800; font-size: 40px; margin-bottom: 12px; line-height: 1.1; }
+  .final-card .accent { color: #E85D04; }
+  .final-card p { font-size: 18px; color: #8A8C8A; line-height: 1.5; margin-bottom: 28px; }
+  .wa-btn { display: inline-flex; align-items: center; gap: 12px; padding: 16px 32px; background: #E85D04; color: #0A0B0A; font-weight: 700; font-size: 18px; border-radius: 14px; text-decoration: none; box-shadow: 0 12px 30px -8px rgba(232,93,4,.35); }
+  .wa-btn:active { transform: scale(.97); }
+  .final-info { margin-top: 32px; font-size: 16px; color: #FFFFFF; }
+  .final-info .accent { color: #E85D04; }
+  .mock-border { position: absolute; inset: 0; border: 2px solid #E85D04; border-radius: 54px; pointer-events: none; z-index: 5; opacity: 0; transition: opacity 0.3s ease; }
+  .mock-border.show { opacity: 1; }
+  .center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+  .zoom { transition: transform 0.6s cubic-bezier(.05,.7,.1,1); }
+</style>
+</head>
+<body>
+
+<!-- Áreas seguras Reels -->
+<div class="safe-top"></div>
+<div class="safe-bottom"></div>
+
+<!-- Logo -->
+<div class="logo" id="logo">Marcelo Palumbo<span class="accent-dot">.</span></div>
+
+<!-- Cena 0-0.6: Logo apenas -->
+<div class="scene" id="scene-0" data-start="0" data-end="0.6"></div>
+
+<!-- Cena 0.6-1.4: "Sites que vendem." -->
+<div class="scene" id="scene-1" data-start="0.6" data-end="1.4">
+  <div class="caption show" style="top: 420px;">Sites que <span class="accent">vendem</span>.</div>
+</div>
+
+<!-- Cena 1.4-2.2: "Sistemas que organizam." -->
+<div class="scene" id="scene-2" data-start="1.4" data-end="2.2">
+  <div class="caption show" style="top: 420px;">Sistemas que <span class="accent">organizam</span>.</div>
+</div>
+
+<!-- Cena 2.2-3.0: "Anúncios que trazem clientes." -->
+<div class="scene" id="scene-3" data-start="2.2" data-end="3.0">
+  <div class="caption show" style="top: 380px;">Anúncios que <span class="accent">trazem clientes</span>.</div>
+</div>
+
+<!-- Cena 3.0-4.0: Transição -->
+<div class="scene" id="scene-4" data-start="3.0" data-end="4.0">
+  <div class="caption show" style="top: 400px;">Tudo em <span class="accent">um lugar</span>.</div>
+</div>
+
+<!-- Cena 4.0-6.0: Hero no celular -->
+<div class="scene" id="scene-5" data-start="4.0" data-end="6.0">
+  <div class="phone-frame center" style="left: 50%; top: 50%; transform: translate(-50%, -50%) scale(0.75);" id="phone-hero">
+    <div class="phone-screen" id="screen-hero">
+      <!-- Conteúdo do hero será injetado via JS -->
+    </div>
+  </div>
+  <div class="cursor" id="cursor-5" style="left: 300px; top: 850px;"></div>
+  <div class="caption show" style="top: 1350px;">Quero meu projeto</div>
+  <div class="sfx-tag" id="sfx-5" style="left: 300px; top: 850px;">clique</div>
+</div>
+
+<!-- Cena 6.0-6.6: Botão pressionado + +80 projetos -->
+<div class="scene" id="scene-6" data-start="6.0" data-end="6.6">
+  <div class="phone-frame center" style="left: 50%; top: 50%; transform: translate(-50%, -50%) scale(0.75);" id="phone-6">
+    <div class="phone-screen" id="screen-6"></div>
+  </div>
+  <div class="caption show" style="top: 1100px;">+80 projetos entregues</div>
+  <div class="sfx-tag" id="sfx-6" style="left: 50%; top: 850px;">pop</div>
+</div>
+
+<!-- Cena 6.6-7.4: Rating 5,0 -->
+<div class="scene" id="scene-7" data-start="6.6" data-end="7.4">
+  <div class="phone-frame center" style="left: 50%; top: 50%; transform: translate(-50%, -50%) scale(0.75);" id="phone-7">
+    <div class="phone-screen" id="screen-7"></div>
+  </div>
+  <div class="caption show" style="top: 1180px;">★★★★★ 5,0</div>
+</div>
+
+<!-- Cena 7.4-8.4: Serviços -->
+<div class="scene" id="scene-8" data-start="7.4" data-end="8.4">
+  <div class="phone-frame center" style="left: 50%; top: 50%; transform: translate(-50%, -50%) scale(0.75);" id="phone-8">
+    <div class="phone-screen" id="screen-8"></div>
+  </div>
+  <div class="caption show" style="top: 1420px;">Serviços</div>
+</div>
+
+<!-- Cena 8.4-9.4: Filtros portfólio -->
+<div class="scene" id="scene-9" data-start="8.4" data-end="9.4">
+  <div class="phone-frame center" style="left: 50%; top: 50%; transform: translate(-50%, -50%) scale(0.75);" id="phone-9">
+    <div class="phone-screen" id="screen-9"></div>
+  </div>
+  <div class="caption show" style="top: 1480px;">Filtros</div>
+</div>
+
+<!-- Cena 9.4-12.0: Antes/Depois Restaurante -->
+<div class="scene" id="scene-10" data-start="9.4" data-end="12.0">
+  <div class="phone-frame center" style="left: 50%; top: 50%; transform: translate(-50%, -50%) scale(0.75);" id="phone-10">
+    <div class="phone-screen" id="screen-10"></div>
+  </div>
+  <div class="caption show" style="top: 1520px;">Antes / Depois</div>
+  <div class="sfx-tag" id="sfx-10" style="left: 50%; top: 1100px;">whoosh</div>
+</div>
+
+<!-- Cena 12.0-13.4: Métrica R$ 4,20 -->
+<div class="scene" id="scene-11" data-start="12.0" data-end="13.4">
+  <div class="phone-frame center" style="left: 50%; top: 50%; transform: translate(-50%, -50%) scale(0.75);" id="phone-11">
+    <div class="phone-screen" id="screen-11"></div>
+  </div>
+  <div class="metric-card" style="left: 120px; top: 420px;">
+    <div class="bar"></div>
+    <div class="text"><b id="count-420">R$ 0,00</b><small>de retorno por R$ 1 investido</small></div>
+  </div>
+  <div class="caption show" style="top: 900px;">R$ 4,20 por R$ 1</div>
+  <div class="sfx-tag" id="sfx-11" style="left: 250px; top: 440px;">pop</div>
+</div>
+
+<!-- Cena 13.4-14.2: Métrica −38% -->
+<div class="scene" id="scene-12" data-start="13.4" data-end="14.2">
+  <div class="phone-frame center" style="left: 50%; top: 50%; transform: translate(-50%, -50%) scale(0.75);" id="phone-12">
+    <div class="phone-screen" id="screen-12"></div>
+  </div>
+  <div class="metric-card" style="left: 120px; top: 420px;">
+    <div class="bar"></div>
+    <div class="text"><b id="count-38">0%</b><small>no custo por lead</small></div>
+  </div>
+  <div class="caption show" style="top: 900px;">−38% custo por lead</div>
+  <div class="sfx-tag" id="sfx-12" style="left: 250px; top: 440px;">pop</div>
+</div>
+
+<!-- Cena 14.2-15.0: Métrica +120 -->
+<div class="scene" id="scene-13" data-start="14.2" data-end="15.0">
+  <div class="phone-frame center" style="left: 50%; top: 50%; transform: translate(-50%, -50%) scale(0.75);" id="phone-13">
+    <div class="phone-screen" id="screen-13"></div>
+  </div>
+  <div class="metric-card" style="left: 120px; top: 420px;">
+    <div class="bar"></div>
+    <div class="text"><b id="count-120">0</b><small>leads por mês</small></div>
+  </div>
+  <div class="caption show" style="top: 900px;">+120 leads por mês</div>
+  <div class="sfx-tag" id="sfx-13" style="left: 250px; top: 440px;">pop</div>
+</div>
+
+<!-- Cena 15.0-16.0: Abas planos -->
+<div class="scene" id="scene-14" data-start="15.0" data-end="16.0">
+  <div class="phone-frame center" style="left: 50%; top: 50%; transform: translate(-50%, -50%) scale(0.75);" id="phone-14">
+    <div class="phone-screen" id="screen-14"></div>
+  </div>
+  <div class="caption show" style="top: 1580px;">Planos</div>
+</div>
+
+<!-- Cena 16.0-18.0: CTA WhatsApp -->
+<div class="scene" id="scene-15" data-start="16.0" data-end="18.0">
+  <div class="phone-frame center" style="left: 50%; top: 50%; transform: translate(-50%, -50%) scale(0.75);" id="phone-15">
+    <div class="phone-screen" id="screen-15"></div>
+  </div>
+  <div class="cursor" id="cursor-15" style="left: 500px; top: 1700px;"></div>
+  <div class="caption show" style="top: 1780px;">Falar no WhatsApp</div>
+  <div class="sfx-tag" id="sfx-15" style="left: 500px; top: 1700px;">clique</div>
+</div>
+
+<!-- Cena 18.0-22.0: Tela final -->
+<div class="scene" id="scene-16" data-start="18.0" data-end="22.0">
+  <div class="final-card show">
+    <h2>Marcelo Palumbo<span class="accent-dot">.</span></h2>
+    <p>Orçamento direto no <span class="accent">WhatsApp</span>.</p>
+    <a class="wa-btn" href="#">Falar no WhatsApp <span class="arw">→</span></a>
+    <div class="final-info">
+      <span class="accent">@marcelopalumbo_</span> · marcelopalumbo.vercel.app
+    </div>
+  </div>
+</div>
+
+<!-- Cursor global -->
+<div class="cursor" id="cursor-global" style="left: 540px; top: 960px;"></div>
+<div class="ripple" id="ripple-global"></div>
+
+<script>
+  const scenes = document.querySelectorAll('.scene');
+  const cursor = document.getElementById('cursor-global');
+  const ripple = document.getElementById('ripple-global');
+  const totalDuration = 22;
+  const fps = 30;
+  const totalFrames = totalDuration * fps;
+  let currentTime = 0;
+
+  function showScene(time) {
+    scenes.forEach(sc => {
+      const start = parseFloat(sc.getAttribute('data-start'));
+      const end = parseFloat(sc.getAttribute('data-end'));
+      if (time >= start && time < end) {
+        sc.classList.add('active');
+      } else {
+        sc.classList.remove('active');
+      }
+    });
+  }
+
+  function moveCursor(x, y, time) {
+    cursor.style.left = x + 'px';
+    cursor.style.top = y + 'px';
+  }
+
+  function triggerRipple(x, y, time) {
+    ripple.style.left = x + 'px';
+    ripple.style.top = y + 'px';
+    ripple.style.transform = 'translate(-50%, -50%) scale(0)';
+    ripple.style.opacity = '0';
+    requestAnimationFrame(() => {
+      ripple.style.transition = 'transform 0.4s cubic-bezier(.05,.7,.1,1), opacity 0.4s ease';
+      ripple.style.transform = 'translate(-50%, -50%) scale(3)';
+      ripple.style.opacity = '0.8';
+      setTimeout(() => {
+        ripple.style.transition = 'none';
+        ripple.style.transform = 'translate(-50%, -50%) scale(0)';
+        ripple.style.opacity = '0';
+      }, 400);
+    });
+  }
+
+  // Animação de contadores
+  function animateCounter(id, end, duration, prefix, suffix) {
+    const el = document.getElementById(id);
+    const start = performance.now();
+    function step(now) {
+      const p = Math.min((now - start) / duration, 1);
+      const val = Math.round(end * (1 - Math.pow(1 - p, 3)));
+      let text = val;
+      if (prefix) text = prefix + text;
+      if (suffix) text = text + suffix;
+      // formato brasileiro
+      if (id === 'count-420') text = 'R$ ' + (val/100).toFixed(2).replace('.', ',');
+      if (id === 'count-38') text = '−' + val + '%';
+      if (id === 'count-120') text = '+' + val;
+      el.textContent = text;
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  // Loop principal
+  let frame = 0;
+  function tick() {
+    currentTime = frame / fps;
+    showScene(currentTime);
+
+    // Movimentos do cursor por cena
+    if (currentTime >= 4.0 && currentTime < 6.0) {
+      const p = (currentTime - 4.0) / 2.0;
+      moveCursor(200 + p * 200, 850 + Math.sin(p * 3) * 20, currentTime);
+    }
+    if (currentTime >= 6.0 && currentTime < 6.6) {
+      moveCursor(500, 850, currentTime);
+      if (frame === Math.round(6.0 * fps)) triggerRipple(500, 850, currentTime);
+      if (frame === Math.round(6.0 * fps)) animateCounter('count-420', 420, 500, 'R$ ', '');
+    }
+    if (currentTime >= 7.4 && currentTime < 8.4) {
+      const p = (currentTime - 7.4) / 1.0;
+      moveCursor(250 + p * 250, 900 + Math.sin(p * 4) * 30, currentTime);
+    }
+    if (currentTime >= 8.4 && currentTime < 9.4) {
+      const p = (currentTime - 8.4) / 1.0;
+      const chipX = [200, 400, 600, 850][Math.floor(p * 4)];
+      moveCursor(chipX, 1050, currentTime);
+    }
+    if (currentTime >= 9.4 && currentTime < 12.0) {
+      const p = (currentTime - 9.4) / 2.6;
+      moveCursor(540 + Math.sin(p * 6) * 40, 1100 + p * 100, currentTime);
+    }
+    if (currentTime >= 12.0 && currentTime < 13.4) {
+      if (frame === Math.round(12.0 * fps)) animateCounter('count-420', 420, 1000, 'R$ ', '');
+      moveCursor(300, 450, currentTime);
+    }
+    if (currentTime >= 13.4 && currentTime < 14.2) {
+      if (frame === Math.round(13.4 * fps)) animateCounter('count-38', 38, 600, '', '');
+      moveCursor(300, 450, currentTime);
+    }
+    if (currentTime >= 14.2 && currentTime < 15.0) {
+      if (frame === Math.round(14.2 * fps)) animateCounter('count-120', 120, 600, '', '');
+      moveCursor(300, 450, currentTime);
+    }
+    if (currentTime >= 15.0 && currentTime < 16.0) {
+      const p = (currentTime - 15.0) / 1.0;
+      const tabX = [250, 540, 830][Math.floor(p * 3)];
+      moveCursor(tabX, 1000, currentTime);
+    }
+    if (currentTime >= 16.0 && currentTime < 18.0) {
+      moveCursor(500, 1700, currentTime);
+      if (frame === Math.round(16.0 * fps)) triggerRipple(500, 1700, currentTime);
+    }
+
+    frame++;
+    if (frame <= totalFrames) {
+      requestAnimationFrame(tick);
+    }
+  }
+
+  requestAnimationFrame(tick);
+</script>
+</body>
+</html>
