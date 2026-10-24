@@ -823,6 +823,14 @@ html:has(dialog.case[open]){overflow:hidden}
   opacity:0;cursor:ew-resize;touch-action:pan-y;-webkit-appearance:none;appearance:none;background:none;
 }
 .ba-range:focus-visible{outline:3px solid var(--accent);outline-offset:-4px}
+.ba-range[aria-invalid="true"]{
+  outline:3px solid #ef4444;outline-offset:-4px;
+}
+.ba-error{
+  position:absolute;bottom:-16px;left:0;right:0;font-size:12px;color:#ef4444;
+  text-align:center;opacity:0;transition:opacity var(--dur-quick) var(--ease-standard);
+}
+.ba-error.show{opacity:1;}
 
 /* ---- Modal de case ---- */
 .case{
@@ -1167,7 +1175,7 @@ html:has(dialog.case[open]){overflow:hidden}
       <a href="#inicio" class="logo" aria-label="Marcelo Palumbo, ir para o início">Marcelo Palumbo<span class="accent">.</span></a>
 
       <div class="nav-links">
-        <a href="#inicio">Início</a>
+        <a href="#inicio" aria-current="page">Início</a>
         <a href="#servicos">Serviços</a>
         <a href="#portfolio">Portfólio</a>
         <a href="#planos">Planos</a>
@@ -1627,7 +1635,10 @@ html:has(dialog.case[open]){overflow:hidden}
             <span class="ba-tag l" aria-hidden="true">Depois</span>
             <span class="ba-tag r" aria-hidden="true">Antes</span>
             <input class="ba-range" type="range" min="0" max="100" value="55" step="1"
-                   aria-label="Comparar o site do restaurante antes e depois do redesign">
+                   aria-label="Comparar o site do restaurante antes e depois do redesign"
+                   aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"
+                   aria-describedby="ba-error">
+            <span id="ba-error" class="ba-error" role="alert">Valor fora do intervalo permitido.</span>
           </div>
           <div class="pf-meta">
             <div class="pf-tags"><span class="pf-tag">Redesign</span><span class="pf-tag alt">Restaurante</span></div>
@@ -2132,8 +2143,8 @@ html:has(dialog.case[open]){overflow:hidden}
           </p>
           <p class="rating" role="img" data-reveal aria-label="Avaliação 5 de 5 estrelas">★★★★★</p>
           <div class="hero-actions" data-reveal>
-            <a class="btn-ghost" href="#planos" data-cta="metricas-planos">Ver mais <span aria-hidden="true">→</span></a>
-            <a class="link-muted" data-wa="Tenho uma dúvida sobre resultados e quero conversar" data-cta="metricas-duvida">Tirar dúvida ?</a>
+            <a class="btn-ghost" href="#planos" data-cta="metricas-planos">Ver planos <span aria-hidden="true">→</span></a>
+            <a class="link-muted" data-wa="Tenho uma dúvida sobre resultados e quero conversar" data-cta="metricas-duvida">Tire sua dúvida</a>
           </div>
         </div>
       </div>
@@ -2859,8 +2870,15 @@ const CONFIG = {
 (function beforeAfter(){
   document.querySelectorAll(".pf-shot.ba").forEach(function(moldura){
     const controle = moldura.querySelector(".ba-range");
+    const erro = moldura.querySelector(".ba-error");
     if(!controle) return;
-    function aplicar(){ moldura.style.setProperty("--pos", controle.value + "%"); }
+    function aplicar(){
+      const v = parseInt(controle.value, 10);
+      const invalido = v < 0 || v > 100;
+      controle.setAttribute("aria-invalid", String(invalido));
+      if(erro) erro.classList.toggle("show", invalido);
+      moldura.style.setProperty("--pos", controle.value + "%");
+    }
     controle.addEventListener("input", aplicar);
     aplicar();
   });
