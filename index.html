@@ -661,6 +661,18 @@ html:has(dialog.case[open]){overflow:hidden}
 }
 .pf-open:hover .pf-cta,.pf-open:focus-visible .pf-cta{opacity:1;transform:translate(-50%,0)}
 
+/* Cards com print real de site no ar */
+.pf-print img{display:block;width:100%;height:100%;object-fit:cover;object-position:top center;transition:transform var(--dur-slow) var(--ease-out)}
+.pf-open:hover .pf-print img,.pf-open:focus-visible .pf-print img{transform:scale(1.035)}
+.pf-live{
+  position:absolute;top:10px;left:10px;z-index:3;display:inline-flex;align-items:center;gap:6px;
+  padding:5px 11px;border-radius:var(--radius-full);
+  background:rgba(10,11,10,.78);border:1px solid rgba(255,255,255,.2);
+  font-size:10.5px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:#fff;
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+}
+.pf-live::before{content:"";width:6px;height:6px;border-radius:50%;background:#3DDC84;box-shadow:0 0 8px #3DDC84}
+
 .pf-meta{display:flex;flex-direction:column;gap:8px}
 .pf-tags{display:flex;flex-wrap:wrap;gap:6px}
 .pf-tag{
@@ -859,6 +871,7 @@ html:has(dialog.case[open]){overflow:hidden}
 .case-facts dt{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:5px}
 .case-facts dd{margin:0;font-family:var(--font-display);font-size:15px;font-weight:600;line-height:1.3}
 .case-actions{display:flex;gap:var(--s16);flex-wrap:wrap;align-items:center;padding-top:var(--s8)}
+.case-actions [hidden]{display:none}
 
 /* Barra de progresso de leitura */
 .scroll-progress{
@@ -1579,18 +1592,90 @@ html:has(dialog.case[open]){overflow:hidden}
       <div class="section-head" data-reveal>
         <p class="eyebrow"><span class="dot"></span>Portfólio</p>
         <h2 class="h2-wrap">Do rascunho ao <span class="accent">projeto no ar</span><span class="grad">.</span></h2>
-        <p class="lead">Uma seleção de sites, sistemas e campanhas que saíram do papel. Filtre por tipo, passe o mouse sobre os cards e arraste a comparação para ver o antes e o depois.</p>
+        <p class="lead">Uma seleção de sites no ar, sistemas e campanhas que saíram do papel. Filtre por tipo, passe o mouse sobre os cards e arraste a comparação para ver o antes e o depois.</p>
       </div>
 
       <div class="pf-bar" data-reveal role="group" aria-label="Filtrar projetos por tipo">
-        <button class="pf-filter" type="button" data-filter="all" aria-pressed="true">Todos <span class="n">6</span></button>
-        <button class="pf-filter" type="button" data-filter="site" aria-pressed="false">Sites <span class="n">3</span></button>
+        <button class="pf-filter" type="button" data-filter="all" aria-pressed="true">Todos <span class="n">9</span></button>
+        <button class="pf-filter" type="button" data-filter="site" aria-pressed="false">Sites <span class="n">6</span></button>
         <button class="pf-filter" type="button" data-filter="sistema" aria-pressed="false">Sistemas <span class="n">2</span></button>
         <button class="pf-filter" type="button" data-filter="trafego" aria-pressed="false">Tráfego pago <span class="n">1</span></button>
         <p class="sr-only" id="pf-live" aria-live="polite"></p>
       </div>
 
       <div class="pf-grid" id="pf-grid">
+
+        <!-- Site no ar: Dra. Aline Lopes (print real) -->
+        <article class="pf-card" data-cat="site" data-reveal
+          data-title="Dra. Aline Lopes"
+          data-tags="Site institucional|Dermatologia"
+          data-desc="Site para a dermatologista Dra. Aline Lopes, com apresentação dos tratamentos, prova social e agendamento de consulta direto no WhatsApp. Layout sofisticado e leitura confortável no celular."
+          data-escopo="Site de página única + agendamento pelo WhatsApp"
+          data-prazo="2026"
+          data-resultado="Agendamento de consulta pelo WhatsApp"
+          data-url="https://site-aline.marcelo-palumbof.workers.dev/">
+          <button class="pf-open" type="button" data-case aria-label="Ver detalhes do projeto Dra. Aline Lopes">
+            <span class="pf-shot pf-print" aria-hidden="true">
+              <img src="assets/cases/aline-lopes.jpg" alt="" width="1440" height="900" loading="lazy" decoding="async">
+              <span class="pf-live">No ar</span>
+            </span>
+            <span class="pf-cta">Ver detalhes <span aria-hidden="true">→</span></span>
+          </button>
+          <div class="pf-meta">
+            <div class="pf-tags"><span class="pf-tag">Site institucional</span><span class="pf-tag alt">Dermatologia</span></div>
+            <h3 class="pf-title">Dra. Aline Lopes</h3>
+            <p class="pf-desc">Dermatologia, estética e medicina integrativa em Lauro de Freitas e Salvador, com agendamento direto no WhatsApp.</p>
+            <p class="pf-res"><b>No ar</b> com agendamento pelo WhatsApp</p>
+          </div>
+        </article>
+
+        <!-- Site no ar: Giovanna Flamiano (print real) -->
+        <article class="pf-card" data-cat="site" data-reveal
+          data-title="Giovanna Flamiano"
+          data-tags="Site institucional|Advocacia"
+          data-desc="Site para a advogada Giovanna Flamiano, especializada em Direito Previdenciário. Organiza as especialidades, transmite confiança e leva o visitante ao contato pelo WhatsApp — presencial em Salvador e remoto para todo o Brasil."
+          data-escopo="Site institucional + especialidades e contato"
+          data-prazo="2026"
+          data-resultado="Contato direto pelo WhatsApp"
+          data-url="https://giovannaflamiano.marcelo-palumbof.workers.dev/">
+          <button class="pf-open" type="button" data-case aria-label="Ver detalhes do projeto Giovanna Flamiano">
+            <span class="pf-shot pf-print" aria-hidden="true">
+              <img src="assets/cases/giovanna-flamiano.jpg" alt="" width="1440" height="900" loading="lazy" decoding="async">
+              <span class="pf-live">No ar</span>
+            </span>
+            <span class="pf-cta">Ver detalhes <span aria-hidden="true">→</span></span>
+          </button>
+          <div class="pf-meta">
+            <div class="pf-tags"><span class="pf-tag">Site institucional</span><span class="pf-tag alt">Advocacia</span></div>
+            <h3 class="pf-title">Giovanna Flamiano</h3>
+            <p class="pf-desc">Advocacia previdenciária com linguagem clara, especialidades organizadas e contato imediato no WhatsApp.</p>
+            <p class="pf-res"><b>No ar</b> em Salvador e em todo o Brasil</p>
+          </div>
+        </article>
+
+        <!-- Site no ar: Novo Conceito Academia de Beleza (print real) -->
+        <article class="pf-card" data-cat="site" data-reveal
+          data-title="Novo Conceito Academia de Beleza"
+          data-tags="Site institucional|Educação"
+          data-desc="Site para a Novo Conceito Academia de Beleza (Grupo AJG), em Lauro de Freitas. Apresenta a estrutura da escola, as formações e as matrículas, com fotos reais dos espaços e contato pelo WhatsApp."
+          data-escopo="Site institucional + galeria de estrutura e cursos"
+          data-prazo="2026"
+          data-resultado="Matrículas pelo WhatsApp"
+          data-url="https://escolanovoconceito.marcelo-palumbof.workers.dev/">
+          <button class="pf-open" type="button" data-case aria-label="Ver detalhes do projeto Novo Conceito Academia de Beleza">
+            <span class="pf-shot pf-print" aria-hidden="true">
+              <img src="assets/cases/novo-conceito.jpg" alt="" width="1440" height="900" loading="lazy" decoding="async">
+              <span class="pf-live">No ar</span>
+            </span>
+            <span class="pf-cta">Ver detalhes <span aria-hidden="true">→</span></span>
+          </button>
+          <div class="pf-meta">
+            <div class="pf-tags"><span class="pf-tag">Site institucional</span><span class="pf-tag alt">Educação</span></div>
+            <h3 class="pf-title">Novo Conceito Academia de Beleza</h3>
+            <p class="pf-desc">Escola de beleza com estrutura, cursos e matrícula pelo WhatsApp — com fotos reais das estações de trabalho.</p>
+            <p class="pf-res"><b>No ar</b> com matrículas pelo WhatsApp</p>
+          </div>
+        </article>
 
         <!-- 1. Restaurante: comparação antes/depois -->
         <article class="pf-card" data-cat="site" data-reveal>
@@ -2478,6 +2563,7 @@ html:has(dialog.case[open]){overflow:hidden}
       </dl>
       <div class="case-actions">
         <a class="btn" id="case-wa" data-cta="case-modal">Quero algo parecido</a>
+        <a class="btn-ghost" id="case-site" target="_blank" rel="noopener" data-cta="case-site" hidden>Ver site ao vivo <span aria-hidden="true">↗</span></a>
         <button class="btn-ghost" type="button" data-close-case>Voltar ao portfólio</button>
       </div>
     </div>
@@ -2899,6 +2985,7 @@ const CONFIG = {
   const prazo = document.getElementById("case-prazo");
   const resultado = document.getElementById("case-resultado");
   const wa = document.getElementById("case-wa");
+  const site = document.getElementById("case-site");
   const fechar = dlg.querySelector("[data-close-case]");
   let anterior = null;
 
@@ -2931,6 +3018,11 @@ const CONFIG = {
       const tel = String(CONFIG.whatsapp).replace(/\D/g, "");
       const msg = "Olá! Vi o projeto de " + (d.title || "você") + " no seu portfólio e quero algo parecido.";
       wa.href = "https://wa.me/" + tel + "?text=" + encodeURIComponent(msg);
+    }
+    // Só os projetos que já estão no ar têm link para o site publicado.
+    if(site){
+      if(d.url){ site.href = d.url; site.hidden = false; }
+      else { site.removeAttribute("href"); site.hidden = true; }
     }
 
     anterior = document.activeElement;
